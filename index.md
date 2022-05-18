@@ -10,4 +10,4 @@ SteveZMTstudios
 
 space.bilibili.com/474130186
 
-afdian.cn/@stevezmtstudios
+afdian.net/@stevezmtstudios
