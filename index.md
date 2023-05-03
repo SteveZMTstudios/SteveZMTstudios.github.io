@@ -9,7 +9,7 @@ SteveZMTstudios
 **新项目** <br>
 
 [**Phigros历史版本收集**](https://stevezmtstudios.github.io/Phigros-history/)<br>
-[**g.co/ABH 本地化**](https://si1ver.github.io/ABH)
+[**g.co/ABH 本地化**](https://si1vr.github.io/ABH)
 
 [在b站关注](space.bilibili.com/474130186)
 
