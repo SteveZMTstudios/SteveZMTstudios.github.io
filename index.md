@@ -10,7 +10,7 @@ SteveZMTstudios
 
 [**Phigros历史版本收集**](https://stevezmtstudios.github.io/Phigros-history/)<br>
 [**g.co/ABH 本地化**](https://si1vr.github.io/ABH)<br>
-[**设备支援助手**](https://si1vr.github.io/Device-Helper)<br>
+[**设备支援助手**](https://github.com/SteveZMTstudios/Device-Helper/)<br>
 
 
 
