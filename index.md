@@ -15,8 +15,6 @@
 [**访问现有的仓库列表**](https://github.com/SteveZMTstudios?tab=repositories)
 <br>
 
-##### [**(参赛作品)HephaestusOS 维护工具**](https://stevezmtstudios.github.io/Hephaestus/)<br>
-
 ##### [原生声音修改4evergo(归档)](https://github.com/SteveZMTstudios/SoundMod_4_evergo)<br>
 
 ##### [Phigros历史版本收集](https://stevezmtstudios.github.io/Phigros-history/)<br>
