@@ -7,7 +7,7 @@
 <img src="https://readme-typing-svg.demolab.com?font=Roboto+Mono&weight=600&duration=2000&pause=1500&color=FFFFFF&background=1e242a&center=true&vCenter=true&random=false&width=420&lines=Welcome!+%F0%9F%92%9C;I+am+Steve+ZMT...;Nice+to+meet+you!;I+am+a+hobbyist+developer.;Check+out+my+website!;https%3A%2F%2Fwww.stevezmt.top" alt="Typing SVG" /></a>
 
 
-![Failed to load Github stats/加载Github 统计数据时遇到问题。](https://github-readme-stats.vercel.app/api?username=stevezmtstudios&show=discussions_started,prs_merged_percentage&count_private=true&show_icons=true&title_color=359697&icon_color=359697&hide_border=false&theme=radical&locale=cn&rank_icon=github)
+![Failed to load Github stats/加载Github 统计数据时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api?username=stevezmtstudios&show=discussions_started,prs_merged_percentage&count_private=true&show_icons=true&title_color=359697&icon_color=359697&hide_border=false&theme=radical&locale=cn&rank_icon=github)
 
 [访问我的共享节点](/sharepoint)
 
@@ -25,12 +25,12 @@
 <br>
 
 
-##### [Phigros 历史版本收集![加载图像时遇到问题。](https://github-readme-stats.vercel.app/api/pin/?username=stevezmtstudios&repo=phigros-history)](/Phigros-history)<br>
-##### [Recovery环境 应用备份![加载图像时遇到问题。](https://github-readme-stats.vercel.app/api/pin/?username=stevezmtstudios&repo=AppBackup-onRecovery)](https://github.com/SteveZMTstudios/AppBackup-onRecovery)<br>
-##### [虚拟主机预设![加载图像时遇到问题。](https://github-readme-stats.vercel.app/api/pin/?username=stevezmtstudios&repo=vmhost)](https://vmhost.stevezmt.top)<br>
-##### [原生声音修改4evergo(归档)![加载图像时遇到问题。](https://github-readme-stats.vercel.app/api/pin/?username=stevezmtstudios&repo=SoundMod_4_evergo)](https://github.com/SteveZMTstudios/SoundMod_4_evergo)<br>
-##### [Magisk模块-打开Android Go![加载图像时遇到问题。](https://github-readme-stats.vercel.app/api/pin/?username=stevezmtstudios&repo=magisk-low_ram)](https://github.com/SteveZMTstudios/magisk-low_ram)<br>
-##### [(新领域)UZ801随身WIFI管理页进化![加载图像时遇到问题。](https://github-readme-stats.vercel.app/api/pin/?username=stevezmtstudios&repo=uz801-weboard-evolution)](https://github.com/SteveZMTstudios/uz801-weboard-evolution)
+##### [Phigros 历史版本收集![加载图像时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api/pin/?username=stevezmtstudios&repo=phigros-history)](/Phigros-history)<br>
+##### [Recovery环境 应用备份![加载图像时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api/pin/?username=stevezmtstudios&repo=AppBackup-onRecovery)](https://github.com/SteveZMTstudios/AppBackup-onRecovery)<br>
+##### [虚拟主机预设![加载图像时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api/pin/?username=stevezmtstudios&repo=vmhost)](https://vmhost.stevezmt.top)<br>
+##### [原生声音修改4evergo(归档)![加载图像时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api/pin/?username=stevezmtstudios&repo=SoundMod_4_evergo)](https://github.com/SteveZMTstudios/SoundMod_4_evergo)<br>
+##### [Magisk模块-打开Android Go![加载图像时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api/pin/?username=stevezmtstudios&repo=magisk-low_ram)](https://github.com/SteveZMTstudios/magisk-low_ram)<br>
+##### [(新领域)UZ801随身WIFI管理页进化![加载图像时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api/pin/?username=stevezmtstudios&repo=uz801-weboard-evolution)](https://github.com/SteveZMTstudios/uz801-weboard-evolution)
 
 ------
 
