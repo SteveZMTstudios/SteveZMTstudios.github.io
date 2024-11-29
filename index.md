@@ -9,13 +9,16 @@
 
 ![Failed to load Github stats/加载Github 统计数据时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api?username=stevezmtstudios&show=discussions_started,prs_merged_percentage&count_private=true&show_icons=true&title_color=359697&icon_color=359697&hide_border=false&theme=radical&locale=cn&rank_icon=github)
 
-[访问我的共享节点](/sharepoint)
 
 -----
-## **我的帖子** 
+
+## [**我的博客**](https://blog.stevezmt.top)
 
 [翻译词典笔 打开ADB（本地）](https://www.coolapk.com/feed/49767646?shareKey=YWNkMzBmNTU4NmY3NjU1ODhiY2Y~&shareUid=22536770&shareFrom=com.coolapk.market_13.3.6)<br>
 [翻译词典笔 获取root](https://www.coolapk.com/feed/50533639?shareKey=ZTY5NDM3NWYyYTBjNjU1ODhhODI~&shareUid=22536770&shareFrom=com.coolapk.market_13.3.6)
+
+
+[访问我的共享节点](/sharepoint)
 
 -----
 
