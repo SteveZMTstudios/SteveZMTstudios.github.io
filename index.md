@@ -14,8 +14,8 @@
 
 ## [**我的博客**](https://blog.stevezmt.top)
 
-[翻译词典笔 打开ADB（本地）](https://www.coolapk.com/feed/49767646?shareKey=YWNkMzBmNTU4NmY3NjU1ODhiY2Y~&shareUid=22536770&shareFrom=com.coolapk.market_13.3.6)<br>
-[翻译词典笔 获取root](https://www.coolapk.com/feed/50533639?shareKey=ZTY5NDM3NWYyYTBjNjU1ODhhODI~&shareUid=22536770&shareFrom=com.coolapk.market_13.3.6)
+[翻译词典笔 打开ADB（本地）](https://blog.stevezmt.top/2023/10/01/play-on-scanpen/)<br>
+[翻译词典笔 获取root](https://blog.stevezmt.top/2024/02/01/root-on-scanpen/)
 
 
 [访问我的共享节点](/sharepoint)
@@ -28,12 +28,12 @@
 <br>
 
 
-##### [Phigros 历史版本收集![加载图像时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api/pin/?username=stevezmtstudios&repo=phigros-history)](/Phigros-history)<br>
-##### [Recovery环境 应用备份![加载图像时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api/pin/?username=stevezmtstudios&repo=AppBackup-onRecovery)](https://github.com/SteveZMTstudios/AppBackup-onRecovery)<br>
-##### [虚拟主机预设![加载图像时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api/pin/?username=stevezmtstudios&repo=vmhost)](https://vmhost.stevezmt.top)<br>
-##### [原生声音修改4evergo(归档)![加载图像时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api/pin/?username=stevezmtstudios&repo=SoundMod_4_evergo)](https://github.com/SteveZMTstudios/SoundMod_4_evergo)<br>
-##### [Magisk模块-打开Android Go![加载图像时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api/pin/?username=stevezmtstudios&repo=magisk-low_ram)](https://github.com/SteveZMTstudios/magisk-low_ram)<br>
-##### [(新领域)UZ801随身WIFI管理页进化![加载图像时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api/pin/?username=stevezmtstudios&repo=uz801-weboard-evolution)](https://github.com/SteveZMTstudios/uz801-weboard-evolution)
+##### [Phigros 历史版本收集<br>![加载图像时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api/pin/?username=stevezmtstudios&repo=phigros-history)](/Phigros-history)<br>
+##### [Recovery环境 应用备份<br>![加载图像时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api/pin/?username=stevezmtstudios&repo=AppBackup-onRecovery)](https://github.com/SteveZMTstudios/AppBackup-onRecovery)<br>
+##### [虚拟主机预设<br>![加载图像时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api/pin/?username=stevezmtstudios&repo=vmhost)](https://vmhost.stevezmt.top)<br>
+##### [原生声音修改4evergo(归档)<br>![加载图像时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api/pin/?username=stevezmtstudios&repo=SoundMod_4_evergo)](https://github.com/SteveZMTstudios/SoundMod_4_evergo)<br>
+##### [Magisk模块-打开Android Go<br>![加载图像时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api/pin/?username=stevezmtstudios&repo=magisk-low_ram)](https://github.com/SteveZMTstudios/magisk-low_ram)<br>
+##### [(新领域)UZ801随身WIFI管理页进化<br>![加载图像时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api/pin/?username=stevezmtstudios&repo=uz801-weboard-evolution)](https://github.com/SteveZMTstudios/uz801-weboard-evolution)
 
 ------
 
