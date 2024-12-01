@@ -9,7 +9,12 @@
 
 ![Failed to load Github stats/加载Github 统计数据时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api?username=stevezmtstudios&show=discussions_started,prs_merged_percentage&count_private=true&show_icons=true&title_color=359697&icon_color=359697&hide_border=false&theme=radical&locale=cn&rank_icon=github)
 
-
+> Note: admin@stevezmt.top is a one-way email address for contacting the webmaster. The mailbox isn't configured to send mail, and the corresponding outgoing mail server isn't configured.
+> If you receive an email from admin@stevezmt.top, delete it and block the sending address.
+> Nota: admin@stevezmt.top è un indirizzo email unidirezionale per contattare il webmaster. La cassetta postale non è configurata per l'invio di posta e il server di posta in uscita corrispondente non è configurato.
+> Se ricevi un'e-mail da admin@stevezmt.top, eliminala e blocca l'indirizzo di invio.
+> 注意：admin@stevezmt.top为向站长联系的单向邮箱。该邮箱未配置为发送邮件，也未配置相应的发件服务器。
+> 若您收到了由admin@stevezmt.top发送的邮件，请将其删除，并拉黑发件地址。
 -----
 
 ## [**我的博客**](https://blog.stevezmt.top)
