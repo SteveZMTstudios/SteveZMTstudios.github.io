@@ -1,13 +1,47 @@
+<script src="snow.js"></script>
+<script>
+snow.start({
+    "stickingRatio": 0.5,
+    "wind": 0,
+    "flakeCount": 100,
+    "maxRadius": 4.5
+});
+
+const gid = document.getElementById.bind(document);
+const stop = gid("stop");
+const message = gid("message");
+let messageTimer;
+
+function tell(txt) {
+    clearTimeout(messageTimer);
+    message.textContent = txt;
+    messageTimer = setTimeout(() => {
+        message.textContent = "";
+    }, 15000);
+}
+
+stop.onclick = function() {
+    this.disabled = true;
+    snow.stop();
+    tell("即将停止下雪");
+};
+</script>
+
 
 ## 史蒂夫ZMT工作室
+
+
 
 [![bilibili](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Frelation%2Fstat%3Fvmid%3D474130186&query=%24.data.follower&logo=bilibili&logoColor=pink&label=Bilibili%20Subscriber&color=pink)
 ](https://space.bilibili.com/474130186) ![donate](https://img.shields.io/badge/afdian-Not_available-white?style=plastic&logo=GitHub%20Sponsors&logoColor=white&label=afdian&labelColor=grey) [![GitHub](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.swo.moe%2Fstats%2Fgithub%2Fstevezmtstudios&query=count&color=181717&label=GitHub&labelColor=282c34&logo=github&suffix=+follows&cacheSeconds=3600)](https://github.com/stevezmtstudios) [![知乎](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.swo.moe%2Fstats%2Fzhihu%2Fzhang-xian-sheng-70-9&query=count&color=282c34&label=%E7%9F%A5%E4%B9%8E&labelColor=0084ff&logo=zhihu&logoColor=ffffff&suffix=+%E5%85%B3%E6%B3%A8&cacheSeconds=3600)](https://www.zhihu.com/people/zhang-xian-sheng-70-9)
 
-<img src="https://readme-typing-svg.demolab.com?font=Roboto+Mono&weight=600&duration=2000&pause=1500&color=FFFFFF&background=1e242a&center=true&vCenter=true&random=false&width=420&lines=Welcome!+%F0%9F%92%9C;I+am+Steve+ZMT...;Nice+to+meet+you!;I+am+a+hobbyist+developer.;Check+out+my+website!;https%3A%2F%2Fwww.stevezmt.top" alt="Failed to load Typing SVG" />
+<img src="https://readme-typing-svg.demolab.com?font=Roboto+Mono&weight=600&duration=2000&pause=1500&color=FFFFFF&background=1e242a&center=true&vCenter=true&random=false&width=420&lines=Welcome!+%F0%9F%92%9C;It's winter my dude!;I+am+Steve+ZMT...;Nice+to+meet+you!;I+am+a+hobbyist+developer.;Check+out+my+website!;https%3A%2F%2Fwww.stevezmt.top" alt="Failed to load Typing SVG" />
 
 
 ![Failed to load Github stats/加载Github 统计数据时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api?username=stevezmtstudios&show=discussions_started,prs_merged_percentage&count_private=true&show_icons=true&title_color=359697&icon_color=359697&hide_border=false&theme=radical&locale=cn&rank_icon=github)
+
+<a href="javascript:;" id="stop" style="display: inline-block; padding: 10px 20px; background: #359697; color: white; text-decoration: none; border-radius: 5px; margin: 10px 0;">停止下雪</a>
+<p id="message" style="color: #359697;"></p>
 
 > Note: admin@stevezmt.top is a one-way email address for contacting the webmaster. The mailbox isn't configured to send mail, and the corresponding outgoing mail server isn't configured.
 > If you receive an email from admin@stevezmt.top, delete it and block the sending address.
