@@ -1,31 +1,4 @@
-<script src="snow.js"></script>
-<script>
-snow.start({
-    "stickingRatio": 0.5,
-    "wind": 0,
-    "flakeCount": 100,
-    "maxRadius": 4.5
-});
 
-const gid = document.getElementById.bind(document);
-const stop = gid("stop");
-const message = gid("message");
-let messageTimer;
-
-function tell(txt) {
-    clearTimeout(messageTimer);
-    message.textContent = txt;
-    messageTimer = setTimeout(() => {
-        message.textContent = "";
-    }, 15000);
-}
-
-stop.onclick = function() {
-    this.disabled = true;
-    snow.stop();
-    tell("即将停止下雪");
-};
-</script>
 
 
 ## 史蒂夫ZMT工作室
@@ -40,8 +13,6 @@ stop.onclick = function() {
 
 ![Failed to load Github stats/加载Github 统计数据时遇到问题。](https://githubstat.vercel.miniproj.stevezmt.top/api?username=stevezmtstudios&show=discussions_started,prs_merged_percentage&count_private=true&show_icons=true&title_color=359697&icon_color=359697&hide_border=false&theme=radical&locale=cn&rank_icon=github)
 
-<a href="javascript:;" id="stop" style="display: inline-block; padding: 10px 20px; background: #359697; color: white; text-decoration: none; border-radius: 5px; margin: 10px 0;">停止下雪</a>
-<p id="message" style="color: #359697;"></p>
 
 > Note: admin@stevezmt.top is a one-way email address for contacting the webmaster. The mailbox isn't configured to send mail, and the corresponding outgoing mail server isn't configured.
 > If you receive an email from admin@stevezmt.top, delete it and block the sending address.
