@@ -1,0 +1,40 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+# where to contact with us
+# All method are able to receive messages, but we may not replied with the same ways.
+# For example, we may replied through other email address with trusted signature and encryption.
+Contact: mailto:me@stevezmt.top
+Contact: mailto:admin@stevezmt.top
+Contact: https://github.com/SteveZMTstudios/SteveZMTstudios.github.io/security/advisories/new
+Contact: https://stevezmt.t.me/
+
+# OpenPGP Public key stores here
+Encryption: https://github.com/stevezmtstudios.gpg
+Encryption: https://key.stevezmt.top
+Encryption: openpgp4fpr:c96be2f8ede82cf7214f62593745872a953198fe
+
+# Any language that translator support is okay.
+Preferred-Languages: zh-cn,en,ru,fr
+
+Canonical: https://stevezmt.top/.well-known/security.txt
+
+Policy: https://github.com/SteveZMTstudios/SteveZMTstudios.github.io/security/policy
+
+Expires: 2038-01-01T04:00:00.000Z
+-----BEGIN PGP SIGNATURE-----
+
+iQI5BAEBCAAjHBxTdGV2ZSBaTVQgPG1lQHN0ZXZlem10LnRvcD4FAmiKRJ8ACgkQ
+N0WHKpUxmP5Huw//ZpUZK9K6RLPRTYax+0qT1niQR84lMJz3GyXas/kTDL0pOOlD
+OmBrp2SSoIuMeYHC8viKJCdorBwbL3KHijYafXXSaZER1xZePuTSzHMz+8F/abhv
+7yraGnk3O33/wYAO8DsAPXaTt5Wg0XKbuz8GAba/yNTx6jz6pRA7GhqsfxD0CTlP
+nfAdrWHSNP1SRz/U+kLaRYxdGRcqzCYPLlbWzHzwDpu3/X4Kb7MCuToN/Owo/bKG
+b+ZMK3BhNwZvqBCl4B1jGJzMy/e35zWtpsh5BJpEdF/vx+UYnh9Xx40hA0vTSJRM
+xos0GI1zrz1dMkaYR79D+oKq7qoOgCt4luTPlpWBBoQ1deJhYfLadq93BoRvHzJe
++4tTCFv+Z8lY/bUgzUKsOm+UbtmHevH4T1UK6cM8lIsttasMM0DmgbdFoCqXFeZZ
+VpS/dkQyWqk0HCCBapIm5HB5GCeVApar9Im4xb3oK30wkwWjsh+HfahVy/pHHNda
+N/yRH56pTNJJ835z5Ai33yDTLQ23zF4WrhwwNqAcrI2HaQG29McjHDLwoTCeCx63
+XgNyLx1Vl4//TZnpE19NHLzGQxd+jTA/3MWYc/4J7VEzua34gMo2CMZhxJNRVqbK
+hiwmZHylftkurINY47ZzaaZemRRgYTP5v6xHKthFh1LjUmtJSEFI5tqepuk=
+=hWKo
+-----END PGP SIGNATURE-----
