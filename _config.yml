@@ -6,6 +6,8 @@ show_downloads: false
 lang: zh-CN
 github:
   is_project_page: false
+  repository_url: https://github.com/SteveZMTstudios
+
 
 # 备案信息配置
 beian: "浙ICP备2025213066号-1"
