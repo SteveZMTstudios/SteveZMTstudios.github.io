@@ -1,133 +1,422 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>HTTP 404</title>
-		<style>body {
-  background: #000;
-  color: #fff;
-  font-family: "Consolas", Monaco, monospace;
-  line-height: 1.5;
-}
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <title>页面未找到</title>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #202124;
+      --secondary-text: #5f6368;
+      --link-color: #1a73e8;
+      --button-bg: #1a73e8;
+      --button-text: #ffffff;
+      --button-hover: #1765cc;
+      --divider: #dadce0;
+      --snackbar-bg: #323232;
+      --snackbar-text: #ffffff;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #202124;
+        --text-color: #e8eaed;
+        --secondary-text: #9aa0a6;
+        --link-color: #8ab4f8;
+        --button-bg: #8ab4f8;
+        --button-text: #202124;
+        --button-hover: #93bbf9;
+        --divider: #3c4043;
+        --snackbar-bg: #e8eaed;
+        --snackbar-text: #202124;
+      }
+    }
+    body {
+      font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+    .text-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .robot-container {
+      margin-bottom: 24px;
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .robot-icon {
+      font-size: 120px;
+      color: var(--secondary-text);
+      transition: transform 0.2s;
+    }
+    .robot-icon:active {
+      transform: scale(0.95);
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: 500;
+      margin: 0 0 16px 0;
+    }
+    p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--secondary-text);
+      margin: 0 0 16px 0;
+      max-width: 600px;
+    }
+    .url-path {
+      font-weight: 700;
+      color: var(--text-color);
+      word-break: break-all;
+    }
+    .solutions {
+      text-align: left;
+      display: inline-block;
+      font-size: 14px;
+      color: var(--secondary-text);
+      margin-top: 16px;
+      max-width: 100%;
+    }
+    .solutions ul {
+      padding-left: 20px;
+      margin: 8px 0;
+    }
+    .solutions li {
+      margin-bottom: 8px;
+    }
+    .action-btn {
+      display: inline-block;
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      padding: 10px 24px;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      margin-top: 24px;
+      transition: background-color 0.2s;
+    }
+    .action-btn:hover {
+      background-color: var(--button-hover);
+    }
+    .footer {
+      padding: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--secondary-text);
+      border-top: 1px solid var(--divider);
+    }
+    .footer a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    .text-content p {
+      color: var(--text-color);
+    }
+    .text-content span {
+      color: var(--secondary-text);
+    }
+    .snackbar span {
+      color: var(--snackbar-text)
+    }
 
-a {
-  color: #fff;
-  text-decoration: none;
-  border-bottom: solid 2px;
-}
+    /* Desktop Layout */
+    @media (min-width: 768px) {
+      .main-content {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: center;
+        text-align: left;
+        padding-top: 80px;
+        gap: 60px;
+      }
+      .text-content {
+        align-items: flex-start;
+        max-width: 600px;
+      }
+      .robot-container {
+        margin-bottom: 0;
+      }
+      .solutions {
+        display: block;
+      }
+    }
+    
+    /* Easter Egg Snackbar */
+    .snackbar {
+      visibility: hidden;
+      min-width: 280px;
+      max-width: 90%;
+      background-color: var(--snackbar-bg);
+      color: var(--snackbar-text);
+      text-align: left;
+      border-radius: 4px;
+      padding: 14px 24px;
+      position: fixed;
+      z-index: 1000;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%) translateY(100px);
+      font-size: 14px;
+      box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), visibility 0.3s;
+    }
+    .snackbar.show {
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+    .snackbar-text {
+      flex: 1;
+      line-height: 1.4;
+    }
+    .snackbar-action {
+      background: none;
+      border: none;
+      color: var(--link-color);
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 8px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      margin: -8px -8px -8px 0;
+    }
+    .snackbar-action:hover {
+      background-color: rgba(255,255,255,0.1);
+      border-radius: 4px;
+    }
+    @media (prefers-color-scheme: dark) {
+      .snackbar-action:hover {
+        background-color: rgba(0,0,0,0.1);
+      }
+    }
+  </style>
+</head>
+<body>
 
-@media (min-width: 640px) {
-  body {
-    background-image: url(https://www.loliapi.com/acg/);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    min-height: 100vh;
-  }
+  <div class="main-content">
+    <div class="robot-container" id="robot-trigger" title="404 Robot">
+      <span class="material-icons robot-icon">smart_toy</span>
+    </div>
+    
+    <div class="text-content">
+      <h1>页面未找到</h1>
+      <p>请求的页面 <span class="url-path" id="path-placeholder"></span> 未在我们的服务器上检索到。<br />
+      <span>这便是我们所知道的全部信息。</span></p>
+      
+      
+      <div class="solutions">
+        <p>以下是一些可能的解决方案：</p>
+        <ul>
+          <li>稍后重新加载此页面。</li>
+          <li>在以下位置查找此页面的存档副本：<a href="https://web.archive.org/" target="_blank" style="color: var(--link-color); text-decoration: none;">web.archive.org</a>。</li>
+          <li>与带您到这里的人核实此页面上的地址是否正确。</li>
+          <li>使用搜索引擎搜索您正在寻找的关键字。</li>
+        </ul>
+      </div>
 
-  .content {
-    width: 500px;
-    height: 300px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    background-color: #333;
-    padding: 45px 20px 20px;
-    box-sizing: border-box;
-    box-shadow: 0 0 25px rgba(0, 0, 0, .5);
-    border-radius: 5px 5px 0 0;
-  }
+      <a href="/" class="action-btn">返回首页</a>
+    </div>
+  </div>
 
-  .browser-bar {
-    background: #f9f9f3;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    padding: 5px;
-    overflow: hidden;
-    border-radius: 5px 5px 0 0;
-  }
+  <footer class="footer">
+    <a href="https://beian.miit.gov.cn" target="_blank">浙ICP备2025213066号-1</a>
+  </footer>
 
-  .button {
-    display: inline-block;
-    float: left;
-    border-radius: 50%;
-    width: 15px;
-    height: 15px;
-    margin-right: 5px;
-  }
+  <!-- Easter Egg Snackbar -->
+  <div class="snackbar snackbar-text" id="jeff-snackbar">
+    <span>...但是你知道吗？<br />
+    <span class="snackbar-text" id="jeff-fact-content"></span></span>
+    <button class="snackbar-action" id="next-fact">啊？</button>
+  </div>
 
-  .close {
-    background: #fc635d;
-  }
+  <script>
+    // Path display
+    document.getElementById('path-placeholder').textContent = window.location.pathname;
 
-  .min {
-    background: #fdbc40;
-  }
+    // Theme color update
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    function updateThemeColor() {
+      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      metaTheme.setAttribute('content', isDark ? '#202124' : '#ffffff');
+    }
+    updateThemeColor();
+    try {
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateThemeColor);
+    } catch (e) {}
 
-  .max {
-    background: #34c84a;
-  }
-}
+    // Jeff Dean Facts
+    const jeffFacts = [
+"你在键盘上打出 JEFF 时，就会有一条新的 Jeff Dean 奇迹。",
+"Jeff Dean 在白板上以多项式时间解决了所有 NP 问题，由此证明了 P=NP。",
+"Jeff Dean 的 PIN 码是圆周率的最后四位。",
+"当 Jeff 在斯坦福大学开讲座时，现场挤到 Don Knuth 都只能坐在地板上。",
+"Jeff Dean 曾经咬过一只蜘蛛，结果那只蜘蛛获得了超能力，还顺带提升了 C++ 的可读性。",
+"2002 年初，当索引服务器宕机时，Jeff Dean 手动回复用户查询长达两小时。评估结果显示，查询质量反而提升了 5 分。",
+"Jeff Dean 在一个最高等级为 10 级的体系中，被晋升到了 11 级。",
+"谷歌搜索其实是 Jeff Dean 的新人项目（Noogler Project）。",
+"Jeff Dean 能直接读懂穿孔卡片（punch card readability）。",
+"Jeff Dean 穿裤子也是一条腿一条腿地穿，但如果他有更多条腿，你就会发现他的穿法其实是 O(log n) 复杂度的。",
+"Jeff Dean 只写了 58 行 Sawzall 代码，就掌握了 Sawzall 可读性（Sawzall readability）。在可读性评审中，他指出了风格指南中的一个漏洞，评审者立刻就修正了。",
+"Sanjay 曾经问 Jeff Dean 能不能把整个互联网都记在脑子里。由于键盘散热风扇的噪音，Jeff Dean 稍微听岔了，没直接回答“能”，而是写了个 Mustang 系统。",
+"Jeff Dean 提交代码前会编译运行，但只为了检查编译器和 CPU 的 bug。",
+"不满足于常数时间复杂度，Jeff Dean 发明了世界上第一个 O(1/n) 算法。",
+"Jeff Dean 能直接读懂二进制（binary readability）。",
+"Jeff Dean 能直接手写二进制（binary writability）。",
+"当 Jeff Dean 度假时，谷歌的生产服务总会在几天内神秘宕机。这事儿其实是真的。",
+"Jeff Dean 曾经移位一个比特时用力过猛，结果那个比特跑到了另一台电脑上。",
+"在自己的谷歌面试中，面试官问 Jeff Dean 如果 P=NP 成立会有什么影响。他回答：“要么 P=0，要么 N=1”。然后面试官还没笑完，Jeff 就查看了谷歌的公开证书，在白板上写出了私钥。",
+"你只用到了大脑的 10%，剩下的 90% 都在运行 Jeff 的某个 MapReduce 任务。",
+"Jeff Dean 的简历只列他没做过的事——这样篇幅更短。",
+"对 Jeff Dean 来说，“NP”的意思是“毫无问题”（No Problemo）。",
+"Jeff Dean 曾经写过一个 O(n²) 算法，那是用来解决旅行商问题的。",
+"不是你向 Jeff Dean 解释你的工作，而是 Jeff Dean 向你解释你的工作。",
+"Jeff Dean 的简历成就太多，以至于需要一个目录。",
+"有一天 Jeff Dean 优化一个函数，结果函数在调用之前就返回了，他只好发明了异步 API。",
+"2000 年底，当 Jeff Dean 把键盘升级到 USB 2.0 后，他的代码产出效率瞬间提升了 40 倍。",
+"Jeff Dean 设计软件时，先写二进制文件，再把源代码当作文档来写。",
+"Larry 能晋升 CEO，全靠 Jeff Dean 的同行评审（Peer Review）。",
+"当上帝说“要有光”时，Jeff Dean 就在旁边做代码评审。",
+"贝尔发明电话时，发现有一个来自 Jeff Dean 的未接来电。",
+"编译器不会警告 Jeff Dean，反而是 Jeff Dean 警告编译器。",
+"Jeff Dean 并不存在，他其实是 Jeff Dean 创造的一个高级 AI。",
+"Jeff Dean 的 IDE 不做代码分析，只做代码鉴赏。",
+"Jeff Dean 不用纠错内存（ECC memory），他能预判宇宙射线的到来，还能用它们来提升性能。",
+"Jeff Dean 曾经没通过图灵测试——因为他在不到一秒内就算出了第 203 个斐波那契数。",
+"Jeff Dean 发明 Bigtable，只是为了找个地方存他的每周工作摘要（weekly snippets）。",
+"第 0 天，Jeff Dean 创造了上帝。",
+"Jeff Dean 曾经用一个 printf() 调用就实现了一个 Web 服务器。其他工程师加了几千行注释来解释，但至今仍没人完全明白它是怎么工作的。如今这个程序被称为谷歌 Web 服务器（Google Web Server）。",
+"当 Jeff 做人体工学评估时，其实是为了保护他的键盘。",
+"Jeff Dean 玩四子棋（connect four）能赢你，而且只需要三步。",
+"Jeff Dean 发明 BigTable，是因为他的简历太长，没地方放了。",
+"苹果 logo 上的缺口，是 Jeff Dean 咬的。",
+"查克·诺里斯（Chuck Norris）能杀死你，而 Jeff Dean 能 kill -9 你（Linux 强制终止进程命令）。",
+"Jeff Dean 能用正则表达式解析 HTML——而且解析得完全正确。",
+"Jeff 睡不着觉时，就用 MapReduce 来数羊。",
+"当 Jeff Dean 启动性能分析工具（profiler）时，循环会吓得自己自动展开（unroll）。",
+"你的代码出现未定义行为时，会段错误（seg fault）并损坏数据；而 Jeff Dean 的代码出现未定义行为时，会有一只独角兽骑着彩虹而来，给所有人发免费冰淇淋。",
+"Jeff 不睡觉，他只是给宇宙发送 SIGSUSPEND 信号（Linux 暂停进程信号）。",
+"Jeff 只用 8 行代码就掌握了 Java 可读性（Java readability）。",
+"Jeff Dean 能实例化抽象类（abstract classes）。",
+"gcc -O4 优化选项的真正作用，是把你的代码发给 Jeff Dean 重写一遍。",
+"Jeff 能在 5 小时内背诵圆周率的 20000 位。他不是记下来的，而是实时计算的，而且只需要 O(log n) 的空间。",
+"Jeff Dean 只记一个密码。访问每个网站时，他把密码和网站名拼接起来，计算 SHA-256 哈希值，然后输入结果。",
+"Jeff Dean 还在等数学家们发现他藏在圆周率 digits 里的笑话。",
+"Jeff Dean 的键盘上没有 Ctrl 键——因为他永远掌控一切（in control）。",
+"Jeff Dean 出生于 1969 年 12 月 31 日晚上 11 点 48 分。他花了 12 分钟就实现了自己的第一个计时器。",
+"当 Jeff Dean 说“Hello World”时，世界会回应“Hello Jeff”。",
+"Jeff Dean 能从 /dev/zero（Linux 空设备文件）里读出 1。",
+"Jeff Dean 直接走进了魔多（Mordor，《指环王》中邪恶之地，此处致敬“凡人无法进入魔多”的设定）。",
+"Jeff 花了 20% 的时间做一个 AI 项目，结果造出了 Urs Hoelzle（谷歌前高级副总裁）。",
+"有一次 Jeff Dean 不小心把索引压缩得太密集，形成了一个黑洞，谷歌只好搬出了那个数据中心。",
+"Jeff 开始编程时，第一行命令是 cat > /dev/mem（直接向内存写入数据）。",
+"真空中的光速以前只有大约 35 英里/小时，直到 Jeff Dean 花了一个周末优化了物理定律。",
+"Jeff Dean 给你发代码评审，是因为他觉得里面有你该学的东西。",
+"Jeff Dean 不用 sleep() 函数，他用 wait() 函数。",
+"Jeff Dean 发明 MapReduce，只是为了给粉丝来信排序。",
+"有一次 Jeff Dean 对一个列表执行了排序命令，那个列表立刻就听话排好了。",
+"查克·诺里斯（Chuck Norris）是 Jeff Dean 的 20% 项目。",
+"如果你的代码被 SIGJEFF 信号杀死，它就再也不能运行了。",
+"Jeff Dean 的日历直接从 3 月 31 日跳到 4 月 2 日——没人能愚弄 Jeff Dean（4 月 1 日是愚人节）。",
+"从来不是 Jeff Dean 打错电话，而是你拿错了手机。",
+"Jeff Dean 的键盘上只有两个键：0 和 1。",
+"错误遇到 Jeff Dean 时，会自动降级为警告。",
+"板球比赛以前要打 5 天，直到 Jeff 优化了它。",
+"Jeff Dean 的手表显示的是 1970 年 1 月 1 日以来的秒数（Unix 时间戳），他从来不会迟到。",
+"Jeff 的代码太快了，汇编代码需要三个 HALT 指令才能让它停下来。",
+"Emacs（文本编辑器）最喜欢的编辑器是 Jeff Dean。",
+"谷歌，本质上只是 Jeff Dean 的一个副业。",
+"Jeff Dean 必须故意降低自己代码的优化程度，这样评审者才会相信这是人类写的。",
+"网络搜索其实只是 Jeff 为他的真正应用写的一个大型单元测试（unittest）。",
+"Jeff Dean 不需要音箱或耳机，他只需要输入 cat *.mp3，扫一眼屏幕，大脑就能在后台解码音乐，同时他还能正常工作。",
+"Jeff Dean 能读懂 Perl 代码（Perl Readability）。",
+"Jeff Dean 用快速排序（quicksorts）来整理他的衣物。",
+"自从 Jeff Dean 在 Mustang 中使用了 OR ELSE 结构后，内核都吓得恐慌（panicking），于是 ISO C 标准不得不移除了这个结构。",
+"Jeff Dean 不怕邪恶的构造函数（evil constructors），反而是它们怕 Jeff Dean。",
+"Jeff Dean 不写 bug，他写的都是你看不懂的特性。",
+"Jeff Dean 既不用 Emacs 也不用 VI，他把代码输入到 zcat（解压并查看文件命令）里——因为这样更快。",
+"当 Jeff Dean 发送以太网帧（Ethernet frame）时，不会发生冲突（collisions），因为其他竞争的帧会吓得退回到源网卡的缓冲区里。",
+"有一次 Jeff Dean 提交了一个变更，里面没有任何 Python 代码，却同时让所有二进制文件的大小减少了 3%，还把一个之前已知的低优先级 Python bug 升级成了高优先级。",
+"有一天 Jeff Dean 出门时不小心拿了魔法画板（Etch-a-Sketch）而不是笔记本电脑。在回家拿真正电脑的路上，他给魔法画板编了个俄罗斯方块（Tetris）程序。",
+"x86-64 架构规范里有几个未公开的私有指令，其实是给 Jeff Dean 专用的。",
+"Knuth 给谷歌寄了一本《计算机程序设计艺术》（The Art of Computer Programming），Jeff Dean 签名后又寄了回去。",
+"听说 Jeff Dean 的自传只在 Kindle 平台独家发布后，理查德·斯托曼（Richard Stallman，自由软件运动领袖，反对专有软件）都买了一台 Kindle。",
+"Jeff Dean 能对随机数据进行无损压缩。",
+"当被问及关于他的这些传闻是不是真的时，Jeff Dean 回答“111111”。面试官还在琢磨意思时，他补充道：“每一个比特都是真的”（every single bit of it is true）。",
+"Jeff Dean 用脑子挖比特币（mines bitcoins）。"
 
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url(https://www.loliapi.com/acg/);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 1s;
-}
+    ];
 
-body.loaded::before {
-  opacity: 1;
-}
-</style>
-<script>
-  window.addEventListener('load', function() {
-    document.body.classList.add('loaded');
-  });
-</script>
-	</head>
-	<body>
-		<div class="content">
-		  <div class="browser-bar">
-		    <span class="close button"></span>
-		    <span class="min button"></span>
-		    <span class="max button"></span>
-		  </div>
-		  <div class="text"></div>
-		</div>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-		<script>!function(t){"use strict";var s=function(s,e){this.el=t(s),this.options=t.extend({},t.fn.typed.defaults,e),this.isInput=this.el.is("input"),this.attr=this.options.attr,this.showCursor=this.isInput?!1:this.options.showCursor,this.elContent=this.attr?this.el.attr(this.attr):this.el.text(),this.contentType=this.options.contentType,this.typeSpeed=this.options.typeSpeed,this.startDelay=this.options.startDelay,this.backSpeed=this.options.backSpeed,this.backDelay=this.options.backDelay,this.stringsElement=this.options.stringsElement,this.strings=this.options.strings,this.strPos=0,this.arrayPos=0,this.stopNum=0,this.loop=this.options.loop,this.loopCount=this.options.loopCount,this.curLoop=0,this.stop=!1,this.cursorChar=this.options.cursorChar,this.shuffle=this.options.shuffle,this.sequence=[],this.build()};s.prototype={constructor:s,init:function(){var t=this;t.timeout=setTimeout(function(){for(var s=0;s<t.strings.length;++s)t.sequence[s]=s;t.shuffle&&(t.sequence=t.shuffleArray(t.sequence)),t.typewrite(t.strings[t.sequence[t.arrayPos]],t.strPos)},t.startDelay)},build:function(){var s=this;if(this.showCursor===!0&&(this.cursor=t('<span class="typed-cursor">'+this.cursorChar+"</span>"),this.el.after(this.cursor)),this.stringsElement){s.strings=[],this.stringsElement.hide();var e=this.stringsElement.find("p");t.each(e,function(e,i){s.strings.push(t(i).html())})}this.init()},typewrite:function(t,s){if(this.stop!==!0){var e=Math.round(70*Math.random())+this.typeSpeed,i=this;i.timeout=setTimeout(function(){var e=0,r=t.substr(s);if("^"===r.charAt(0)){var o=1;/^\^\d+/.test(r)&&(r=/\d+/.exec(r)[0],o+=r.length,e=parseInt(r)),t=t.substring(0,s)+t.substring(s+o)}if("html"===i.contentType){var n=t.substr(s).charAt(0);if("<"===n||"&"===n){var a="",h="";for(h="<"===n?">":";";t.substr(s).charAt(0)!==h;)a+=t.substr(s).charAt(0),s++;s++,a+=h}}i.timeout=setTimeout(function(){if(s===t.length){if(i.options.onStringTyped(i.arrayPos),i.arrayPos===i.strings.length-1&&(i.options.callback(),i.curLoop++,i.loop===!1||i.curLoop===i.loopCount))return;i.timeout=setTimeout(function(){i.backspace(t,s)},i.backDelay)}else{0===s&&i.options.preStringTyped(i.arrayPos);var e=t.substr(0,s+1);i.attr?i.el.attr(i.attr,e):i.isInput?i.el.val(e):"html"===i.contentType?i.el.html(e):i.el.text(e),s++,i.typewrite(t,s)}},e)},e)}},backspace:function(t,s){if(this.stop!==!0){var e=Math.round(70*Math.random())+this.backSpeed,i=this;i.timeout=setTimeout(function(){if("html"===i.contentType&&">"===t.substr(s).charAt(0)){for(var e="";"<"!==t.substr(s).charAt(0);)e-=t.substr(s).charAt(0),s--;s--,e+="<"}var r=t.substr(0,s);i.attr?i.el.attr(i.attr,r):i.isInput?i.el.val(r):"html"===i.contentType?i.el.html(r):i.el.text(r),s>i.stopNum?(s--,i.backspace(t,s)):s<=i.stopNum&&(i.arrayPos++,i.arrayPos===i.strings.length?(i.arrayPos=0,i.shuffle&&(i.sequence=i.shuffleArray(i.sequence)),i.init()):i.typewrite(i.strings[i.sequence[i.arrayPos]],s))},e)}},shuffleArray:function(t){var s,e,i=t.length;if(i)for(;--i;)e=Math.floor(Math.random()*(i+1)),s=t[e],t[e]=t[i],t[i]=s;return t},reset:function(){var t=this;clearInterval(t.timeout);var s=this.el.attr("id");this.el.after('<span id="'+s+'"/>'),this.el.remove(),"undefined"!=typeof this.cursor&&this.cursor.remove(),t.options.resetCallback()}},t.fn.typed=function(e){return this.each(function(){var i=t(this),r=i.data("typed"),o="object"==typeof e&&e;r||i.data("typed",r=new s(this,o)),"string"==typeof e&&r[e]()})},t.fn.typed.defaults={strings:["These are the default values...","You know what you should do?","Use your own!","Have a great day!"],stringsElement:null,typeSpeed:0,startDelay:0,backSpeed:0,shuffle:!1,backDelay:500,loop:!1,loopCount:!1,showCursor:!0,cursorChar:"|",attr:null,contentType:"html",callback:function(){},preStringTyped:function(){},onStringTyped:function(){},resetCallback:function(){}}}(window.jQuery);
+    const snackbar = document.getElementById('jeff-snackbar');
+    const factContent = document.getElementById('jeff-fact-content');
+    const nextBtn = document.getElementById('next-fact');
+    const robotTrigger = document.getElementById('robot-trigger');
+    let snackbarTimer = null;
 
-$(function(){
-  $('.text').typed({
-    strings: [
-      "* 啊哦！出错了！ <br /> ^200" + 
-      "「无法在请求的操作中找到指定的文档。(HTTP 404)」 <br /> ^1000" +
-      "* 这就是我们知道的全部。<br /> ^1000" +
-      " <br /> ^500" +
-      "   [ <a href='https://stevezmtstudios.github.io/'>回到主页</a> ] <br /> ^1000" +
-      "* 这就是我们所能做的。<br /> ^5000" +
-      "* 做出你的决定吧。<br /> ^5000" +
-      "  (轻点上面的超链接即可跳转。)<br /> ^5000" +
-      "* ...话说你不会是在看背景图吧？🤣<br /> ^1000"
-    ],
-    typeSpeed: 0,
-    showCursor: true
-  });
-});</script>
-	</body>
+    function showFact() {
+      const fact = jeffFacts[Math.floor(Math.random() * jeffFacts.length)];
+      factContent.textContent = fact;
+      snackbar.classList.add('show');
+      
+      // Auto hide after 6 seconds
+      if (snackbarTimer) clearTimeout(snackbarTimer);
+      snackbarTimer = setTimeout(() => {
+        snackbar.classList.remove('show');
+      }, 8000);
+    }
+
+    nextBtn.addEventListener('click', showFact);
+
+    // Trigger 1: Click robot 2 times
+    let clickCount = 0;
+    let clickTimer = null;
+    robotTrigger.addEventListener('click', () => {
+      clickCount++;
+      if (clickTimer) clearTimeout(clickTimer);
+      clickTimer = setTimeout(() => { clickCount = 0; }, 1000);
+      
+      if (clickCount === 2) {
+        showFact();
+        clickCount = 0;
+      }
+    });
+
+    // Trigger 2: Press f, j, or e
+    window.addEventListener('keydown', (e) => {
+      const key = e.key.toLowerCase();
+      if (key === 'f' || key === 'j' || key === 'e') {
+      showFact();
+      }
+    });
+  </script>
+</body>
 </html>
