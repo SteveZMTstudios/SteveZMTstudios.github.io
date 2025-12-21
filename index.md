@@ -48,8 +48,12 @@
 
 ## 与我联系
 
-iMessage, E-mail([GPG support](https://emailselfdefense.fsf.org/en/infographic.html)) 👉[me@stevezmt.top](mailto:me@stevezmt.top)
-(The reply mail address won't always match this address. But the address will include at my [keyring](https://key.stevezmt.top))
+iMessage和电子邮件：([GPG support](https://emailselfdefense.fsf.org/en/infographic.html)) 👉[me@stevezmt.top](mailto:me@stevezmt.top)
+
+RCS 消息：+372 5724 3638
+（拨号将被转发到语音信箱，这可能会导致您支付高额费用）
+
+Telegram：[t.me/stevezmt](https://t.me/stevezmt)
 
 Gravatar 👉[Gravatar](https://gravatar.com/stevezmt)
 

@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript">
+        (function() {
+            var isLegacy = false;
+            try {
+                if (!window.addEventListener || !document.querySelector || !window.localStorage) {
+                    isLegacy = true;
+                }
+                eval('var f = function(x) { return x; }; var g = (x) => x;');
+            } catch (e) {
+                isLegacy = true;
+            }
+            if (isLegacy) {
+                window.location.href = 'compat/index.html';
+            }
+        })();
+    </script>
+    <!--[if lt IE 9]>
+    <script type="text/javascript">
+        window.location.href = 'compat/index.html';
+    </script>
+    <![endif]-->
+    <title>Steve ZMT | 史蒂夫ZMT</title>
+    <meta name="description" content="SteveZMTstudios - Hobbyist Developer Portfolio">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BKKFYGH94N"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-BKKFYGH94N');
+    </script>
+
+    <!-- Material Symbols & Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Material Design 3 Light Palette (Default) */
+            --md-sys-color-primary: #006a6a;
+            --md-sys-color-on-primary: #ffffff;
+            --md-sys-color-primary-container: #6ff6f6;
+            --md-sys-color-on-primary-container: #002020;
+            --md-sys-color-secondary: #4a6363;
+            --md-sys-color-on-secondary: #ffffff;
+            --md-sys-color-secondary-container: #cce8e7;
+            --md-sys-color-on-secondary-container: #051f1f;
+            --md-sys-color-surface: #f4fbfa;
+            --md-sys-color-on-surface: #191c1c;
+            --md-sys-color-surface-variant: #dae5e4;
+            --md-sys-color-on-surface-variant: #3f4948;
+            --md-sys-color-outline: #6f7979;
+            --md-sys-color-background: #f4fbfa;
+            --md-sys-color-on-background: #191c1c;
+            
+            --header-bg: rgba(244, 251, 250, 0.8);
+            --transition-speed: 0.3s;
+            --font-main: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            --font-mono: 'Roboto Mono', 'Fira Code', monospace;
+            
+            --grid-color: rgba(0, 106, 106, 0.05);
+        }
+
+        [data-theme="dark"] {
+            --md-sys-color-primary: #4edada;
+            --md-sys-color-on-primary: #003737;
+            --md-sys-color-primary-container: #004f4f;
+            --md-sys-color-on-primary-container: #6ff6f6;
+            --md-sys-color-secondary: #b0cccb;
+            --md-sys-color-on-secondary: #1b3434;
+            --md-sys-color-secondary-container: #324b4b;
+            --md-sys-color-on-secondary-container: #cce8e7;
+            --md-sys-color-surface: #191c1c;
+            --md-sys-color-on-surface: #e0e3e2;
+            --md-sys-color-surface-variant: #3f4948;
+            --md-sys-color-on-surface-variant: #bec9c8;
+            --md-sys-color-outline: #889392;
+            --md-sys-color-background: #191c1c;
+            --md-sys-color-on-background: #e0e3e2;
+
+            --header-bg: rgba(25, 28, 28, 0.8);
+            --grid-color: rgba(78, 218, 218, 0.05);
+        }
+
+        /* Reset & Base */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-main);
+            background-color: var(--md-sys-color-background);
+            color: var(--md-sys-color-on-background);
+            line-height: 1.6;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        a {
+            color: var(--md-sys-color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition-speed);
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header & Nav */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: var(--header-bg);
+            border-bottom: 1px solid var(--md-sys-color-surface-variant);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--md-sys-color-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-icon {
+            background: none;
+            border: none;
+            color: var(--md-sys-color-on-surface);
+            cursor: pointer;
+            padding: 12px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s, transform 0.2s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-icon:hover {
+            background-color: var(--md-sys-color-surface-variant);
+            transform: scale(1.1);
+        }
+
+        .btn-icon:active {
+            transform: scale(0.95);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4rem;
+            padding: 4rem 0 4rem;
+            animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .hero-avatar {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            border-radius: 80px; /* MD3 style rounded corners */
+            overflow: hidden;
+            border: 4px solid var(--md-sys-color-primary-container);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background-color: var(--md-sys-color-surface-variant);
+        }
+
+        .hero-avatar:hover {
+            transform: scale(1.05) rotate(3deg);
+            border-radius: 40px;
+            border-color: var(--md-sys-color-primary);
+        }
+
+        .hero-avatar img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: opacity 0.5s ease;
+        }
+
+        .avatar-hover {
+            opacity: 0;
+        }
+
+        .hero-avatar:hover .avatar-hover {
+            opacity: 1;
+        }
+
+        .hero-content {
+            flex: 1;
+            text-align: left;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: var(--md-sys-color-on-background);
+        }
+
+        .typing-container {
+            margin: 1.5rem 0;
+            min-height: 60px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        /* Cards & Grid */
+        .section-title {
+            font-size: 1.75rem;
+            margin: 4rem 0 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--md-sys-color-primary);
+            font-weight: 500;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--md-sys-color-surface-variant);
+            border-radius: 24px;
+            padding: 2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+            border-color: var(--md-sys-color-primary);
+            background-color: var(--md-sys-color-surface);
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            color: var(--md-sys-color-primary);
+            font-weight: 600;
+        }
+
+        .card p {
+            font-size: 1rem;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        .card .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--md-sys-color-secondary);
+        }
+
+        /* Terminal Style Section */
+        .terminal {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: var(--font-mono);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            margin: 3rem 0;
+            position: relative;
+            border: 1px solid #333;
+        }
+
+        .terminal-header {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+
+        .terminal-line {
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        
+        .terminal-prompt {
+            color: #4edada;
+            font-weight: bold;
+        }
+
+        .terminal-project {
+            color: #98c379;
+            text-decoration: none;
+            margin-right: 1.5rem;
+            display: inline-block;
+        }
+
+        .terminal-project:hover {
+            text-decoration: underline;
+        }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 18px;
+            background: #4edada;
+            /* Neutralize the parent .terminal-line gap (8px) so the cursor sits flush */
+            margin-left: -2px;
+            animation: blink 1s step-end infinite;
+            vertical-align: bottom;
+        }
+
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        #terminal-history {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 0.5rem;
+        }
+
+        #terminal-history::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        #terminal-history::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 2px;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: flex-start;
+            margin-top: 2rem;
+        }
+
+        .badge-link {
+            transition: transform 0.2s;
+        }
+
+        .badge-link:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        .github-stats {
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+            color: var(--md-sys-color-on-surface-variant);
+            border-top: 1px solid var(--md-sys-color-surface-variant);
+            margin-top: 4rem;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to { transform: scale(4); opacity: 0; }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header { padding: 0.75rem 1rem; }
+            .logo { font-size: 1.2rem; }
+            .hero { 
+                flex-direction: column; 
+                text-align: center; 
+                gap: 2rem;
+                padding: 3rem 0 2rem;
+            }
+            .hero-content { text-align: center; }
+            .hero-avatar {
+                width: 180px;
+                height: 180px;
+                border-radius: 40px;
+            }
+            .typing-container, .social-links {
+                justify-content: center;
+            }
+            .hero h1 { font-size: 2.2rem; }
+            .container { padding: 1rem; }
+            .grid { grid-template-columns: 1fr; }
+            .terminal { padding: 1rem; }
+            .github-stats img, .typing-container img {
+                max-width: 100%;
+                height: auto;
+            }
+            .hero { padding: 3rem 0 2rem; }
+            .section-title { font-size: 1.5rem; margin: 3rem 0 1.5rem; }
+            .project-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+                padding: 1rem;
+            }
+            .project-stats {
+                width: 100%;
+                justify-content: flex-start;
+            }
+            .terminal-project {
+                margin-right: 0.75rem;
+            }
+        }
+
+        /* Legacy Browser Support */
+        @supports not (display: grid) {
+            .grid { display: block; }
+            .card { margin-bottom: 1rem; }
+        }
+
+        /* Project List (Compact) */
+        .github-project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .project-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            background-color: var(--md-sys-color-surface-variant);
+            border-radius: 12px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+        }
+
+        .project-item:hover {
+            background-color: var(--md-sys-color-secondary-container);
+            transform: translateX(8px);
+        }
+
+        .project-info h4 {
+            color: var(--md-sys-color-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .project-stats {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: var(--md-sys-color-on-surface-variant);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            grid-column: 1 / -1;
+        }
+
+        /* MD3 Outlined Button */
+        .btn-outlined {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            border: 1px solid var(--md-sys-color-outline);
+            border-radius: 100px;
+            color: var(--md-sys-color-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            background: transparent;
+            width: fit-content;
+            margin-top: 0.5rem;
+        }
+
+        .btn-outlined:hover {
+            background-color: var(--md-sys-color-primary-container);
+            border-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary-container);
+        }
+
+        .btn-outlined .material-symbols-outlined {
+            font-size: 18px;
+        }
+
+        /* FAB */
+        .fab {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
+            background-color: var(--md-sys-color-primary-container);
+            color: var(--md-sys-color-on-primary-container);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            border: none;
+            z-index: 1000;
+            opacity: 0;
+            transform: scale(0);
+            visibility: hidden;
+        }
+
+        .fab.visible {
+            opacity: 1;
+            transform: scale(1);
+            visibility: visible;
+        }
+
+        .fab:hover {
+            box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+            transform: scale(1.05);
+            background-color: var(--md-sys-color-primary);
+            color: var(--md-sys-color-on-primary);
+        }
+
+        /* NoScript Fallback */
+        noscript {
+            display: block;
+            padding: 1rem;
+            background: #fffbe6;
+            border: 1px solid #ffe58f;
+            color: #856404;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <noscript>
+        您的浏览器禁用了 JavaScript，部分交互功能可能无法使用。您可以访问 <a href="compat/index.html">兼容版页面</a>。
+    </noscript>
+
+    <button class="fab" id="scroll-top" title="Scroll to Top">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </button>
+
+    <header>
+        <a href="#" class="logo">
+            <span class="material-symbols-outlined">terminal</span>
+            <span>SteveZMTstudios</span>
+        </a>
+        <div class="controls">
+            <button class="btn-icon" id="lang-toggle" title="Switch Language">
+                <span class="material-symbols-outlined">translate</span>
+            </button>
+            <button class="btn-icon" id="theme-toggle" title="Toggle Dark Mode">
+                <span class="material-symbols-outlined">dark_mode</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-avatar">
+                <img src="https://blog.stevezmt.top/images/avatar.jpg" alt="Steve ZMT Avatar" class="avatar-default">
+                <img src="https://blog.stevezmt.top/images/avatar_ciallo.jpg" alt="Steve ZMT Avatar Hover" class="avatar-hover">
+            </div>
+            <div class="hero-content">
+                <h1 data-i18n="welcome_title">史蒂夫ZMT工作室</h1>
+                <div class="typing-container">
+                    <img src="https://readme-typing-svg.demolab.com?font=Roboto+Mono&weight=600&duration=2000&pause=1500&color=4EDADA&background=1e242a00&center=false&vCenter=true&random=false&width=420&lines=Welcome!+%F0%9F%92%9C;I+am+Steve+ZMT...;Nice+to+meet+you!;I+am+a+hobbyist+developer.;Check+out+my+website!;https%3A%2F%2Fwww.stevezmt.top" alt="Typing SVG">
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://space.bilibili.com/474130186" class="badge-link">
+                        <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Frelation%2Fstat%3Fvmid%3D474130186&query=%24.data.follower&logo=bilibili&logoColor=pink&label=Bilibili%20Subs&color=pink" alt="Bilibili">
+                    </a>
+                    <a href="https://github.com/stevezmtstudios" class="badge-link">
+                        <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.swo.moe%2Fstats%2Fgithub%2Fstevezmtstudios&query=count&color=181717&label=GitHub&labelColor=282c34&logo=github&suffix=+follows&cacheSeconds=3600" alt="GitHub">
+                    </a>
+                    <a href="https://afdian.com/a/stevezmtstudios" class="badge-link">
+                        <img src="https://img.shields.io/badge/afdian-Donate-purple?style=plastic&logo=GitHub%20Sponsors&logoColor=white&label=afdian&labelColor=grey" alt="Afdian">
+                    </a>
+                    <a href="https://www.zhihu.com/people/zhang-xian-sheng-70-9" class="badge-link">
+                        <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.swo.moe%2Fstats%2Fzhihu%2Fzhang-xian-sheng-70-9&query=count&color=282c34&label=%E7%9F%A5%E4%B9%8E&labelColor=0084ff&logo=zhihu&logoColor=ffffff&suffix=+%E5%85%B3%E6%B3%A8&cacheSeconds=3600" alt="Zhihu">
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="terminal" id="terminal-container">
+            <div class="terminal-header">
+                <div class="dot red"></div>
+                <div class="dot yellow"></div>
+                <div class="dot green"></div>
+            </div>
+            <div id="terminal-history">
+                <div class="terminal-line">
+                    <span class="terminal-prompt">steve@stevezmtstudios:~$</span> <span data-i18n="terminal_whoami">whoami</span>
+                </div>
+                <div class="terminal-line" data-i18n="terminal_bio">
+                    Steve ZMT. 一名热爱 Android 和开源的业余开发者。
+                </div>
+                <div class="terminal-line">
+                    <span class="terminal-prompt">steve@stevezmtstudios:~$</span> <span>ls projects/ </span>
+                </div>
+                <div class="terminal-line" id="terminal-featured-projects">
+                    <!-- Dynamic Content -->
+                </div>
+            </div>
+            <div class="terminal-line">
+                <span class="terminal-prompt" id="active-prompt">steve@stevezmtstudios:~$</span>
+                <span id="terminal-input-display"></span><span class="terminal-cursor"></span>
+                <input type="text" id="terminal-hidden-input" autofocus style="position: absolute; opacity: 0; pointer-events: none;">
+            </div>
+        </section>
+
+        <h2 class="section-title">
+            <span class="material-symbols-outlined">rss_feed</span>
+            <span data-i18n="blog_title">我的动态</span>
+        </h2>
+        <div class="grid">
+            <a href="https://blog.stevezmt.top" class="card">
+                <span class="material-symbols-outlined icon">auto_stories</span>
+                <h3 data-i18n="blog_main">访问博客主页</h3>
+                <p data-i18n="blog_desc">分享技术心得、生活点滴与开发日志。</p>
+            </a>
+            <a href="https://stevezmt.top/Phigros-history" class="card">
+                <span class="material-symbols-outlined icon">library_books</span>
+                <h3 data-i18n="phigros_hist_title">Phigros 历史版本收集</h3>
+                <p data-i18n="phigros_hist_desc">可能是最全的 Phigros 旧版本收集</p>
+            </a>
+            <a href="https://ca-update.stevezmt.top/" class="card">
+                <span class="material-symbols-outlined icon">verified</span>
+                <h3 data-i18n="cacert_sync_title">CA 证书同步</h3>
+                <p data-i18n="cacert_sync_desc">收集根证书颁发机构的CA证书，用于更新部分旧式浏览器和系统内置证书库。</p>
+            </a>
+            <a href="/sharepoint" class="card">
+                <span class="material-symbols-outlined icon">cloud_sync</span>
+                <h3 data-i18n="sharepoint">共享节点</h3>
+                <p data-i18n="sharepoint_desc">访问我的资源共享空间。</p>
+            </a>
+        </div>
+
+        <h2 class="section-title">
+            <span class="material-symbols-outlined">code</span>
+            <span data-i18n="projects_title">精选项目</span>
+        </h2>
+        <div class="grid" id="featured-projects">
+            <!-- Dynamic Content -->
+            <div class="card loading">
+                <p>Loading projects...</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">
+            <span class="material-symbols-outlined">list</span>
+            <span data-i18n="all_projects_title">更多项目</span>
+        </h2>
+        <div class="github-project-list" id="all-projects">
+            <!-- Dynamic Content -->
+        </div>
+
+        <h2 class="section-title">
+            <span class="material-symbols-outlined">school</span>
+            <span data-i18n="academic_title">学术与演讲</span>
+        </h2>
+        <div class="grid">
+            <div class="card">
+                <span class="material-symbols-outlined icon">mic</span>
+                <h3 data-i18n="recent_speeches">近期演讲</h3>
+                <p>滚木</p>
+            </div>
+            <div class="card">
+                <span class="material-symbols-outlined icon">description</span>
+                <h3 data-i18n="academic_papers">学术论文</h3>
+                <p>滚木</p>
+            </div>
+        </div>
+
+        <h2 class="section-title" id="contact-title">
+            <span class="material-symbols-outlined">contact_mail</span>
+            <span data-i18n="contact_title">与我联系</span>
+        </h2>
+        <div class="grid">
+            <div class="card">
+                <span class="material-symbols-outlined icon">mail</span>
+                <h3>Email / iMessage</h3>
+                <p><a href="mailto:me@stevezmt.top" style="color: inherit; text-decoration: none;">me@stevezmt.top</a></p>
+                <a href="https://key.stevezmt.top/" class="btn-outlined">
+                    <span class="material-symbols-outlined">key</span>
+                    <span data-i18n="pgp_keys">PGP 公钥</span>
+                </a>
+            </div>
+            <a href="https://t.me/stevezmt" class="card">
+                <span class="material-symbols-outlined icon">send</span>
+                <h3>Telegram</h3>
+                <p>@stevezmt</p>
+            </a>
+            <a href="sms:+37257243638" class="card">
+                <span class="material-symbols-outlined icon">sms</span>
+                <h3>RCS</h3>
+                <p>+372 5724 3638</p>
+                <p data-i18n="contact_note">普通短信和拨号可能导致收取高昂的费用。</p>
+            </a>
+            <a href="https://gravatar.com/stevezmt" class="card">
+                <span class="material-symbols-outlined icon">account_circle</span>
+                <h3>Gravatar</h3>
+                <p>View Profile</p>
+            </a>
+        </div>
+
+        <div class="github-stats">
+            <img src="https://githubstat.vercel.miniproj.stevezmt.top/api?username=stevezmtstudios&show=discussions_started,prs_merged_percentage&count_private=true&show_icons=true&title_color=006a6a&icon_color=006a6a&hide_border=false&theme=radical&locale=cn&rank_icon=github" alt="GitHub Stats">
+        </div>
+    </main>
+
+    <footer>
+        <p><a href="https://blog.stevezmt.top/">Blog</a> | <a href="https://key.stevezmt.top/">PGP Keys</a> | <a href="#contact-title">Contact</a> | <a href="compat/index.html">兼容版 (Legacy)</a></p>
+        <p>&copy; 2025 SteveZMTstudios. All rights reserved.</p>
+        <a href="https://beian.miit.gov.cn/" style="text-decoration:none;color:#006a6a;">浙ICP备2025213066号-1</a>
+    </footer>
+
+    <script>
+        // i18n Data
+        const translations = {
+            'zh-CN': {
+                welcome_title: '史蒂夫ZMT工作室',
+                terminal_whoami: 'whoami',
+                terminal_bio: 'Steve ZMT. 一名热爱 Android 和开源的业余开发者。',
+                blog_title: '我的动态',
+                blog_main: '访问博客主页',
+                blog_desc: '分享技术心得、生活点滴与开发日志。',
+                phigros_hist_title: 'Phigros 历史版本收集',
+                phigros_hist_desc: '可能是最全的 Phigros 旧版本收集',
+                cacert_sync_title: 'CA 证书同步',
+                cacert_sync_desc: '收集根证书颁发机构的CA证书，用于更新部分旧式浏览器和系统内置证书库。',
+                sharepoint: '共享节点',
+                sharepoint_desc: '访问我的资源共享空间。',
+                projects_title: '精选项目',
+                all_projects_title: '更多项目',
+                academic_title: '学术与演讲',
+                recent_speeches: '近期演讲',
+                academic_papers: '学术论文',
+                contact_title: '与我联系',
+                beian: '浙ICP备2025213066号-1',
+                contact_note: '普通短信和拨号可能导致收取高昂的费用。',
+                pgp_keys: 'PGP 公钥',
+                sudo_lecture: '我们信任您已经从系统管理员那里了解了日常注意事项。<br>总结起来无外乎这三点：<br><br>    #1) 尊重他人的隐私。<br>    #2) 输入前要选考虑(后果和风险)。<br>    #3) 权力越大，责任越大。',
+                su_fail: "sudo: 我敢说企鹅都比你打得好。<br>此事件将被报告（给你妈）。"
+            },
+            'en': {
+                welcome_title: 'SteveZMTstudios',
+                terminal_whoami: 'whoami',
+                terminal_bio: 'Steve ZMT. A hobbyist developer passionate about Android and open source.',
+                blog_title: 'Updates',
+                blog_main: 'Visit Blog',
+                blog_desc: 'Sharing technical insights, life, and dev logs.',
+                phigros_hist_title: 'Phigros Historical Versions Collection',
+                phigros_hist_desc: 'Possibly the most comprehensive collection of Phigros old versions',
+                cacert_sync_title: 'CA Certificate Sync',
+                cacert_sync_desc: 'Collect CA certificates from root certificate authorities for updating legacy browsers and systems.',
+                sharepoint: 'SharePoint',
+                sharepoint_desc: 'Access my shared resources.',
+                projects_title: 'Featured Projects',
+                all_projects_title: 'More Projects',
+                academic_title: 'Academic & Speeches',
+                recent_speeches: 'Recent Speeches',
+                academic_papers: 'Academic Papers',
+                contact_title: 'Contact Me',
+                beian: '浙ICP备2025213066号-1',
+                contact_note: 'Standard SMS and calls may incur high charges.',
+                pgp_keys: 'PGP Keys',
+                sudo_lecture: 'We trust you have received the usual lecture from the local system administrator. <br>It usually boils down to these three things:<br><br>    #1) Respect the privacy of others.<br>    #2) Think before you type.<br>    #3) With great power comes great responsibility.',
+                su_fail:  "sudo: I've seen penguins that can type better than that.<br>This incident will reported (to your mom)."
+            }
+        };
+
+        let currentLang = 'zh-CN';
+        let currentTheme = 'light';
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            themeToggle.querySelector('span').textContent = currentTheme === 'light' ? 'dark_mode' : 'light_mode';
+            
+            // Update GitHub Stats Theme
+            const statsImg = document.querySelector('img[alt="GitHub Stats"]');
+            if (currentTheme === 'dark') {
+                statsImg.src = statsImg.src.replace('theme=radical', 'theme=dark').replace('title_color=006a6a', 'title_color=4edada').replace('icon_color=006a6a', 'icon_color=4edada');
+            } else {
+                statsImg.src = statsImg.src.replace('theme=dark', 'theme=radical').replace('theme=dark', 'theme=radical').replace('title_color=4edada', 'title_color=006a6a').replace('icon_color=4edada', 'icon_color=006a6a');
+            }
+        });
+
+        // Language Toggle
+        const langToggle = document.getElementById('lang-toggle');
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'zh-CN' ? 'en' : 'zh-CN';
+            updateLanguage();
+        });
+
+        function updateLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                el.textContent = translations[currentLang][key];
+            });
+            document.documentElement.lang = currentLang;
+            if (cachedRepos.length > 0) renderProjects();
+        }
+
+        // Ripple Effect
+        function createRipple(event) {
+            const button = event.currentTarget;
+            const circle = document.createElement("span");
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+            const radius = diameter / 2;
+
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - button.offsetLeft - radius}px`;
+            circle.style.top = `${event.clientY - button.offsetTop - radius}px`;
+            circle.classList.add("ripple");
+
+            const ripple = button.getElementsByClassName("ripple")[0];
+            if (ripple) { ripple.remove(); }
+            button.appendChild(circle);
+        }
+
+        document.querySelectorAll('.card, .btn-icon, .fab').forEach(btn => {
+            btn.addEventListener('click', createRipple);
+        });
+
+        // Scroll to Top
+        const scrollTopBtn = document.getElementById('scroll-top');
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        let cachedRepos = [];
+
+        // GitHub API Integration
+        async function fetchGitHubProjects() {
+            const workerUrl = 'https://github-user-detail.cf.miniproj.stevezmt.top/repos';
+            try {
+                const response = await fetch(workerUrl);
+                cachedRepos = await response.json();
+                if (!Array.isArray(cachedRepos)) throw new Error('Failed to fetch repos');
+                renderProjects();
+            } catch (error) {
+                console.error('GitHub API Error:', error);
+                document.getElementById('featured-projects').innerHTML = '<p>Failed to load projects. Please check back later.</p>';
+            }
+        }
+
+        function renderProjects() {
+            const featuredContainer = document.getElementById('featured-projects');
+            const allContainer = document.getElementById('all-projects');
+            const terminalFeatured = document.getElementById('terminal-featured-projects');
+            
+            featuredContainer.innerHTML = '';
+            allContainer.innerHTML = '';
+            if (terminalFeatured) terminalFeatured.innerHTML = '';
+
+            const featuredRepos = [...cachedRepos]
+                .sort((a, b) => b.stargazers_count - a.stargazers_count)
+                .slice(0, 6);
+
+            featuredRepos.forEach((repo, index) => {
+                // Update Main UI
+                const card = document.createElement('a');
+                card.href = repo.html_url;
+                card.target = "_blank";
+                card.className = 'card';
+                card.innerHTML = `
+                    <span class="material-symbols-outlined icon">${getRepoIcon(repo.name)}</span>
+                    <h3>${repo.name}</h3>
+                    <p>${repo.description || (currentLang === 'zh-CN' ? '暂无描述' : 'No description available.')}</p>
+                    <div class="project-stats" style="margin-top: auto; padding-top: 1rem; display: flex; gap: 1rem; font-size: 0.85rem; opacity: 0.8;">
+                        <span style="display: flex; align-items: center; gap: 4px;"><span class="material-symbols-outlined" style="font-size: 1rem;">star</span> ${repo.stargazers_count}</span>
+                        <span style="display: flex; align-items: center; gap: 4px;"><span class="material-symbols-outlined" style="font-size: 1rem;">fork_right</span> ${repo.forks_count}</span>
+                        <span style="margin-left: auto;">${repo.language || ''}</span>
+                    </div>
+                `;
+                card.addEventListener('click', createRipple);
+                featuredContainer.appendChild(card);
+
+                // Update Terminal (Top 4)
+                if (terminalFeatured && index < 4) {
+                    const tLink = document.createElement('a');
+                    tLink.href = repo.html_url;
+                    tLink.target = "_blank";
+                    tLink.className = 'terminal-project';
+                    tLink.textContent = repo.name;
+                    terminalFeatured.appendChild(tLink);
+                }
+            });
+
+            // All Projects: Filter (stars > 0), Shuffle, and Slice 10
+            const allRepos = cachedRepos
+                .filter(repo => repo.stargazers_count > 0)
+                .sort(() => Math.random() - 0.5)
+                .slice(0, 10);
+
+            allRepos.forEach(repo => {
+                const item = document.createElement('a');
+                item.href = repo.html_url;
+                item.target = "_blank";
+                item.className = 'project-item';
+                item.innerHTML = `
+                    <div class="project-info">
+                        <h4>${repo.name}</h4>
+                        <p style="font-size: 0.9rem; opacity: 0.8;">${repo.description || (currentLang === 'zh-CN' ? '暂无描述' : 'No description available.')}</p>
+                    </div>
+                    <div class="project-stats">
+                        <span style="display: flex; align-items: center; gap: 4px;"><span class="material-symbols-outlined" style="font-size: 1rem;">star</span> ${repo.stargazers_count}</span>
+                        <span>${repo.language || ''}</span>
+                    </div>
+                `;
+                item.addEventListener('click', createRipple);
+                allContainer.appendChild(item);
+            });
+        }
+
+        function getRepoIcon(name) {
+            const lowerName = name.toLowerCase();
+            if (lowerName.includes('music') || lowerName.includes('phigros')) return 'library_music';
+            if (lowerName.includes('backup')) return 'backup';
+            if (lowerName.includes('cert')) return 'verified_user';
+            if (lowerName.includes('wifi') || lowerName.includes('router') || lowerName.includes('uz801')) return 'router';
+            if (lowerName.includes('android') || lowerName.includes('magisk')) return 'memory';
+            if (lowerName.includes('sound')) return 'volume_up';
+            if (lowerName.includes('blog') || lowerName.includes('website')) return 'language';
+            if (lowerName.includes('downloader') || lowerName.includes('fetch')) return 'download';
+            if (lowerName.includes('port') || lowerName.includes('mtk')) return 'settings_input_component';
+            return 'code';
+        }
+
+        // Terminal Logic
+        let currentPath = '~';
+        let isPasswordInput = false;
+        const terminalContainer = document.getElementById('terminal-container');
+        const terminalHistory = document.getElementById('terminal-history');
+        const terminalInput = document.getElementById('terminal-hidden-input');
+        const terminalDisplay = document.getElementById('terminal-input-display');
+        const activePrompt = document.getElementById('active-prompt');
+
+        function updatePrompts() {
+            if (activePrompt) {
+                activePrompt.textContent = `steve@stevezmtstudios:${currentPath}$`;
+            }
+        }
+
+        if (terminalContainer) {
+            terminalContainer.addEventListener('click', () => terminalInput.focus());
+
+            terminalInput.addEventListener('input', (e) => {
+                if (isPasswordInput) {
+                    terminalDisplay.textContent = ''; // Hide password input
+                } else {
+                    terminalDisplay.textContent = e.target.value;
+                }
+            });
+
+            terminalInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    if (isPasswordInput) {
+                        handleSudoPassword();
+                    } else {
+                        const cmdLine = terminalInput.value.trim();
+                        handleCommand(cmdLine);
+                    }
+                    terminalInput.value = '';
+                    terminalDisplay.textContent = '';
+                }
+            });
+        }
+
+        function handleSudoPassword() {
+            const line = document.createElement('div');
+            line.className = 'terminal-line';
+            line.innerHTML = `<span class="terminal-prompt">[sudo] steve's password:</span>`;
+            terminalHistory.appendChild(line);
+
+            const response = document.createElement('div');
+            response.className = 'terminal-line';
+            response.style.color = '#ff5f56';
+            response.innerHTML = translations[currentLang].su_fail;
+            terminalHistory.appendChild(response);
+            
+            isPasswordInput = false;
+            updatePrompts();
+            terminalHistory.scrollTop = terminalHistory.scrollHeight;
+        }
+
+        function handleCommand(cmdLine) {
+            if (!cmdLine) return;
+
+            const args = cmdLine.split(/\s+/);
+            const cmd = args[0].toLowerCase();
+            const target = args[1];
+
+            // Add command to history
+            const line = document.createElement('div');
+            line.className = 'terminal-line';
+            line.innerHTML = `<span class="terminal-prompt">steve@stevezmtstudios:${currentPath}$</span> <span>${cmdLine}</span>`;
+            terminalHistory.appendChild(line);
+
+            const response = document.createElement('div');
+            response.className = 'terminal-line';
+
+            const fs = {
+                '~': ['projects/', 'blogs/', 'contact/', 'about.me'],
+                '~/projects': [], 
+                '~/blogs': [
+                    '<a href="https://blog.stevezmt.top" target="_blank" class="terminal-project">main_blog</a>',
+                    '<a href="https://blog.stevezmt.top/posts/scanpen-adb" target="_blank" class="terminal-project">article_1</a>',
+                    '<a href="https://blog.stevezmt.top/posts/scanpen-root" target="_blank" class="terminal-project">article_2</a>'
+                ],
+                '~/contact': [
+                    '<a href="mailto:me@stevezmt.top" class="terminal-project">email</a>',
+                    '<a href="https://gravatar.com/stevezmt" target="_blank" class="terminal-project">gravatar</a>',
+                    '<a href="https://github.com/stevezmtstudios" target="_blank" class="terminal-project">github</a>',
+                    '<a href="https://space.bilibili.com/474130186" target="_blank" class="terminal-project">bilibili</a>',
+                    '<a href="https://t.me/stevezmt" target="_blank" class="terminal-project">telegram</a>',
+                    '<a href="sms:+37257243638" class="terminal-project">rcs_sms</a>',
+                    '<a href="https://zhihu.com/people/zhang-xian-sheng-70-9" target="_blank" class="terminal-project">zhihu</a>'
+                    // should match with 'cat' cmd
+                ]
+            };
+
+            switch (cmd) {
+                case 'help':
+                    response.innerHTML = 'Available commands: help, clear, ls [dir], cd [dir], pwd, cat [file], whoami, theme, lang, blog, contact, su, sudo';
+                    break;
+                case 'clear':
+                    terminalHistory.innerHTML = '';
+                    return;
+                case 'pwd':
+                    response.innerHTML = currentPath.replace('~', '/home/steve');
+                    break;
+                case 'su':
+                case 'sudo':
+                    response.innerHTML = translations[currentLang].sudo_lecture;
+                    isPasswordInput = true;
+                    if (activePrompt) activePrompt.textContent = "[sudo] steve's password:";
+                    break;
+                case 'cat':
+                    if (!target) {
+                        response.innerHTML = 'cat: missing operand';
+                    } else if (target === 'about.me' || (currentPath === '~' && target === 'about.me')) {
+                        response.textContent = translations[currentLang].terminal_bio;
+                    } else if (currentPath === '~/projects') {
+                        const repo = cachedRepos.find(r => r.name.toLowerCase() === target.toLowerCase());
+                        if (repo) {
+                            window.open(repo.html_url, '_blank');
+                            response.innerHTML = `Opening ${repo.name}...`;
+                        } else {
+                            response.innerHTML = `cat: ${target}: No such file or directory`;
+                        }
+                    } else if (currentPath === '~/contact') {
+                        const contacts = {
+                            'email': 'me@stevezmt.top',
+                            'github': 'https://github.com/stevezmtstudios',
+                            'zhihu': 'https://www.zhihu.com/people/zhang-xian-sheng-70-9',
+                            'bilibili': 'https://space.bilibili.com/474130186',
+                            'telegram': 'https://t.me/stevezmt',
+                            'rcs_sms': '+372 5724-3638',
+                            'gravatar': 'https://gravatar.com/stevezmt'
+
+                        };
+                        const val = contacts[target.toLowerCase()];
+                        if (val) {
+                            response.innerHTML = val.startsWith('http') ? `<a href="${val}" target="_blank" class="terminal-project">${val}</a>` : val;
+                        } else {
+                            response.innerHTML = `cat: ${target}: No such file or directory`;
+                        }
+                    } else {
+                        response.innerHTML = `cat: ${target}: No such file or directory`;
+                    }
+                    break;
+                case 'ls':
+                    let lsTarget = target || currentPath;
+                    if (lsTarget === '.') lsTarget = currentPath;
+                    
+                    let fullPath = lsTarget;
+                    if (!lsTarget.startsWith('~')) {
+                        if (lsTarget === '..') {
+                            if (currentPath === '~') fullPath = '~';
+                            else {
+                                const parts = currentPath.split('/');
+                                parts.pop();
+                                fullPath = parts.join('/') || '~';
+                            }
+                        } else {
+                            fullPath = currentPath === '~' ? `~/${lsTarget}` : `${currentPath}/${lsTarget}`;
+                        }
+                    }
+                    fullPath = fullPath.replace(/\/$/, '');
+
+                    if (fullPath === '~/projects' || (currentPath === '~/projects' && !target)) {
+                        const topProjects = [...cachedRepos]
+                            .sort((a, b) => b.stargazers_count - a.stargazers_count)
+                            .slice(0, 8)
+                            .map(r => `<a href="${r.html_url}" target="_blank" class="terminal-project">${r.name}</a>`)
+                            .join(' ');
+                        response.innerHTML = topProjects || 'No projects found.';
+                    } else if (fs[fullPath]) {
+                        response.innerHTML = fs[fullPath].join('  ');
+                    } else if (fullPath === '~/about.me') {
+                        response.textContent = translations[currentLang].terminal_bio;
+                    } else {
+                        response.innerHTML = `ls: cannot access '${lsTarget}': No such file or directory`;
+                    }
+                    break;
+                case 'cd':
+                    if (!target || target === '~') {
+                        currentPath = '~';
+                    } else if (target === 'blogs' || target === '~/blogs') {
+                        window.open('https://blog.stevezmt.top', '_blank');
+                        response.innerHTML = 'Opening blog...';
+                    } else if (target === '..') {
+                        if (currentPath !== '~') {
+                            const parts = currentPath.split('/');
+                            parts.pop();
+                            currentPath = parts.join('/') || '~';
+                        }
+                    } else {
+                        let newPath = target.startsWith('~') ? target : (currentPath === '~' ? `~/${target}` : `${currentPath}/${target}`);
+                        newPath = newPath.replace(/\/$/, '');
+                        if (fs[newPath]) {
+                            currentPath = newPath;
+                        } else {
+                            response.innerHTML = `cd: ${target}: No such directory`;
+                        }
+                    }
+                    updatePrompts();
+                    if (response.innerHTML) terminalHistory.appendChild(response);
+                    terminalHistory.scrollTop = terminalHistory.scrollHeight;
+                    return;
+                case 'whoami':
+                    response.textContent = translations[currentLang].terminal_bio;
+                    break;
+                case 'theme':
+                    themeToggle.click();
+                    response.innerHTML = `Theme switched to ${currentTheme}`;
+                    break;
+                case 'lang':
+                    langToggle.click();
+                    response.innerHTML = `Language switched to ${currentLang}`;
+                    break;
+                case 'blog':
+                    window.open('https://blog.stevezmt.top', '_blank');
+                    response.innerHTML = 'Opening blog...';
+                    break;
+                case 'contact':
+                    response.innerHTML = 'Email &amp; iMessage: <a href="mailto:me@stevezmt.top">me@stevezmt.top</a> | GitHub: <a href="https://github.com/stevezmtstudios" target="_blank">@stevezmtstudios</a> | Telegram: <a href="https://t.me/stevezmt" target="_blank">@stevezmt</a> | RCS: <a href="sms:+37257243638">+372 5724-3638</a>';
+                    break;
+                case 'rm':
+                    const isDestructive = args.some(arg => arg === '/' || arg === '/*' || arg === '.');
+                    if (args.includes('-rf') && isDestructive) {
+                        response.innerHTML = 'rm: cannot remove \'/\': Operation not permitted... just kidding.<br>Deleting system...';
+                        setTimeout(() => {
+                            // Create full-screen panic overlay
+                            const overlay = document.createElement('div');
+                            overlay.id = 'kernel-panic-screen';
+                            overlay.style.position = 'fixed';
+                            overlay.style.top = '0';
+                            overlay.style.left = '0';
+                            overlay.style.width = '100%';
+                            overlay.style.height = '100%';
+                            overlay.style.background = 'black';
+                            overlay.style.color = '#e0e0e0';
+                            overlay.style.fontFamily = 'monospace';
+                            overlay.style.padding = '24px';
+                            overlay.style.boxSizing = 'border-box';
+                            overlay.style.overflowY = 'auto';
+
+                            overlay.innerHTML = `
+                                <div style="color:#ff6b6b; font-size:1.4rem; font-weight:700; margin-bottom:12px;">Kernel panic - not syncing: Attempted to kill init! exitcode=0x00000000</div>
+                                <div id="kp-log" style="white-space:pre-wrap; color:#b8ffb8; font-size:0.95rem; line-height:1.35;"></div>
+                            `;
+
+                            // Replace body with overlay (no UI controls added)
+                            document.documentElement.style.background = 'black';
+                            document.body.innerHTML = '';
+                            document.body.appendChild(overlay);
+                            document.body.style.margin = '0';
+
+                            // Play a single short beep for the panic (non-repeating)
+                            try {
+                                const Ctx = window.AudioContext || window.webkitAudioContext;
+                                if (Ctx) {
+                                    const ctx = new Ctx();
+                                    const o = ctx.createOscillator();
+                                    const g = ctx.createGain();
+                                    o.type = 'square';
+                                    o.frequency.value = 880;
+                                    o.connect(g);
+                                    g.connect(ctx.destination);
+                                    g.gain.value = 0.0001;
+                                    o.start();
+                                    g.gain.exponentialRampToValueAtTime(0.08, ctx.currentTime + 0.01);
+                                    g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.25);
+                                    setTimeout(() => { try { o.stop(); ctx.close(); } catch (e) {} }, 300);
+                                }
+                            } catch (e) { /* ignore audio errors */ }
+
+                            // Simulate repeated failing logs to convey ongoing failure
+                            const log = document.getElementById('kp-log');
+                            const staticLines = [
+                                'Initiating emergency shutdown sequence...',
+                                'Unmounting filesystems: /home, /var, /tmp',
+                                'Failed to sync journal to disk: I/O error',
+                                'killing all processes: PID 1 init',
+                                'watchdog: BUG: unable to ping hardware watchdog',
+                                'unable to remount rootfs as rw: read-only file system',
+                                'ext4_sync: error -5 writing inode',
+                                'systemd-shutdown[1]: Failed to finalize transaction: Protocol error',
+                                'Attempting last-ditch recovery...',
+                                'Recovery failed: aborting.',
+                                '[  1913.303190] Kernel panic - not syncing: Fatal exception in interrupt',
+                                '[  1913.309191] CPU: 0 PID: 1 Comm: init Not tainted 5.4.0-42-generic #46-Ubuntu',
+                                '[  1913.309992] Hardware name: Generic Virtual Machine',
+                            ...(function() {
+                                const arr = [];
+                                const templates = [
+                                    'EXT4-fs (sda1): delayed allocation failed for inode',
+                                    'Buffer I/O error on dev sda1, logical block',
+                                    'ata1.00: exception Emask',
+                                    'blk_update_request: I/O error, dev sda, sector',
+                                    'usb 1-1: device descriptor read/64, error -110',
+                                    'NETDEV WATCHDOG: eth0 (e1000e): transmit queue 0 timed out',
+                                    'Out of memory: Kill process',
+                                    'ACPI Error: Method parse/execution failed',
+                                    'thermal thermal_zone0: failed to read temperature',
+                                    'scsi host0: scsi0: aborting command',
+                                    'JBD2: Detected aborted operation',
+                                    'systemd-shutdown[1]: Failed to finalize transaction',
+                                    'kworker: stack overflow detected',
+                                    'nvme nvme0: I/O 0 QID 0 timeout, aborting command',
+                                    'ipv6: ADDRCONF(NETDEV_UP): eth0: link is not ready',
+                                    'irq 45: no longer affine to CPU0',
+                                    'audit: type=1400 audit(0.0:0): apparmor=DENIED',
+                                    'e1000e 0000:00:19.0: NIC Link is Down',
+                                    'MMU: killing process for OOM',
+                                    'kernel: page allocation failure: order',
+                                    'kswapd0: CPU stuck for 22s',
+                                    'NFS: server not responding, still trying',
+                                    'drm: failed to create context',
+                                    'pci_bus 0000:00: resource 5: enabling failed',
+                                    'random: crng init done',
+                                    'usb 2-1: USB disconnect, device number',
+                                    'firmware: failed to load i915/skl_dmc_ver1_26.bin',
+                                    'watchdog: BUG: soft lockup - CPU#',
+                                    'efivars: probe of efivars failed with error -22',
+                                    'audit: type=1100 audit(0.0:0): pid=0 failed to log',
+                                    'bridge: filtering via arp/ip/ip6tables is no longer available by default',
+                                    'BTRFS warning (device sda2): checksum found wrong',
+                                    'dm-crypt: cipher init failed',
+                                    'usb 3-2: device descriptor read/8, error -32',
+                                    'r8169 0000:02:00.0: eth0: link up',
+                                    'sie 0000:07:00.0: firmware crash',
+                                    'xfrm: failed to parse request',
+                                    'ipv4: route add failed',
+                                    'CIFS VFS: Server not responding',
+                                    'eth0: TX queue timeout',
+                                    'tcp: excessive retransmissions',
+                                    'dm-raid: failed to find suitable raid devices',
+                                    'split_lock_detect: Possible split lock detected',
+                                    'input: AT Translated Set 2 keyboard as /devices/platform/i8042',
+                                    'crypto: cipher allocate failed',
+                                    'fuse: read failed in fuse_dev_read',
+                                    'usb 1-3: reset high-speed USB device number',
+                                    'systemd[1]: Failed to start user@1000.service: Unit not found',
+                                    'pci 0000:00:1f.2: DMA mask not set',
+                                    'md: md127: super1 has wrong sector size 4096 (expecting 512)'
+                                ];
+
+                                for (let i = 0; i < 300; i++) {
+                                    const tpl = templates[i % templates.length];
+                                    // generate a plausible dmesg-style timestamp fragment
+                                    const tsFragment = (320000 + i).toString();
+                                    const detailSuffix = (i % 7 === 0) ? `error=${-((i % 100) + 1)}` :
+                                                          (i % 7 === 1) ? `sector=${Math.floor(Math.random() * 100000)}` :
+                                                          (i % 7 === 2) ? `pid=${1000 + (i % 500)}` :
+                                                          (i % 7 === 3) ? `cpu=${i % 8}` :
+                                                          (i % 7 === 4) ? `dev=sda${1 + (i % 3)}` :
+                                                          (i % 7 === 5) ? `uid=${(i % 1000)}` :
+                                                          `id=${i}`;
+                                    arr.push(`[  1913.${tsFragment}] ${tpl} ${detailSuffix}`);
+                                }
+                                return arr;
+                            })(),
+                            ];
+
+                            let i = 0;
+                            const maxLines = 1120; // simulate many lines
+                            const iv = setInterval(() => {
+                                if (!log) return clearInterval(iv);
+                                if (i < maxLines) {
+                                    const now = new Date().toISOString();
+                                    const msg = (i < staticLines.length) ? staticLines[i] : `disk IO error: read failed at sector ${Math.floor(Math.random() * 100000)}`;
+                                    const row = document.createElement('div');
+                                    row.textContent = `${now} ${msg}`;
+                                    // highlight errors in red-ish
+                                    if (/failed|error|BUG|Failed|unable|abort/i.test(msg)) row.style.color = '#ff6b6b';
+                                    else row.style.color = '#b8ffb8';
+                                    log.appendChild(row);
+                                    overlay.scrollTop = overlay.scrollHeight;
+                                    i++;
+                                } else {
+                                    clearInterval(iv);
+                                    const final = document.getElementById('kp-final');
+                                    if (final) final.style.color = '#ff6b6b';
+                                    const hint = document.createElement('div');
+                                    hint.style.color = '#fff';
+                                    hint.style.marginTop = '12px';
+                                    hint.textContent = 'System Halted from unrecoverable error.';
+                                    log.appendChild(hint);
+                                    overlay.scrollTop = overlay.scrollHeight;
+                                }
+                            }, 10);
+                        }, 2000);
+                    } else {
+                        response.innerHTML = 'rm: missing operand or permission denied';
+                    }
+                    break;
+                default:
+                    response.innerHTML = `Command not found: ${cmd}. Type 'help' for assistance.`;
+            }
+
+            terminalHistory.appendChild(response);
+            terminalHistory.scrollTop = terminalHistory.scrollHeight;
+        }
+
+        // Initialize
+        const browserLang = navigator.language || navigator.userLanguage;
+        currentLang = browserLang.startsWith('zh') ? 'zh-CN' : 'en';
+        updateLanguage();
+
+        updatePrompts();
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            themeToggle.click();
+        }
+        fetchGitHubProjects();
+        if (terminalInput) terminalInput.focus();
+    </script>
+</body>
+
+</html>

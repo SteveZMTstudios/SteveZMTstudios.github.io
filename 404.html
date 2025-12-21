@@ -893,6 +893,9 @@
 }
   </style>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     :root {
       --bg-color: #ffffff;
       --text-color: #202124;
@@ -919,29 +922,50 @@
         --snackbar-text: #202124;
       }
     }
+    html {
+      height: 100%;
+    }
     body {
       font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
+      background-color: #ffffff;
       background-color: var(--bg-color);
+      color: #202124;
       color: var(--text-color);
       margin: 0;
       padding: 0;
+      display: block;
+      display: -webkit-flex;
       display: flex;
+      -webkit-flex-direction: column;
       flex-direction: column;
+      height: 100%;
       min-height: 100vh;
+      -webkit-transition: background-color 0.3s, color 0.3s;
       transition: background-color 0.3s, color 0.3s;
+      text-align: center;
     }
     .main-content {
-      flex: 1;
+      -webkit-flex: 1 0 auto;
+      flex: 1 0 auto;
+      display: block;
+      display: -webkit-flex;
       display: flex;
+      -webkit-flex-direction: column;
       flex-direction: column;
+      -webkit-justify-content: center;
       justify-content: center;
+      -webkit-align-items: center;
       align-items: center;
       padding: 20px;
       text-align: center;
     }
     .text-content {
+      display: block;
+      display: -webkit-flex;
       display: flex;
+      -webkit-flex-direction: column;
       flex-direction: column;
+      -webkit-align-items: center;
       align-items: center;
     }
     .robot-container {
@@ -950,13 +974,17 @@
       cursor: pointer;
       user-select: none;
       -webkit-tap-highlight-color: transparent;
+      display: inline-block;
     }
     .robot-icon {
       font-size: 120px;
+      color: #5f6368;
       color: var(--secondary-text);
+      -webkit-transition: -webkit-transform 0.2s;
       transition: transform 0.2s;
     }
     .robot-icon:active {
+      -webkit-transform: scale(0.95);
       transform: scale(0.95);
     }
     h1 {
@@ -967,12 +995,16 @@
     p {
       font-size: 14px;
       line-height: 1.6;
+      color: #5f6368;
       color: var(--secondary-text);
       margin: 0 0 16px 0;
       max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .url-path {
       font-weight: 700;
+      color: #202124;
       color: var(--text-color);
       word-break: break-all;
     }
@@ -980,6 +1012,7 @@
       text-align: left;
       display: inline-block;
       font-size: 14px;
+      color: #5f6368;
       color: var(--secondary-text);
       margin-top: 16px;
       max-width: 100%;
@@ -993,7 +1026,9 @@
     }
     .action-btn {
       display: inline-block;
+      background-color: #1a73e8;
       background-color: var(--button-bg);
+      color: #ffffff;
       color: var(--button-text);
       padding: 10px 24px;
       border-radius: 4px;
@@ -1004,13 +1039,18 @@
       transition: background-color 0.2s;
     }
     .action-btn:hover {
+      background-color: #1765cc;
       background-color: var(--button-hover);
     }
     .footer {
+      -webkit-flex-shrink: 0;
+      flex-shrink: 0;
       padding: 20px;
       text-align: center;
       font-size: 12px;
+      color: #5f6368;
       color: var(--secondary-text);
+      border-top: 1px solid #dadce0;
       border-top: 1px solid var(--divider);
     }
     .footer a {
@@ -1021,32 +1061,40 @@
       text-decoration: underline;
     }
     .text-content p {
+      color: #202124;
       color: var(--text-color);
     }
     .text-content span {
+      color: #5f6368;
       color: var(--secondary-text);
     }
     .snackbar span {
+      color: #ffffff;
       color: var(--snackbar-text)
     }
 
     /* Desktop Layout */
     @media (min-width: 768px) {
       .main-content {
+        -webkit-flex-direction: row;
         flex-direction: row;
+        -webkit-align-items: flex-start;
         align-items: flex-start;
+        -webkit-justify-content: center;
         justify-content: center;
         text-align: left;
         padding-top: 80px;
         gap: 60px;
       }
       .text-content {
+        -webkit-align-items: flex-start;
         align-items: flex-start;
         max-width: 600px;
       }
       .robot-container {
         padding-top: 8px;
         margin-bottom: 0;
+        vertical-align: top;
       }
       .solutions {
         display: block;
@@ -1058,7 +1106,9 @@
       visibility: hidden;
       min-width: 280px;
       max-width: 90%;
+      background-color: #323232;
       background-color: var(--snackbar-bg);
+      color: #ffffff;
       color: var(--snackbar-text);
       text-align: left;
       border-radius: 4px;
@@ -1067,26 +1117,36 @@
       z-index: 1000;
       left: 50%;
       bottom: 30px;
+      -webkit-transform: translateX(-50%) translateY(100px);
       transform: translateX(-50%) translateY(100px);
+      margin-left: -140px\9;
       font-size: 14px;
       box-shadow: 0 3px 5px -1px rgba(0,0,0,.2),0 6px 10px 0 rgba(0,0,0,.14),0 1px 18px 0 rgba(0,0,0,.12);
+      display: block;
+      display: -webkit-flex;
       display: flex;
+      -webkit-justify-content: space-between;
       justify-content: space-between;
+      -webkit-align-items: center;
       align-items: center;
       gap: 16px;
+      -webkit-transition: -webkit-transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), visibility 0.3s;
       transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1), visibility 0.3s;
     }
     .snackbar.show {
       visibility: visible;
+      -webkit-transform: translateX(-50%) translateY(0);
       transform: translateX(-50%) translateY(0);
     }
     .snackbar-text {
+      -webkit-flex: 1;
       flex: 1;
       line-height: 1.4;
     }
     .snackbar-action {
       background: none;
       border: none;
+      color: #1a73e8;
       color: var(--link-color);
       font-weight: 500;
       font-size: 14px;
@@ -1095,6 +1155,8 @@
       text-transform: uppercase;
       white-space: nowrap;
       margin: -8px -8px -8px 0;
+      margin-left: 16px;
+      float: right;
     }
     .snackbar-action:hover {
       background-color: rgba(255,255,255,0.1);
@@ -1146,22 +1208,55 @@
   </div>
 
   <script>
+    (function() {
+    // Helpers
+    function addEvent(el, type, handler) {
+      if (el.addEventListener) el.addEventListener(type, handler, false);
+      else if (el.attachEvent) el.attachEvent('on' + type, function() { handler.call(el, window.event); });
+      else el['on' + type] = handler;
+    }
+    function setText(el, text) {
+      if ('textContent' in el) el.textContent = text;
+      else el.innerText = text;
+    }
+    function addClass(el, cls) {
+      if (el.classList) el.classList.add(cls);
+      else if (el.className.indexOf(cls) === -1) el.className += ' ' + cls;
+    }
+    function removeClass(el, cls) {
+      if (el.classList) el.classList.remove(cls);
+      else el.className = el.className.replace(new RegExp('(^|\\b)' + cls.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+    }
+
     // Path display
-    document.getElementById('path-placeholder').textContent = window.location.pathname;
+    var pathPlaceholder = document.getElementById('path-placeholder');
+    if (pathPlaceholder) setText(pathPlaceholder, window.location.pathname);
 
     // Theme color update
-    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    var metaTheme = document.getElementsByTagName('meta');
+    var themeMeta = null;
+    for (var i = 0; i < metaTheme.length; i++) {
+      if (metaTheme[i].getAttribute('name') === 'theme-color') {
+        themeMeta = metaTheme[i];
+        break;
+      }
+    }
     function updateThemeColor() {
-      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      metaTheme.setAttribute('content', isDark ? '#202124' : '#ffffff');
+      if (!themeMeta || !window.matchMedia) return;
+      var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      themeMeta.setAttribute('content', isDark ? '#202124' : '#ffffff');
     }
     updateThemeColor();
     try {
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateThemeColor);
+      if (window.matchMedia) {
+        var mm = window.matchMedia('(prefers-color-scheme: dark)');
+        if (mm.addListener) mm.addListener(updateThemeColor);
+        else if (mm.addEventListener) mm.addEventListener('change', updateThemeColor);
+      }
     } catch (e) {}
 
     // Jeff Dean Facts
-    const jeffFacts = [
+    var jeffFacts = [
 "你在键盘上打出 JEFF 时，就会有一条新的 Jeff Dean 奇迹。",
 "Jeff Dean 在白板上以多项式时间解决了所有 NP 问题，由此证明了 P=NP。",
 "Jeff Dean 的 PIN 码是圆周率的最后四位。",
@@ -1262,47 +1357,55 @@
 
     ];
 
-    const snackbar = document.getElementById('jeff-snackbar');
-    const factContent = document.getElementById('jeff-fact-content');
-    const nextBtn = document.getElementById('next-fact');
-    const robotTrigger = document.getElementById('robot-trigger');
-    let snackbarTimer = null;
+    var snackbar = document.getElementById('jeff-snackbar');
+    var factContent = document.getElementById('jeff-fact-content');
+    var nextBtn = document.getElementById('next-fact');
+    var robotTrigger = document.getElementById('robot-trigger');
+    var snackbarTimer = null;
 
     function showFact() {
-      const fact = jeffFacts[Math.floor(Math.random() * jeffFacts.length)];
-      factContent.textContent = fact;
-      snackbar.classList.add('show');
+      var fact = jeffFacts[Math.floor(Math.random() * jeffFacts.length)];
+      setText(factContent, fact);
+      addClass(snackbar, 'show');
       
-      // Auto hide after 6 seconds
       if (snackbarTimer) clearTimeout(snackbarTimer);
-      snackbarTimer = setTimeout(() => {
-        snackbar.classList.remove('show');
+      snackbarTimer = setTimeout(function() {
+        removeClass(snackbar, 'show');
       }, 8000);
     }
 
-    nextBtn.addEventListener('click', showFact);
+    if (nextBtn) addEvent(nextBtn, 'click', showFact);
 
-    // Trigger 1: Click robot 2 times
-    let clickCount = 0;
-    let clickTimer = null;
-    robotTrigger.addEventListener('click', () => {
-      clickCount++;
-      if (clickTimer) clearTimeout(clickTimer);
-      clickTimer = setTimeout(() => { clickCount = 0; }, 1000);
+    var clickCount = 0;
+    var clickTimer = null;
+    if (robotTrigger) {
+      addEvent(robotTrigger, 'click', function() {
+        clickCount++;
+        if (clickTimer) clearTimeout(clickTimer);
+        clickTimer = setTimeout(function() { clickCount = 0; }, 1000);
+        
+        if (clickCount === 2) {
+          showFact();
+          clickCount = 0;
+        }
+      });
+    }
+
+    addEvent(window, 'keydown', function(e) {
+      e = e || window.event;
+      var key = '';
+      if (e.key) key = e.key.toLowerCase();
+      else if (e.keyCode) {
+        if (e.keyCode === 70) key = 'f';
+        else if (e.keyCode === 74) key = 'j';
+        else if (e.keyCode === 69) key = 'e';
+      }
       
-      if (clickCount === 2) {
-        showFact();
-        clickCount = 0;
-      }
-    });
-
-    // Trigger 2: Press f, j, or e
-    window.addEventListener('keydown', (e) => {
-      const key = e.key.toLowerCase();
       if (key === 'f' || key === 'j' || key === 'e') {
-      showFact();
+        showFact();
       }
     });
+    })();
   </script>
 </body>
 </html>
