@@ -7,47 +7,80 @@
     <title>Steve ZMT | 史蒂夫ZMT工作室 (兼容模式)</title>
     <style type="text/css">
         body {
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4fbfa;
-            color: #191c1c;
-            margin: 0;
-            padding: 20px;
-            line-height: 1.5;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #ffffff;
-            padding: 20px;
-            border: 1px solid #ccc;
-        }
-        h1 { color: #006a6a; border-bottom: 2px solid #006a6a; padding-bottom: 10px; }
-        h2 { color: #006a6a; margin-top: 30px; border-bottom: 1px solid #dae5e4; }
-        .section { margin-bottom: 20px; }
-        .card {
-            border: 1px solid #dae5e4;
-            padding: 15px;
-            margin-bottom: 10px;
-            background-color: #f9f9f9;
-        }
-        .card h3 { margin-top: 0; color: #006a6a; }
-        a { color: #006a6a; text-decoration: none; font-weight: bold; }
-        a:hover { text-decoration: underline; }
-        .footer {
-            margin-top: 40px;
-            text-align: center;
-            font-size: 12px;
-            color: #6f7979;
-            border-top: 1px solid #ccc;
-            padding-top: 10px;
-        }
-        .notice {
-            background-color: #fffbe6;
-            border: 1px solid #ffe58f;
-            padding: 10px;
-            margin-bottom: 20px;
-            color: #856404;
-        }
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8fafd;
+    color: #1a1c1e;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.5;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #dfe2eb;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.08);
+}
+h1 { 
+    color: #0066cc; 
+    border-bottom: 2px solid #d4e7ff; 
+    padding-bottom: 10px; 
+    margin-bottom: 20px;
+}
+h2 { 
+    color: #0066cc; 
+    margin-top: 30px; 
+    border-bottom: 1px solid #dfe2eb; 
+    padding-bottom: 8px;
+}
+.section { 
+    margin-bottom: 24px; 
+}
+.card {
+    border: 1px solid #dfe2eb;
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 12px;
+    background-color: #f8fafd;
+    transition: all 0.2s ease;
+}
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.1);
+    transform: translateY(-1px);
+}
+.card h3 { 
+    margin-top: 0; 
+    color: #004591; 
+    margin-bottom: 8px;
+}
+a { 
+    color: #0066cc; 
+    text-decoration: none; 
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+a:hover { 
+    color: #004591; 
+    text-decoration: underline; 
+}
+.footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 12px;
+    color: #73777f;
+    border-top: 1px solid #dfe2eb;
+    padding-top: 15px;
+}
+.notice {
+    background-color: #fffbe6;
+    border: 1px solid #ffe58f;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    color: #856404;
+}
     </style>
 </head>
 <body>
@@ -68,13 +101,13 @@
             <img src="//blog.stevezmt.top/images/avatar.jpg@128x128.jpg" alt="Avatar" width="80" height="80" style="vertical-align: middle; border: 2px solid #006a6a; margin-right: 15px;">
             史蒂夫ZMT工作室
         </h1>
-        <p>Steve ZMT. 一名热爱 Android 和开源的业余开发者。</p>
+        <p>Steve ZMT. 熟悉 Android Web 和开源的业余乐子人，最近在研究 Kotlin Python 和 Rust。</p>
         
         <h2>我的动态</h2>
         <div class="section">
             <div class="card">
                 <h3><a href="//blog.stevezmt.top/k">访问博客主页</a></h3>
-                <p>分享技术心得、生活点滴与开发日志。</p>
+                <p>这家伙叽里咕噜说什么呢。</p>
             </div>
             <div class="card">
                 <h3><a href="//stevezmt.top/Phigros-history">Phigros 历史版本收集</a></h3>
@@ -152,43 +185,220 @@
                 }
             }
 
-            // 兼容 1997+ 浏览器的异步获取逻辑
+            // 兼容 1997+ 浏览器的异步获取逻辑（带多种回退策略）
             function fetchProjects() {
-                var url = '//github-user-detail.cf.miniproj.stevezmt.top/repos';
-                var xhr;
-                
-                if (window.XMLHttpRequest) {
-                    xhr = new XMLHttpRequest();
-                } else if (window.ActiveXObject) {
-                    try { xhr = new ActiveXObject("Msxml2.XMLHTTP"); }
-                    catch (e) { try { xhr = new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {} }
+                // 使用显式协议以避免某些旧浏览器对 protocol-relative URL 返回 "Access is denied" 的问题
+                var url = 'https://github-user-detail.cf.miniproj.stevezmt.top/repos';
+
+                // 如果页面通过 file: 协议打开，强制使用 https
+                if (location && location.protocol === 'file:') {
+                    url = 'https://github-user-detail.cf.miniproj.stevezmt.top/repos';
                 }
 
-                if (!xhr) return;
+                // 通用响应处理函数
+                function handleResponseText(text) {
+                    try {
+                        var repos;
+                        if (window.JSON && window.JSON.parse) {
+                            repos = JSON.parse(text);
+                        } else {
+                            // 极旧浏览器使用 eval (仅在受信任的 API 下使用)
+                            repos = eval('(' + text + ')');
+                        }
+                        renderCompatProjects(repos);
+                    } catch (e) {
+                        renderCompatProjects([]);
+                    }
+                }
 
-                xhr.onreadystatechange = function() {
-                    if (xhr.readyState === 4 && xhr.status === 200) {
-                        try {
-                            var repos;
-                            if (window.JSON && window.JSON.parse) {
-                                repos = JSON.parse(xhr.responseText);
-                            } else {
-                                // 极旧浏览器使用 eval (仅在受信任的 API 下使用)
-                                repos = eval('(' + xhr.responseText + ')');
+                // 尝试通过 XHR 强制 CORS 请求（可能受跨域限制）
+                function attemptCorsFetch() {
+                    try {
+                        var xhr2;
+                        if (window.XMLHttpRequest) {
+                            xhr2 = new XMLHttpRequest();
+                        } else if (window.ActiveXObject) {
+                            try { xhr2 = new ActiveXObject("Msxml2.XMLHTTP"); }
+                            catch (e) { try { xhr2 = new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {} }
+                        }
+                        if (!xhr2) {
+                            renderCompatProjects([]);
+                            return;
+                        }
+                        xhr2.onreadystatechange = function() {
+                            if (xhr2.readyState === 4) {
+                                try {
+                                    if (xhr2.status === 200 || (xhr2.status === 0 && xhr2.responseText)) {
+                                        handleResponseText(xhr2.responseText);
+                                        return;
+                                    }
+                                } catch (e) {}
+                                renderCompatProjects([]);
                             }
-                            renderCompatProjects(repos);
+                        };
+                        try {
+                            xhr2.open('GET', url, true);
+                            xhr2.send();
                         } catch (e) {
-                            document.getElementById('loading-text').innerHTML = '加载失败。';
+                            renderCompatProjects([]);
+                        }
+                    } catch (e) { document.getElementById('loading-text').innerHTML = '加载失败（CORS 异常）。'; }
+                }
+
+                // JSONP 回退（需要服务器支持 callback 参数）
+                function jsonpFallback() {
+                    var cbName = 'compatReposCallback_' + (+new Date());
+                    var called = false;
+                    window[cbName] = function(data) {
+                        called = true;
+                        try { renderCompatProjects(data); } finally { try { delete window[cbName]; } catch (e) {} }
+                    };
+                    var s = document.createElement('script');
+                    s.type = 'text/javascript';
+                    s.async = true;
+                    s.src = url + '?callback=' + cbName;
+
+                    var timer = setTimeout(function() {
+                        if (!called) {
+                            try { if (s.parentNode) s.parentNode.removeChild(s); } catch (e) {}
+                            try { delete window[cbName]; } catch (e) {}
+                            renderCompatProjects([]);
+                        }
+                    }, 5000);
+
+                    s.onerror = function() {
+                        clearTimeout(timer);
+                        try { delete window[cbName]; } catch (e) {}
+                        renderCompatProjects([]);
+                    };
+
+                    try {
+                        (document.getElementsByTagName('head')[0] || document.documentElement).appendChild(s);
+                    } catch (e) {
+                        // 一些老旧浏览器在向 head 插入 script 时可能出错，回退到 body
+                        try { (document.body || document.documentElement).appendChild(s); } catch (e2) {
+                            clearTimeout(timer);
+                            try { delete window[cbName]; } catch (e3) {}
+                            renderCompatProjects([]);
                         }
                     }
-                };
-                xhr.open('GET', url, true);
-                xhr.send();
+                }
+
+                // 尝试标准 XHR
+                try {
+                    var xhr;
+                    if (window.XMLHttpRequest) {
+                        xhr = new XMLHttpRequest();
+                    } else if (window.ActiveXObject) {
+                        try { xhr = new ActiveXObject("Msxml2.XMLHTTP"); }
+                        catch (e) { try { xhr = new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {} }
+                    }
+
+                    if (xhr) {
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState === 4) {
+                                try {
+                                    // 访问 xhr.status / xhr.responseText 在部分旧 IE 下可能抛出 "Access is denied"
+                                    var status = xhr.status;
+                                    var resp = xhr.responseText;
+                                    if (status === 200 || (status === 0 && resp)) {
+                                        handleResponseText(resp);
+                                        return;
+                                    }
+                                } catch (e) {
+                                    // 遇到访问受限错误时直接回退到 JSONP
+                                    jsonpFallback();
+                                    return;
+                                }
+                                // 状态不对时尝试回退
+                                jsonpFallback();
+                            }
+                        };
+
+                        // 简单跨域检测（兼容旧浏览器）
+                        var isCross = true;
+                        try {
+                            var lnk = document.createElement('a');
+                            lnk.href = url;
+                            isCross = (lnk.protocol + '//' + lnk.host) !== (location.protocol + '//' + location.host);
+                        } catch (e) { isCross = true; }
+
+                        try {
+                            // 如果是跨域且 xhr 不支持 CORS，再使用 XDomainRequest 或 JSONP
+                            if (isCross && !('withCredentials' in xhr) && !window.XDomainRequest) {
+                                jsonpFallback();
+                                return;
+                            }
+
+                            xhr.open('GET', url, true);
+                            xhr.send();
+                            return;
+                        } catch (e) {
+                            // 比如 IE 的 "Access is denied"，继续尝试其他回退
+                        }
+                    }
+                } catch (e) {}
+
+                // IE8/9 的 XDomainRequest 回退（仅支持 GET/POST，且无自定义 header）
+                if (window.XDomainRequest) {
+                    try {
+                        var xdr = new XDomainRequest();
+                        xdr.onload = function() { handleResponseText(xdr.responseText); };
+                        xdr.onerror = function() { renderCompatProjects([]); };
+                        xdr.open('GET', url);
+                        xdr.send();
+                        return;
+                    } catch (e) {}
+                }
+
+                // 最后尝试 JSONP
+                jsonpFallback();
             }
 
             function renderCompatProjects(repos) {
                 var container = document.getElementById('compat-projects');
-                if (!container || !repos || !repos.length) return;
+                if (!container) return;
+                
+                // 如果没有数据，使用静态项目列表（针对非常老的浏览器）
+                if (!repos || !repos.length) {
+                    repos = [
+                        {
+                            name: 'Phigros-History',
+                            html_url: 'https://github.com/stevezmtstudios/Phigros-History',
+                            description: 'Phigros 历史版本收集',
+                            stargazers_count: 50,
+                            language: 'HTML'
+                        },
+                        {
+                            name: 'CA-Certificates',
+                            html_url: 'https://github.com/stevezmtstudios/CA-Certificates',
+                            description: 'CA 证书同步工具',
+                            stargazers_count: 30,
+                            language: 'Python'
+                        },
+                        {
+                            name: 'SteveZMTstudios.github.io',
+                            html_url: 'https://github.com/stevezmtstudios/SteveZMTstudios.github.io',
+                            description: '个人网站源码',
+                            stargazers_count: 20,
+                            language: 'HTML'
+                        },
+                        {
+                            name: 'Android-Web-Tools',
+                            html_url: 'https://github.com/stevezmtstudios/Android-Web-Tools',
+                            description: 'Android Web 开发工具',
+                            stargazers_count: 15,
+                            language: 'JavaScript'
+                        },
+                        {
+                            name: 'Kotlin-Experiments',
+                            html_url: 'https://github.com/stevezmtstudios/Kotlin-Experiments',
+                            description: 'Kotlin 实验项目',
+                            stargazers_count: 10,
+                            language: 'Kotlin'
+                        }
+                    ];
+                }
                 
                 // 排序并取前 5 个
                 repos.sort(function(a, b) { return b.stargazers_count - a.stargazers_count; });

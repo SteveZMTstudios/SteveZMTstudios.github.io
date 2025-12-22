@@ -41,52 +41,52 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
 
     <style>
-        :root {
-            /* Material Design 3 Light Palette (Default) */
-            --md-sys-color-primary: #006a6a;
-            --md-sys-color-on-primary: #ffffff;
-            --md-sys-color-primary-container: #6ff6f6;
-            --md-sys-color-on-primary-container: #002020;
-            --md-sys-color-secondary: #4a6363;
-            --md-sys-color-on-secondary: #ffffff;
-            --md-sys-color-secondary-container: #cce8e7;
-            --md-sys-color-on-secondary-container: #051f1f;
-            --md-sys-color-surface: #f4fbfa;
-            --md-sys-color-on-surface: #191c1c;
-            --md-sys-color-surface-variant: #dae5e4;
-            --md-sys-color-on-surface-variant: #3f4948;
-            --md-sys-color-outline: #6f7979;
-            --md-sys-color-background: #f4fbfa;
-            --md-sys-color-on-background: #191c1c;
-            
-            --header-bg: rgba(244, 251, 250, 0.8);
-            --transition-speed: 0.3s;
-            --font-main: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            --font-mono: 'Roboto Mono', 'Fira Code', monospace;
-            
-            --grid-color: rgba(0, 106, 106, 0.05);
-        }
+:root {
+    /* Material Design 3 Light Palette (浅蓝色主题) */
+    --md-sys-color-primary: #0066cc;
+    --md-sys-color-on-primary: #ffffff;
+    --md-sys-color-primary-container: #d4e7ff;
+    --md-sys-color-on-primary-container: #001d3a;
+    --md-sys-color-secondary: #4e5c6e;
+    --md-sys-color-on-secondary: #ffffff;
+    --md-sys-color-secondary-container: #d7e3f8;
+    --md-sys-color-on-secondary-container: #0a1929;
+    --md-sys-color-surface: #f8fafd;
+    --md-sys-color-on-surface: #1a1c1e;
+    --md-sys-color-surface-variant: #dfe2eb;
+    --md-sys-color-on-surface-variant: #43474e;
+    --md-sys-color-outline: #73777f;
+    --md-sys-color-background: #f8fafd;
+    --md-sys-color-on-background: #1a1c1e;
+    
+    --header-bg: rgba(248, 250, 253, 0.8);
+    --transition-speed: 0.3s;
+    --font-main: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'Roboto Mono', 'Fira Code', monospace;
+    
+    --grid-color: rgba(0, 102, 204, 0.05);
+}
 
-        [data-theme="dark"] {
-            --md-sys-color-primary: #4edada;
-            --md-sys-color-on-primary: #003737;
-            --md-sys-color-primary-container: #004f4f;
-            --md-sys-color-on-primary-container: #6ff6f6;
-            --md-sys-color-secondary: #b0cccb;
-            --md-sys-color-on-secondary: #1b3434;
-            --md-sys-color-secondary-container: #324b4b;
-            --md-sys-color-on-secondary-container: #cce8e7;
-            --md-sys-color-surface: #191c1c;
-            --md-sys-color-on-surface: #e0e3e2;
-            --md-sys-color-surface-variant: #3f4948;
-            --md-sys-color-on-surface-variant: #bec9c8;
-            --md-sys-color-outline: #889392;
-            --md-sys-color-background: #191c1c;
-            --md-sys-color-on-background: #e0e3e2;
+[data-theme="dark"] {
+    --md-sys-color-primary: #a8c8ff;
+    --md-sys-color-on-primary: #002f65;
+    --md-sys-color-primary-container: #004591;
+    --md-sys-color-on-primary-container: #d4e7ff;
+    --md-sys-color-secondary: #bbc7db;
+    --md-sys-color-on-secondary: #253140;
+    --md-sys-color-secondary-container: #3b4858;
+    --md-sys-color-on-secondary-container: #d7e3f8;
+    --md-sys-color-surface: #121418;
+    --md-sys-color-on-surface: #e2e2e6;
+    --md-sys-color-surface-variant: #43474e;
+    --md-sys-color-on-surface-variant: #c3c6cf;
+    --md-sys-color-outline: #8d9199;
+    --md-sys-color-background: #121418;
+    --md-sys-color-on-background: #e2e2e6;
 
-            --header-bg: rgba(25, 28, 28, 0.8);
-            --grid-color: rgba(78, 218, 218, 0.05);
-        }
+    --header-bg: rgba(18, 20, 24, 0.8);
+    --grid-color: rgba(168, 200, 255, 0.05);
+}
 
         /* Reset & Base */
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -186,7 +186,7 @@
             position: relative;
             width: 280px;
             height: 280px;
-            border-radius: 80px; /* MD3 style rounded corners */
+            border-radius: 140px; /* circle */
             overflow: hidden;
             border: 4px solid var(--md-sys-color-primary-container);
             box-shadow: 0 20px 40px rgba(0,0,0,0.1);
@@ -669,7 +669,7 @@
                     Steve ZMT. 一名热爱 Android 和开源的业余开发者。
                 </div>
                 <div class="terminal-line">
-                    <span class="terminal-prompt">steve@stevezmtstudios:~$</span> <span>ls projects/ </span>
+                    <span class="terminal-prompt">steve@stevezmtstudios:~$</span> <span>ls projects/ --feature</span>
                 </div>
                 <div class="terminal-line" id="terminal-featured-projects">
                     <!-- Dynamic Content -->
@@ -678,7 +678,7 @@
             <div class="terminal-line">
                 <span class="terminal-prompt" id="active-prompt">steve@stevezmtstudios:~$</span>
                 <span id="terminal-input-display"></span><span class="terminal-cursor"></span>
-                <input type="text" id="terminal-hidden-input" autofocus style="position: absolute; opacity: 0; pointer-events: none;">
+                <input type="text" id="terminal-hidden-input" style="position: absolute; opacity: 0; pointer-events: none;">
             </div>
         </section>
 
@@ -689,8 +689,8 @@
         <div class="grid">
             <a href="https://blog.stevezmt.top" class="card">
                 <span class="material-symbols-outlined icon">auto_stories</span>
-                <h3 data-i18n="blog_main">访问博客主页</h3>
-                <p data-i18n="blog_desc">分享技术心得、生活点滴与开发日志。</p>
+                <h3 data-i18n="blog_main">老史尬侃 博客</h3>
+                <p data-i18n="blog_desc">这家伙叽里咕噜说什么呢。</p>
             </a>
             <a href="https://stevezmt.top/Phigros-history" class="card">
                 <span class="material-symbols-outlined icon">library_books</span>
@@ -750,15 +750,15 @@
             <span data-i18n="contact_title">与我联系</span>
         </h2>
         <div class="grid">
-            <div class="card">
+            <a href="mailto:me@stevezmt.top" class="card">
                 <span class="material-symbols-outlined icon">mail</span>
                 <h3>Email / iMessage</h3>
-                <p><a href="mailto:me@stevezmt.top" style="color: inherit; text-decoration: none;">me@stevezmt.top</a></p>
-                <a href="https://key.stevezmt.top/" class="btn-outlined">
+                <p>me@stevezmt.top</p>
+                <button class="btn-outlined" onclick="window.open('https://key.stevezmt.top/', '_blank')">
                     <span class="material-symbols-outlined">key</span>
                     <span data-i18n="pgp_keys">PGP 公钥</span>
-                </a>
-            </div>
+                </button>
+            </a>
             <a href="https://t.me/stevezmt" class="card">
                 <span class="material-symbols-outlined icon">send</span>
                 <h3>Telegram</h3>
@@ -783,9 +783,9 @@
     </main>
 
     <footer>
-        <p><a href="https://blog.stevezmt.top/">Blog</a> | <a href="https://key.stevezmt.top/">PGP Keys</a> | <a href="#contact-title">Contact</a> | <a href="compat/index.html">兼容版 (Legacy)</a></p>
+        <p><a href="https://blog.stevezmt.top/">Blog</a> | <a href="https://key.stevezmt.top/">PGP Keys</a> | <a href="#contact-title">Contact</a> | <a href="compat/index.html">Legacy</a></p>
         <p>&copy; 2025 SteveZMTstudios. All rights reserved.</p>
-        <a href="https://beian.miit.gov.cn/" style="text-decoration:none;color:#006a6a;">浙ICP备2025213066号-1</a>
+        <a href="https://beian.miit.gov.cn/" style="text-decoration:none;">浙ICP备2025213066号-1</a>
     </footer>
 
     <script>
@@ -794,10 +794,10 @@
             'zh-CN': {
                 welcome_title: '史蒂夫ZMT工作室',
                 terminal_whoami: 'whoami',
-                terminal_bio: 'Steve ZMT. 一名热爱 Android 和开源的业余开发者。',
+                terminal_bio: 'Steve ZMT. 熟悉 Android Web 和开源的业余乐子人，最近在研究 Kotlin Python 和 Rust。',
                 blog_title: '我的动态',
-                blog_main: '访问博客主页',
-                blog_desc: '分享技术心得、生活点滴与开发日志。',
+                blog_main: '老史尬侃 博客',
+                blog_desc: '这家伙叽里咕噜说什么呢。',
                 phigros_hist_title: 'Phigros 历史版本收集',
                 phigros_hist_desc: '可能是最全的 Phigros 旧版本收集',
                 cacert_sync_title: 'CA 证书同步',
@@ -821,8 +821,8 @@
                 terminal_whoami: 'whoami',
                 terminal_bio: 'Steve ZMT. A hobbyist developer passionate about Android and open source.',
                 blog_title: 'Updates',
-                blog_main: 'Visit Blog',
-                blog_desc: 'Sharing technical insights, life, and dev logs.',
+                blog_main: 'Steve ZMT\'s Blog',
+                blog_desc: 'What is this guy babbling about?',
                 phigros_hist_title: 'Phigros Historical Versions Collection',
                 phigros_hist_desc: 'Possibly the most comprehensive collection of Phigros old versions',
                 cacert_sync_title: 'CA Certificate Sync',
@@ -1420,7 +1420,9 @@
             themeToggle.click();
         }
         fetchGitHubProjects();
-        if (terminalInput) terminalInput.focus();
+        if (terminalInput && !('ontouchstart' in window)) {
+            terminalInput.focus({ preventScroll: true });
+        }
     </script>
 </body>
 
