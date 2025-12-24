@@ -89,7 +89,12 @@
 }
 
         /* Reset & Base */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            -webkit-tap-highlight-color: transparent;
+        }
         body {
             font-family: var(--font-main);
             background-color: var(--md-sys-color-background);
@@ -468,6 +473,10 @@
                 align-items: flex-start;
                 gap: 0.5rem;
                 padding: 1rem;
+            }
+            .project-info {
+                width: 100%;
+                text-align: left;
             }
             .project-stats {
                 width: 100%;
