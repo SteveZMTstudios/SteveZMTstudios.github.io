@@ -40,6 +40,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
 
+    <script src="assets/js/snow.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // snow.js
+            snow.start({
+                flakeCount: 1000,
+                stickingRatio: 0.55,
+                wind: -2,
+                monthDayRange: "12/15-02/05", // only from mid December to February the 5
+            });
+        });
+    </script>
     <style>
 :root {
     /* Material Design 3 Light Palette (浅蓝色主题) */
@@ -660,7 +672,10 @@
                     <a href="https://www.zhihu.com/people/zhang-xian-sheng-70-9" class="badge-link">
                         <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.swo.moe%2Fstats%2Fzhihu%2Fzhang-xian-sheng-70-9&query=count&color=282c34&label=%E7%9F%A5%E4%B9%8E&labelColor=0084ff&logo=zhihu&logoColor=ffffff&suffix=+%E5%85%B3%E6%B3%A8&cacheSeconds=3600" alt="Zhihu">
                     </a>
-                </div>
+                    <a href="javascript:snow.stop()" class="badge-link" title="Stop Snow Effect">
+                        <img src="https://img.shields.io/badge/Snow-Stop-blue?style=plastic&logo=Snowflake&logoColor=white" alt="Stop Snow">
+                    </a>
+                    </div>
             </div>
         </section>
 
@@ -798,6 +813,7 @@
     </footer>
 
     <script>
+
         // i18n Data
         const translations = {
             'zh-CN': {
