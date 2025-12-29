@@ -1,0 +1,143 @@
+/* Avatar Status */
+.avatar-status {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0; /* Gap handled by padding/margin on hover */
+    z-index: 10;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 40px;
+    max-width: 40px; /* Initial width for just emoji */
+    height: 40px;
+    box-sizing: border-box;
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+    cursor: default;
+}
+
+/* Visual Background */
+.avatar-status::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background: var(--md-sys-color-surface);
+    border: 2px solid var(--md-sys-color-surface-variant);
+    border-radius: 50%; /* Circle shape visual initially */
+    z-index: -1;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.avatar-status.visible {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+.avatar-status:hover {
+    max-width: 400px; /* Expand on hover */
+    padding: 0 12px 0 8px; /* Add padding for text */
+    gap: 8px;
+}
+
+.avatar-status:hover::before {
+    border-radius: 100px; /* Pill shape on hover */
+}
+
+.avatar-status.busy::before {
+    border-color: #f1c40f; /* Yellow for busy */
+}
+
+.avatar-status.busy:hover::before {
+    border-color: #f39c12;
+}
+
+.avatar-status .status-emoji {
+    font-size: 1.2rem;
+    line-height: 1;
+    min-width: 24px; /* Ensure emoji has space */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fix for GitHub emoji HTML structure */
+.avatar-status .status-emoji g-emoji {
+    font-family: "Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol",sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    display: inline-block;
+}
+
+.avatar-status .status-emoji div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Fix for GitHub emoji images if they are img tags */
+.avatar-status .status-emoji img {
+    width: 1.2em;
+    height: 1.2em;
+    vertical-align: -0.1em;
+}
+
+.avatar-status .status-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    max-width: 0;
+    overflow: hidden;
+    max-height: 0; /* Use max-height for animation */
+}
+
+.avatar-status:hover .status-content {
+    opacity: 1;
+    transform: translateX(0);
+    max-width: 200px;
+    max-height: 100px; /* Allow height to expand with animation */
+    margin-left: 4px;
+}
+
+.avatar-status .status-text {
+    font-size: 0.85rem;
+    color: var(--md-sys-color-on-surface);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1;
+}
+
+.avatar-status .status-busy-text {
+    font-size: 0.7rem;
+    color: #f39c12;
+    white-space: nowrap;
+    margin-top: 2px;
+    line-height: 1;
+}
+
+/* Hide message on small screens if needed, or keep it */
+@media (max-width: 768px) {
+    .avatar-status {
+        bottom: 10px;
+        right: 10px;
+    }
+    /* On mobile, maybe tap to expand? Hover doesn't work well. 
+       For now, keep same behavior, user can tap. */
+}
