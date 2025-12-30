@@ -1,13 +1,15 @@
+console.clear();
 // Initialize Snow
 document.addEventListener('DOMContentLoaded', function() {
     if (window.snow) {
         snow.start({
             flakeCount: 300,          // 小雪时雪花数量较少
-            maxRadius: 3.8,           // 雪花较小
+            maxRadius: 5,           // 雪花较小
             wind: -1,                 // 微风，轻微向左
             color: '#f0f8ff',         // 更接近真实雪花的淡蓝色
             minSpeed: 0.8,            // 下降速度较慢
             maxSpeed: 2.5,            // 最大速度也较慢
+            minOpacity: 0.2,         // 雪花更透明
             stickingRatio: 0.3,       // 小雪堆积能力较弱
             maxHeightRatio: 0.15,     // 只在屏幕底部15%区域堆积
             monthDayRange: "12/15-02/05"
@@ -192,6 +194,26 @@ async function fetchUserStatus() {
         console.error('GitHub Status API Error:', error);
     }
 }
+
+console.log("\
+  _// //    _//                                 _/////// _//_//       _//_/// _////// \n\
+_//    _//  _//                                        _//  _/ _//   _///     _//     \n\
+ _//      _/_/ _/   _//    _//     _//   _//          _//   _// _// _ _//     _//     \n\
+   _//      _//   _/   _//  _//   _//  _/   _//     _//     _//  _//  _//     _//     \n\
+      _//   _//  _///// _//  _// _//  _///// _//   _//      _//   _/  _//     _//     \n\
+_//    _//  _//  _/           _/_//   _/         _//        _//       _//     _//     \n\
+  _// //     _//   _////       _//      _////   _///////////_//       _//     _//     \n\
+                                                                                      \n\
+                                             _//               _//                    \n\
+                                             _//               _// _/                 \n\
+                                     _//// _/_/ _/_//  _//     _//      _//     _//// \n\
+                                    _//      _//  _//  _// _// _//_// _//  _// _//    \n\
+                                      _///   _//  _//  _//_/   _//_//_//    _//  _/// \n\
+                                        _//  _//  _//  _//_/   _//_// _//  _//     _//\n\
+                                    _// _//   _//   _//_// _// _//_//   _//    _// _//\n\
+\n\
+                                                            SteveZMTstudios Corporation\n\
+                                                            https://stevezmt.top\n");                                                  
 
 function renderStatus(status) {
     const avatarContainer = document.querySelector('.hero-avatar');
@@ -948,24 +970,20 @@ if (terminalInput && !('ontouchstart' in window)) {
 const welcomeTitle = document.querySelector('h1[data-i18n="welcome_title"]');
 const header = document.querySelector('header');
 
-if (welcomeTitle && header) {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            // 当 welcome_title 离开视口且位于视口上方时 (boundingClientRect.top < 0)
-            if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
-                header.classList.add('show-logo-text');
-            } else {
-                // 当 welcome_title 在视口内，或者位于视口下方时
-                header.classList.remove('show-logo-text');
-            }
-        });
-    }, {
-        root: null, // viewport
-        threshold: 0, // 只要有一点点可见就算 intersecting
-        rootMargin: "-60px 0px 0px 0px" // 稍微偏移一点，避免刚好在边缘闪烁，且配合 header 高度
-    });
+function checkHeaderLogo() {
+    if (!welcomeTitle || !header) return;
+    const rect = welcomeTitle.getBoundingClientRect();
+    // If the bottom of the title passes the header, show logo text
+    if (rect.bottom < header.offsetHeight) {
+        header.classList.add('show-logo-text');
+    } else {
+        header.classList.remove('show-logo-text');
+    }
+}
 
-    observer.observe(welcomeTitle);
+if (welcomeTitle && header) {
+    window.addEventListener('scroll', checkHeaderLogo, { passive: true });
+    checkHeaderLogo(); // Initial check
 }
 
 // Local Time & Contact Interception
@@ -993,7 +1011,7 @@ function updateLocalTime() {
     timeEl.textContent = timeStr;
 
     if (hours >= 0 && hours < 6) {
-        timeEl.style.color = '#f1c40f';
+        timeEl.style.color = '#cba610ff';
         timeEl.setAttribute('data-late-night', 'true');
         
         // Add zZZ animation if not exists
@@ -1164,4 +1182,51 @@ document.querySelectorAll('#contact-title + .grid a').forEach(link => {
             }
         }
     });
+});
+
+// Hero Section Scroll Effect
+document.addEventListener('DOMContentLoaded', function() {
+    const hero = document.querySelector('.hero');
+    const header = document.querySelector('header');
+    
+    if (!hero || !header) return;
+
+    function updateHeroVars() {
+        // Only active on desktop (width > 768px)
+        if (window.innerWidth <= 768) {
+            hero.style.removeProperty('--hero-progress');
+            hero.style.removeProperty('--header-height');
+            return;
+        }
+
+        const headerHeight = header.offsetHeight;
+        const windowHeight = window.innerHeight;
+        const scrollY = window.scrollY;
+        
+        // Scroll threshold to complete the animation
+        const scrollThreshold = windowHeight * 0.6; 
+        
+        const progress = Math.min(scrollY / scrollThreshold, 1);
+        
+        hero.style.setProperty('--header-height', `${headerHeight}px`);
+        hero.style.setProperty('--hero-progress', progress);
+    }
+
+    // Use requestAnimationFrame for smooth performance
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateHeroVars();
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    // Handle resize
+    window.addEventListener('resize', updateHeroVars);
+
+    // Initial call
+    updateHeroVars();
 });

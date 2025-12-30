@@ -52,6 +52,12 @@
     padding: 0; 
     -webkit-tap-highlight-color: transparent;
 }
+
+/* Ensure anchor links don't get hidden behind the sticky header */
+[id] {
+    scroll-margin-top: 5rem;
+}
+
 body {
     font-family: var(--font-main);
     background-color: var(--md-sys-color-background);
@@ -168,6 +174,29 @@ header.show-logo-text .logo span:last-child {
     gap: 4rem;
     padding: 4rem 0 4rem;
     animation: slideUp 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    
+    /* Dynamic Scroll Effect Variables */
+    --header-height: 0px;
+    --hero-progress: 1; /* Default to 1 (collapsed) if JS fails or mobile */
+}
+
+@media (min-width: 769px) {
+    .hero {
+        /* 
+           Initial state (progress=0): 
+             min-height = 100vh - headerHeight
+             padding-bottom = 4rem + headerHeight
+           Final state (progress=1):
+             min-height = 0
+             padding-bottom = 4rem
+        */
+        min-height: calc((100vh - var(--header-height)) * (1 - var(--hero-progress)));
+        padding-bottom: calc(4rem + var(--header-height) * (1 - var(--hero-progress)));
+        
+        /* Ensure smooth transition if JS updates are throttled, but not too slow to lag behind scroll */
+        /* transition: min-height 0.1s linear, padding-bottom 0.1s linear; */
+        /* Actually, no transition is better for scroll-linked effects to avoid "rubber banding" */
+    }
 }
 
 .hero-avatar {

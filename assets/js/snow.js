@@ -49,6 +49,7 @@ window.snow = (function(){
 		this.maxSpeed = options.maxSpeed || 4.2;
 		this.stickingRatio = options.stickingRatio || .4;
 		this.maxHeightRatio = options.maxHeightRatio || .25;
+		this.minOpacity = options.minOpacity || 0.3;
 		this.dying = false;
 		this.monthDayRange = null;
 		for (var i=0; i<this.flakes.length; i++) this.flakes[i] = new Flake(this);
@@ -110,11 +111,15 @@ window.snow = (function(){
 			this.speed = rnd(fall.minSpeed, fall.maxSpeed);
 		}
 		this.omega = rnd(.02, .13);
+		this.opacity = fall.minOpacity + Math.random() * (1 - fall.minOpacity);
 	}
 	Flake.prototype.draw = function(){
+		ctx.save();
+		ctx.globalAlpha = this.opacity;
 		ctx.beginPath();
 		ctx.arc(this.x, this.y, this.radius, 0, 2*Math.PI, false);
 		ctx.fill();
+		ctx.restore();
 	}
 	Flake.prototype.update = function(fall){
 		this.y += this.speed;

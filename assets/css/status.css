@@ -54,6 +54,9 @@
 
 .avatar-status:hover::before {
     border-radius: 100px; /* Pill shape on hover */
+    background: var(--header-bg); /* Semi-transparent background */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .avatar-status.busy::before {
