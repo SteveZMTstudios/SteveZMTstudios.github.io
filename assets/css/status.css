@@ -89,13 +89,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 /* Fix for GitHub emoji images if they are img tags */
 .avatar-status .status-emoji img {
+    position: static; /* Reset absolute positioning inherited from .hero-avatar img */
+    top: auto;
+    left: auto;
+    display: block;
     width: 1.2em;
     height: 1.2em;
-    vertical-align: -0.1em;
+    object-fit: contain;
+    margin: 0 auto;
 }
 
 .avatar-status .status-content {
