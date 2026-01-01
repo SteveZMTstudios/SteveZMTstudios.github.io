@@ -591,7 +591,6 @@ function handleCommand(cmdLine) {
             if (target === 'stop') {
                 if (window.snow && window.snow.stop) {
                     window.snow.stop();
-                    showToast('Snow is stopping...', document.getElementById('terminal-input-display'));
                 }
                 response.innerHTML = 'Snow stopped.';
             } else if (target === 'start') {
@@ -607,7 +606,7 @@ function handleCommand(cmdLine) {
                         maxHeightRatio: 0.15
                     });
                 }
-                response.innerHTML = 'Snow started.';
+                response.innerHTML = '<div>不！！！秋雅！！！！！！！</div><br/><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="298" height="52" src="//music.163.com/outchain/player?type=2&amp;id=5268441&amp;auto=1&amp;height=32&amp;bg=121212"></iframe>';
             } else {
                 response.innerHTML = 'Usage: snow [start|stop]';
             }
@@ -1091,6 +1090,14 @@ setInterval(updateLocalTime, 1000);
 updateLocalTime();
 
 // Toast Notification
+// Handler for stop-snow badge: stop snow and show toast anchored to the badge element
+function handleStopSnowBadge(el) {
+    if (window.snow && window.snow.stop) {
+        window.snow.stop();
+        showToast('Snow is stopping...', el);
+    }
+}
+
 function showToast(message, targetEl) {
     // Remove existing toast
     const existingToast = document.querySelector('.toast-popup');
