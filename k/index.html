@@ -82,6 +82,108 @@ a:hover {
     margin-bottom: 20px;
     color: #856404;
 }
+.announce-top {
+    margin-bottom: 12px;
+}
+.announce-banner {
+    background: #e7f3ff;
+    border: 1px solid #93c5fd;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    color: #0f3f75;
+}
+.announce-list {
+    margin: 12px 0 20px;
+}
+.announce-item {
+    border: 1px solid #dfe2eb;
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    background: #f8fafd;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+.announce-item:hover {
+    border-color: #8ab4f8;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.1);
+    transform: translateY(-1px);
+}
+.announce-item:active {
+    transform: translateY(0);
+}
+.announce-item h3 {
+    margin: 0 0 6px;
+    color: #004591;
+}
+.announce-link {
+    cursor: pointer;
+}
+.announce-item p {
+    margin: 4px 0;
+}
+.announce-item.warn {
+    border-color: #ffe58f;
+    background: #fffbe6;
+}
+.announce-item.warn h3 {
+    color: #856404;
+}
+.announce-item.err,
+.announce-item.fatal {
+    border-color: #ffb3b3;
+    background: #fff2f2;
+}
+.announce-item.err h3,
+.announce-item.fatal h3 {
+    color: #b00020;
+}
+.fatal-mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+.fatal-dialog {
+    width: 90%;
+    max-width: 620px;
+    margin: 60px auto 0;
+    background: #ffffff;
+    border: 1px solid #ffb3b3;
+    border-radius: 8px;
+    padding: 14px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+}
+.fatal-body {
+    margin-top: 4px;
+}
+.fatal-body h3 {
+    margin: 10px 0 6px;
+    color: #004591;
+    font-size: 16px;
+}
+.fatal-actions {
+    text-align: right;
+    margin-top: 10px;
+}
+.fatal-actions button {
+    border: 1px solid #0066cc;
+    background: #ffffff;
+    color: #0066cc;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.fatal-open {
+    overflow: hidden;
+}
     </style>
 </head>
 <body>
@@ -98,11 +200,14 @@ a:hover {
             </div>
             </noscript>
 
+        <div id="announce-top" class="announce-top"></div>
+
         <h1>
             <img src="//blog.stevezmt.top/images/avatar.jpg@128x128.jpg" alt="Avatar" width="80" height="80" style="vertical-align: middle; border: 2px solid #006a6a; margin-right: 15px;">
             史蒂夫ZMT工作室
         </h1>
         <p>Steve ZMT. 熟悉 Android Web 和开源的业余乐子人，最近在研究 Kotlin Python 和 Rust。</p>
+        <div id="announce-list" class="announce-list"></div>
         
         <h2>我的动态</h2>
         <div class="section">
@@ -147,7 +252,13 @@ a:hover {
 
         <div class="footer">
             <p><a href="../index.html">返回现代版 (Modern Version)</a></p>
-            <p>&copy; 2025 SteveZMTstudios. All rights reserved.</p>
+        <p>&copy; <time id="current-year">2026</time> SteveZMTstudios. </p>
+        <script>
+            (function(){
+            var el = document.getElementById('current-year');
+            if (el) el.textContent = new Date().getFullYear();
+            })();
+        </script>
             <a href="https://beian.miit.gov.cn/">浙ICP备2025213066号-1</a>
         </div>
     </div>
@@ -356,6 +467,216 @@ a:hover {
                 jsonpFallback();
             }
 
+            function normalizeAnnouncements(data) {
+                if (Object.prototype.toString.call(data) === '[object Array]') return data;
+                if (data && typeof data === 'object') return [data];
+                return [];
+            }
+
+            function isAnnouncementActive(item) {
+                if (!item || typeof item !== 'object') return false;
+                var now = (new Date()).getTime();
+                if (item.date) {
+                    var startDate = new Date(item.date + 'T00:00:00');
+                    if (!isNaN(startDate.getTime()) && now < startDate.getTime()) return false;
+                }
+                if (item.date_end) {
+                    var endDate = new Date(item.date_end + 'T23:59:59');
+                    if (!isNaN(endDate.getTime()) && now > endDate.getTime()) return false;
+                }
+                return true;
+            }
+
+            function getAnnouncementStorageId(item) {
+                var title = (item && item.title) ? String(item.title).replace(/^\s+|\s+$/g, '') : '';
+                if (title) return title;
+                var fallback = (item && item.content && item.content.length) ? item.content.join('|') : 'untitled-fatal';
+                return fallback.substring(0, 120);
+            }
+
+            function isFatalAcknowledged(item) {
+                try {
+                    return localStorage.getItem('fatal.announcement.' + getAnnouncementStorageId(item)) === '1';
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            function markFatalAcknowledged(item) {
+                try {
+                    localStorage.setItem('fatal.announcement.' + getAnnouncementStorageId(item), '1');
+                } catch (e) {}
+            }
+
+            function openAnnouncementLink(item) {
+                if (!item || !item.variable || !item.variable.href) return;
+                var href = item.variable.href;
+                var targetBlank = item.variable._blank !== false;
+                if (targetBlank) {
+                    window.open(href, '_blank');
+                } else {
+                    window.location.href = href;
+                }
+            }
+
+            function bindAnnouncementLink(element, item) {
+                if (!element || !item || !item.variable || !item.variable.href) return;
+                element.className += ' announce-link';
+                element.onclick = function() { openAnnouncementLink(item); };
+            }
+
+            function renderAnnouncements(items) {
+                var top = document.getElementById('announce-top');
+                var list = document.getElementById('announce-list');
+                if (!top || !list) return;
+
+                top.innerHTML = '';
+                list.innerHTML = '';
+
+                var fatalItems = [];
+                for (var i = 0; i < items.length; i++) {
+                    var item = items[i];
+                    if (!isAnnouncementActive(item)) continue;
+                    var type = item.type || 'info';
+
+                    if (type === 'banner') {
+                        var banner = document.createElement('div');
+                        banner.className = 'announce-banner';
+                        if (item.variable && item.variable.custom_html) {
+                            banner.innerHTML = item.variable.custom_html;
+                        } else {
+                            var bHtml = '';
+                            var bLines = (item.content && item.content.length) ? item.content : [];
+                            for (var bi = 0; bi < bLines.length; bi++) {
+                                bHtml += '<p style="margin:4px 0;">' + bLines[bi] + '</p>';
+                            }
+                            banner.innerHTML = bHtml;
+                        }
+                        bindAnnouncementLink(banner, item);
+                        if (item.variable && item.variable.custom_css) {
+                            banner.style.cssText += ';' + item.variable.custom_css;
+                        }
+                        top.appendChild(banner);
+                        if (item.variable && item.variable.custom_js) {
+                            try { new Function('announcement', 'element', item.variable.custom_js)(item, banner); } catch (e) {}
+                        }
+                        continue;
+                    }
+
+                    var card = document.createElement('div');
+                    card.className = 'announce-item ' + type;
+                    bindAnnouncementLink(card, item);
+                    if (item.variable && item.variable.custom_html) {
+                        card.innerHTML = item.variable.custom_html;
+                    } else {
+                        var html = '';
+                        if (item.title) html += '<h3>' + item.title + '</h3>';
+                        var lines = (item.content && item.content.length) ? item.content : [];
+                        for (var li = 0; li < lines.length; li++) {
+                            html += '<p>' + lines[li] + '</p>';
+                        }
+                        card.innerHTML = html;
+                    }
+                    if (item.variable && item.variable.custom_css) {
+                        card.style.cssText += ';' + item.variable.custom_css;
+                    }
+                    list.appendChild(card);
+
+                    if (item.variable && item.variable.custom_js) {
+                        try { new Function('announcement', 'element', item.variable.custom_js)(item, card); } catch (e2) {}
+                    }
+
+                    if (type === 'fatal') fatalItems.push(item);
+                }
+
+                if (fatalItems.length) {
+                    showFatalAnnouncements(fatalItems);
+                }
+            }
+
+            function showFatalAnnouncements(items) {
+                var visibleItems = [];
+                for (var i0 = 0; i0 < items.length; i0++) {
+                    if (!isFatalAcknowledged(items[i0])) visibleItems.push(items[i0]);
+                }
+                if (!visibleItems.length) return;
+
+                var old = document.getElementById('fatal-announcement-mask');
+                if (old && old.parentNode) old.parentNode.removeChild(old);
+
+                var mask = document.createElement('div');
+                mask.id = 'fatal-announcement-mask';
+                mask.className = 'fatal-mask';
+
+                var dialog = document.createElement('div');
+                dialog.className = 'fatal-dialog';
+
+                var title = (visibleItems[0] && visibleItems[0].title) ? visibleItems[0].title : '重要公告';
+                var html = '<h3 style="margin-top:0;color:#b00020;">' + title + '</h3>';
+                html += '<div class="fatal-body">';
+                for (var i = 0; i < visibleItems.length; i++) {
+                    var item = visibleItems[i];
+                    if (i > 0 && item.title) {
+                        html += '<h3>' + item.title + '</h3>';
+                    }
+                    var lines = (item.content && item.content.length) ? item.content : [];
+                    for (var j = 0; j < lines.length; j++) {
+                        html += '<p>' + lines[j] + '</p>';
+                    }
+                }
+                html += '</div>';
+                html += '<div class="fatal-actions"><button id="fatal-announcement-confirm" type="button">我已知晓</button></div>';
+
+                dialog.innerHTML = html;
+                mask.appendChild(dialog);
+                document.body.appendChild(mask);
+
+                var btn = document.getElementById('fatal-announcement-confirm');
+                if (btn) {
+                    btn.onclick = function() {
+                        for (var j2 = 0; j2 < visibleItems.length; j2++) {
+                            markFatalAcknowledged(visibleItems[j2]);
+                        }
+                        if (mask && mask.parentNode) mask.parentNode.removeChild(mask);
+                        document.body.className = document.body.className.replace(/\bfatal-open\b/g, '').replace(/\s+/g, ' ');
+                    };
+                }
+
+                if (document.body.className.indexOf('fatal-open') === -1) {
+                    document.body.className += (document.body.className ? ' ' : '') + 'fatal-open';
+                }
+            }
+
+            function fetchAnnouncements() {
+                var url = '../api/v1/announce.json?_=' + (new Date()).getTime();
+                var xhr;
+                if (window.XMLHttpRequest) {
+                    xhr = new XMLHttpRequest();
+                } else if (window.ActiveXObject) {
+                    try { xhr = new ActiveXObject('Msxml2.XMLHTTP'); }
+                    catch (e) { try { xhr = new ActiveXObject('Microsoft.XMLHTTP'); } catch (e2) {} }
+                }
+                if (!xhr) return;
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState !== 4) return;
+                    if (xhr.status !== 200 && !(xhr.status === 0 && xhr.responseText)) return;
+                    try {
+                        var data;
+                        if (window.JSON && window.JSON.parse) {
+                            data = JSON.parse(xhr.responseText);
+                        } else {
+                            data = eval('(' + xhr.responseText + ')');
+                        }
+                        renderAnnouncements(normalizeAnnouncements(data));
+                    } catch (e3) {}
+                };
+                try {
+                    xhr.open('GET', url, true);
+                    xhr.send();
+                } catch (e4) {}
+            }
+
             function renderCompatProjects(repos) {
                 var container = document.getElementById('compat-projects');
                 if (!container) return;
@@ -418,6 +739,7 @@ a:hover {
             }
 
             fetchProjects();
+            fetchAnnouncements();
         })();
     </script>
 </body>

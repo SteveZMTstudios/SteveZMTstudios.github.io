@@ -15,13 +15,13 @@
                 isLegacy = true;
             }
             if (isLegacy) {
-                window.location.href = 'compat/index.html';
+                window.location.href = 'k/index.html';
             }
         })();
     </script>
     <!--[if lt IE 9]>
     <script type="text/javascript">
-        window.location.href = 'compat/index.html';
+        window.location.href = 'k/index.html';
     </script>
     <![endif]-->
     <title>Steve ZMT | 史蒂夫ZMT</title>
@@ -52,7 +52,7 @@
 </head>
 <body>
     <noscript>
-        您的浏览器禁用了 JavaScript，部分交互功能可能无法使用。您可以访问 <a href="compat/index.html">兼容版页面</a>。
+        您的浏览器禁用了 JavaScript，部分交互功能可能无法使用。您可以访问 <a href="k/index.html">兼容版页面</a>。
     </noscript>
 
     <button class="fab" id="scroll-top" title="Scroll to Top">
@@ -74,6 +74,8 @@
         </div>
     </header>
 
+    <div class="announce-top" id="announce-top" aria-live="polite"></div>
+
     <main class="container">
         <section class="hero">
             <div class="hero-avatar">
@@ -90,7 +92,7 @@
                 
                 <div class="social-links">
                     <a href="https://space.bilibili.com/474130186" class="badge-link">
-                        <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Frelation%2Fstat%3Fvmid%3D474130186&query=%24.data.follower&logo=bilibili&logoColor=pink&label=Bilibili%20Subs&color=pink" alt="Bilibili">
+                        <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Frelation%2Fstat%3Fvmid%3D474130186&query=%24.data.follower&logo=bilibili&logoColor=pink&label=Bilibili&suffix=%20Subs&color=pink" alt="Bilibili">
                     </a>
                     <a href="https://github.com/stevezmtstudios" class="badge-link">
                         <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.swo.moe%2Fstats%2Fgithub%2Fstevezmtstudios&query=count&color=181717&label=GitHub&labelColor=282c34&logo=github&suffix=+follows&cacheSeconds=3600" alt="GitHub">
@@ -99,27 +101,29 @@
                         <img src="https://img.shields.io/badge/afdian-Donate-purple?style=plastic&logo=GitHub%20Sponsors&logoColor=white&label=afdian&labelColor=grey" alt="Afdian">
                     </a>
                     <a href="https://www.zhihu.com/people/zhang-xian-sheng-70-9" class="badge-link">
-                        <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.swo.moe%2Fstats%2Fzhihu%2Fzhang-xian-sheng-70-9&query=count&color=282c34&label=%E7%9F%A5%E4%B9%8E&labelColor=0084ff&logo=zhihu&logoColor=ffffff&suffix=+%E5%85%B3%E6%B3%A8&cacheSeconds=3600" alt="Zhihu">
+                        <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fwww.zhihu.com%2Fapi%2Fv4%2Fmembers%2Fzhang-xian-sheng-70-9%3Finclude%3Dvoteup_count&query=%24.voteup_count&suffix=%20%E6%AC%A1%E8%B5%9E%E5%90%8C&logo=zhihu&logoColor=white&label=%E7%9F%A5%E4%B9%8E&cacheSeconds=3600" alt="Zhihu">
                     </a>
-                    <a href="javascript:void(0)" id="stop-snow-badge" class="badge-link" title="Stop Snow Effect" onclick="handleStopSnowBadge(this)">
+                    <!-- <a href="javascript:void(0)" id="stop-snow-badge" class="badge-link" title="Stop Snow Effect" onclick="handleStopSnowBadge(this)">
                         <img src="https://img.shields.io/badge/Snow-Stop-blue?style=plastic&logo=Snowflake&logoColor=white" alt="Stop Snow">
-                    </a>
+                    </a> -->
                     </div>
             </div>
         </section>
 
+                <section class="announce-section" id="announce-list" aria-live="polite"></section>
+
         <section class="terminal" id="terminal-container">
             <div class="terminal-header">
-                <div class="dot red"></div>
-                <div class="dot yellow"></div>
-                <div class="dot green"></div>
+                <button class="terminal-dot dot red" id="terminal-dot-close" type="button" title="Close Terminal" aria-label="Close Terminal"></button>
+                <button class="terminal-dot dot yellow" id="terminal-dot-minimize" type="button" title="Minimize Terminal" aria-label="Minimize Terminal"></button>
+                <!-- <button class="terminal-dot dot green" id="terminal-dot-maximize" type="button" title="Maximize Terminal" aria-label="Maximize Terminal"></button> -->
             </div>
             <div id="terminal-history">
                 <div class="terminal-line">
                     <span class="terminal-prompt">steve@stevezmtstudios:~$</span> <span data-i18n="terminal_whoami">whoami</span>
                 </div>
                 <div class="terminal-line" data-i18n="terminal_bio">
-                    Steve ZMT. 一名热爱 Android 和开源的业余开发者。
+                    Steve ZMT. 一名热爱 Android 和开源的业余乐子人。
                 </div>
                 <div class="terminal-line">
                     <span class="terminal-prompt">steve@stevezmtstudios:~$</span> <span>ls projects/ --feature</span>
@@ -169,7 +173,7 @@
         <div class="grid" id="featured-projects">
             <!-- Dynamic Content -->
             <div class="card loading">
-                <p>Loading projects...</p>
+                <p>正在加载...</p>
             </div>
         </div>
 
@@ -233,12 +237,19 @@
 
         <div class="github-stats">
             <img src="https://githubstat.vercel.miniproj.stevezmt.top/api?username=stevezmtstudios&show=discussions_started,prs_merged_percentage&count_private=true&show_icons=true&title_color=006a6a&icon_color=006a6a&hide_border=false&theme=radical&locale=cn&rank_icon=github" alt="GitHub Stats">
+            <img src="https://githubstat.vercel.miniproj.stevezmt.top/api/top-langs/?username=stevezmtstudios&title_color=006a6a&icon_color=006a6a&hide_border=false&theme=radical&locale=cn" alt="Top Languages">
         </div>
     </main>
 
     <footer>
-        <p><a href="https://blog.stevezmt.top/">Blog</a> | <a href="https://key.stevezmt.top/">PGP Keys</a> | <a href="#contact-title">Contact</a> | <a href="compat/index.html">Legacy</a></p>
-        <p>&copy; 2025 SteveZMTstudios. All rights reserved.</p>
+        <p><a href="https://blog.stevezmt.top/">Blog</a> | <a href="https://key.stevezmt.top/">PGP Keys</a> | <a href="#contact-title">Contact</a> | <a href="k/index.html">Legacy</a></p>
+        <p>&copy; <time id="current-year">2026</time> SteveZMTstudios. </p>
+        <script>
+            (function(){
+            var el = document.getElementById('current-year');
+            if (el) el.textContent = new Date().getFullYear();
+            })();
+        </script>
         <a href="https://beian.miit.gov.cn/" style="text-decoration:none;">浙ICP备2025213066号-1</a>
     </footer>
 </body>

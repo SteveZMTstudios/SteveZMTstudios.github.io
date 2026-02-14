@@ -1,0 +1,17 @@
+[
+    {
+        "title": "安全提醒",
+        "type": "warn",
+        "date": "2026-2-15",
+        "date-end": "2026-9-15",
+        "content": [
+            "近期有用户向我们报告收到了来自stevezmt.top的钓鱼和垃圾邮件。",
+            "请注意，stevezmt.top站点管理员的邮件均已正确配置了严格的SPF、DKIM、mta-sts和DMARC记录，合规的邮件客户端会检查它们，并将不可信来源的邮件删除。",
+            "如果您收到来自stevezmt.top的邮件，请检查邮件头部的DMARC验证结果，以确认邮件的真实性。"
+
+        ],
+        "variable": {
+                "icon": "mail"
+        }
+    }
+]

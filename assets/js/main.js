@@ -195,6 +195,306 @@ async function fetchUserStatus() {
     }
 }
 
+function normalizeAnnouncements(data) {
+    if (Array.isArray(data)) return data;
+    if (data && typeof data === 'object') return [data];
+    return [];
+}
+
+function isAnnouncementActive(item) {
+    if (!item || typeof item !== 'object') return false;
+    const now = Date.now();
+
+    if (item.date) {
+        const startDate = new Date(`${item.date}T00:00:00`);
+        if (!Number.isNaN(startDate.getTime()) && now < startDate.getTime()) {
+            return false;
+        }
+    }
+
+    if (item.date_end) {
+        const endDate = new Date(`${item.date_end}T23:59:59`);
+        if (!Number.isNaN(endDate.getTime()) && now > endDate.getTime()) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function getAnnouncementIcon(item) {
+    if (item && item.variable && item.variable.icon) return item.variable.icon;
+    const type = (item && item.type) || 'info';
+    const iconMap = {
+        info: 'info',
+        warn: 'warning',
+        err: 'error',
+        fatal: 'report',
+        banner: 'campaign'
+    };
+    return iconMap[type] || 'info';
+}
+
+function applyAnnouncementCustomOptions(item, element) {
+    if (!item || !element || !item.variable) return;
+
+    if (item.variable.custom_css) {
+        element.style.cssText += `;${item.variable.custom_css}`;
+    }
+
+    if (item.variable.custom_js) {
+        try {
+            new Function('announcement', 'element', item.variable.custom_js)(item, element);
+        } catch (error) {
+            console.error('Announcement custom_js execution failed:', error);
+        }
+    }
+}
+
+function getAnnouncementStorageId(item) {
+    const title = (item && item.title ? item.title : '').trim();
+    if (title) return title;
+    const fallback = Array.isArray(item && item.content) ? item.content.join('|') : 'untitled-fatal';
+    return fallback.slice(0, 120);
+}
+
+function isFatalAcknowledged(item) {
+    try {
+        return localStorage.getItem(`fatal.announcement.${getAnnouncementStorageId(item)}`) === '1';
+    } catch (error) {
+        return false;
+    }
+}
+
+function markFatalAcknowledged(item) {
+    try {
+        localStorage.setItem(`fatal.announcement.${getAnnouncementStorageId(item)}`, '1');
+    } catch (error) {
+        console.warn('Failed to store fatal announcement state:', error);
+    }
+}
+
+function applyAnnouncementLink(element, item) {
+    if (!element || !item || !item.variable || !item.variable.href) return;
+    const targetBlank = item.variable._blank !== false;
+    const href = item.variable.href;
+
+    if (element.tagName === 'A') {
+        element.href = href;
+        element.target = targetBlank ? '_blank' : '_self';
+        element.rel = targetBlank ? 'noopener noreferrer' : '';
+        return;
+    }
+
+    element.setAttribute('role', 'link');
+    element.tabIndex = 0;
+    element.classList.add('announce-link');
+    element.addEventListener('click', () => {
+        if (targetBlank) {
+            window.open(href, '_blank', 'noopener,noreferrer');
+        } else {
+            window.location.href = href;
+        }
+    });
+    element.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            if (targetBlank) {
+                window.open(href, '_blank', 'noopener,noreferrer');
+            } else {
+                window.location.href = href;
+            }
+        }
+    });
+}
+
+function buildAnnouncementElement(item, isBanner) {
+    const wrapper = document.createElement('div');
+    wrapper.className = isBanner ? 'announce-banner' : `announce-item ${item.type || 'info'}`;
+
+    if (!isBanner) {
+        applyAnnouncementLink(wrapper, item);
+    }
+
+    if (item.variable && item.variable.custom_html) {
+        wrapper.innerHTML = item.variable.custom_html;
+        applyAnnouncementCustomOptions(item, wrapper);
+        return wrapper;
+    }
+
+    const icon = document.createElement('span');
+    icon.className = 'material-symbols-outlined';
+    icon.textContent = getAnnouncementIcon(item);
+
+    if (isBanner) {
+        const main = document.createElement('div');
+        main.className = 'announce-banner-main';
+
+        const content = document.createElement('div');
+        const lines = Array.isArray(item.content) ? item.content : [];
+        lines.forEach(line => {
+            const p = document.createElement('p');
+            p.innerHTML = line;
+            content.appendChild(p);
+        });
+
+        main.appendChild(icon);
+        main.appendChild(content);
+        wrapper.appendChild(main);
+
+        const closeBtn = document.createElement('button');
+        closeBtn.type = 'button';
+        closeBtn.className = 'announce-close';
+        closeBtn.title = '关闭公告';
+        closeBtn.innerHTML = '<span class="material-symbols-outlined">close</span>';
+        closeBtn.addEventListener('click', (event) => {
+            event.stopPropagation();
+            wrapper.remove();
+            const topContainer = document.getElementById('announce-top');
+            if (topContainer && topContainer.children.length === 0) {
+                topContainer.style.display = 'none';
+            }
+        });
+        wrapper.appendChild(closeBtn);
+
+        applyAnnouncementLink(main, item);
+    } else {
+        const content = document.createElement('div');
+        content.className = 'announce-content';
+
+        if (item.title) {
+            const title = document.createElement('h3');
+            title.textContent = item.title;
+            content.appendChild(title);
+        }
+
+        const lines = Array.isArray(item.content) ? item.content : [];
+        if (lines.length === 0) {
+            const p = document.createElement('p');
+            p.textContent = '';
+            content.appendChild(p);
+        } else {
+            lines.forEach(line => {
+                const p = document.createElement('p');
+                p.innerHTML = line;
+                content.appendChild(p);
+            });
+        }
+
+        wrapper.appendChild(icon);
+        wrapper.appendChild(content);
+    }
+
+    applyAnnouncementCustomOptions(item, wrapper);
+    return wrapper;
+}
+
+function showFatalAnnouncements(items) {
+    if (!items || items.length === 0) return;
+
+    const visibleItems = items.filter(item => !isFatalAcknowledged(item));
+    if (visibleItems.length === 0) return;
+
+    const existing = document.getElementById('fatal-announce-modal');
+    if (existing) existing.remove();
+
+    const modal = document.createElement('div');
+    modal.id = 'fatal-announce-modal';
+    modal.className = 'fatal-modal';
+
+    const dialog = document.createElement('div');
+    dialog.className = 'fatal-dialog';
+
+    const primaryTitle = (visibleItems[0] && visibleItems[0].title) ? visibleItems[0].title : '重要公告';
+    const heading = document.createElement('h2');
+    heading.innerHTML = `<span class="material-symbols-outlined">report</span><span>${primaryTitle}</span>`;
+    dialog.appendChild(heading);
+
+    const body = document.createElement('div');
+    body.className = 'fatal-body';
+
+    visibleItems.forEach((item, index) => {
+        if (index > 0 && item.title) {
+            const subTitle = document.createElement('h3');
+            subTitle.textContent = item.title;
+            body.appendChild(subTitle);
+        }
+
+        const lines = Array.isArray(item.content) ? item.content : [];
+        lines.forEach(line => {
+            const p = document.createElement('p');
+            p.innerHTML = line;
+            body.appendChild(p);
+        });
+    });
+
+    dialog.appendChild(body);
+
+    const actions = document.createElement('div');
+    actions.className = 'fatal-actions';
+    const confirmBtn = document.createElement('button');
+    confirmBtn.className = 'btn-outlined';
+    confirmBtn.innerHTML = '<span class="material-symbols-outlined">done</span><span>我已知晓</span>';
+    confirmBtn.addEventListener('click', () => {
+        visibleItems.forEach(markFatalAcknowledged);
+        modal.remove();
+        document.body.classList.remove('fatal-modal-open');
+    });
+    actions.appendChild(confirmBtn);
+
+    dialog.appendChild(actions);
+    modal.appendChild(dialog);
+    document.body.appendChild(modal);
+    document.body.classList.add('fatal-modal-open');
+}
+
+function renderAnnouncements(items) {
+    const topContainer = document.getElementById('announce-top');
+    const listContainer = document.getElementById('announce-list');
+
+    if (!topContainer && !listContainer) return;
+
+    if (topContainer) topContainer.innerHTML = '';
+    if (listContainer) listContainer.innerHTML = '';
+
+    const activeItems = items.filter(isAnnouncementActive);
+    const fatalItems = [];
+
+    activeItems.forEach(item => {
+        const type = item.type || 'info';
+
+        if (type === 'banner') {
+            if (topContainer) topContainer.appendChild(buildAnnouncementElement(item, true));
+            return;
+        }
+
+        if (listContainer) listContainer.appendChild(buildAnnouncementElement(item, false));
+        if (type === 'fatal') fatalItems.push(item);
+    });
+
+    if (topContainer) topContainer.style.display = topContainer.children.length ? 'flex' : 'none';
+    if (listContainer) listContainer.style.display = listContainer.children.length ? 'flex' : 'none';
+
+    showFatalAnnouncements(fatalItems);
+}
+
+async function fetchAnnouncements() {
+    try {
+        const response = await fetch(`api/v1/announce.json?_=${Date.now()}`, {
+            cache: 'no-store',
+            headers: {
+                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                'Pragma': 'no-cache'
+            }
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const data = await response.json();
+        renderAnnouncements(normalizeAnnouncements(data));
+    } catch (error) {
+        console.error('Announcement API Error:', error);
+    }
+}
+
 console.log("\
   _// //    _//                                 _/////// _//_//       _//_/// _////// \n\
 _//    _//  _//                                        _//  _/ _//   _///     _//     \n\
@@ -498,6 +798,22 @@ const terminalHistory = document.getElementById('terminal-history');
 const terminalInput = document.getElementById('terminal-hidden-input');
 const terminalDisplay = document.getElementById('terminal-input-display');
 const activePrompt = document.getElementById('active-prompt');
+const terminalDotClose = document.getElementById('terminal-dot-close');
+const terminalDotMinimize = document.getElementById('terminal-dot-minimize');
+const terminalDotMaximize = document.getElementById('terminal-dot-maximize');
+
+function syncTerminalWindowState() {
+    if (!terminalContainer) return;
+    if (terminalDotClose) terminalDotClose.setAttribute('aria-pressed', terminalContainer.classList.contains('is-closed') ? 'true' : 'false');
+    if (terminalDotMinimize) terminalDotMinimize.setAttribute('aria-pressed', terminalContainer.classList.contains('is-minimized') ? 'true' : 'false');
+    if (terminalDotMaximize) terminalDotMaximize.setAttribute('aria-pressed', terminalContainer.classList.contains('is-maximized') ? 'true' : 'false');
+}
+
+function openTerminalWindow() {
+    if (!terminalContainer) return;
+    terminalContainer.classList.remove('is-closed');
+    syncTerminalWindowState();
+}
 
 function updatePrompts() {
     if (activePrompt) {
@@ -507,6 +823,42 @@ function updatePrompts() {
 
 if (terminalContainer) {
     terminalContainer.addEventListener('click', () => terminalInput.focus());
+
+    if (terminalDotClose) {
+        terminalDotClose.addEventListener('click', (event) => {
+            event.stopPropagation();
+            const willClose = !terminalContainer.classList.contains('is-closed');
+            terminalContainer.classList.toggle('is-closed', willClose);
+            if (willClose) {
+                terminalContainer.classList.remove('is-minimized', 'is-maximized');
+                document.body.classList.remove('terminal-maximized');
+            }
+            syncTerminalWindowState();
+        });
+    }
+
+    if (terminalDotMinimize) {
+        terminalDotMinimize.addEventListener('click', (event) => {
+            event.stopPropagation();
+            openTerminalWindow();
+            terminalContainer.classList.remove('is-maximized');
+            document.body.classList.remove('terminal-maximized');
+            terminalContainer.classList.toggle('is-minimized');
+            syncTerminalWindowState();
+        });
+    }
+
+    if (terminalDotMaximize) {
+        terminalDotMaximize.addEventListener('click', (event) => {
+            event.stopPropagation();
+            openTerminalWindow();
+            terminalContainer.classList.remove('is-minimized');
+            const willMaximize = !terminalContainer.classList.contains('is-maximized');
+            terminalContainer.classList.toggle('is-maximized', willMaximize);
+            document.body.classList.toggle('terminal-maximized', willMaximize);
+            syncTerminalWindowState();
+        });
+    }
 
     terminalInput.addEventListener('input', (e) => {
         if (isPasswordInput) {
@@ -528,6 +880,8 @@ if (terminalContainer) {
             terminalDisplay.textContent = '';
         }
     });
+
+    syncTerminalWindowState();
 }
 
 function handleSudoPassword() {
@@ -961,6 +1315,7 @@ if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').match
 }
 fetchGitHubProjects();
 fetchUserStatus();
+fetchAnnouncements();
 if (terminalInput && !('ontouchstart' in window)) {
     terminalInput.focus({ preventScroll: true });
 }
