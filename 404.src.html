@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <title>找不到网页</title>
+  <link href="https://fonts.googleapis.cn/css2?family=Google+Sans:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.cn/icon?family=Material+Icons">
+
+  <style>
+    * {
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #202124;
+      --secondary-text: #5f6368;
+      --link-color: #1a73e8;
+      --button-bg: #1a73e8;
+      --button-text: #ffffff;
+      --button-hover: #1765cc;
+      --divider: #dadce0;
+      --snackbar-bg: #323232;
+      --snackbar-text: #ffffff;
+      --snackbar-action: #8ab4f8;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #202124;
+        --text-color: #e8eaed;
+        --secondary-text: #9aa0a6;
+        --link-color: #8ab4f8;
+        --button-bg: #8ab4f8;
+        --button-text: #202124;
+        --button-hover: #93bbf9;
+        --divider: #3c4043;
+        --snackbar-bg: #e8eaed;
+        --snackbar-text: #202124;
+        --snackbar-action: #1a73e8;
+      }
+    }
+    html {
+      height: 100%;
+    }
+    body {
+      font-family: 'Google Sans', 'Roboto', Arial, sans-serif;
+      background-color: #ffffff;
+      background-color: var(--bg-color);
+      color: #202124;
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      display: block;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      height: 100%;
+      min-height: 100vh;
+      -webkit-transition: background-color 0.3s, color 0.3s;
+      transition: background-color 0.3s, color 0.3s;
+      text-align: center;
+    }
+    .main-content {
+      -webkit-flex: 1 0 auto;
+      -ms-flex: 1 0 auto;
+      flex: 1 0 auto;
+      display: block;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-justify-content: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      padding: 20px;
+      text-align: center;
+    }
+    .text-content {
+      display: block;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+    .robot-container {
+      margin-bottom: 24px;
+      position: relative;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      display: inline-block;
+    }
+    .robot-icon {
+      font-size: 120px;
+      color: #5f6368;
+      color: var(--secondary-text);
+      -webkit-transition: -webkit-transform 0.2s;
+      transition: -webkit-transform 0.2s;
+      transition: transform 0.2s;
+      transition: transform 0.2s, -webkit-transform 0.2s;
+    }
+    .robot-icon:active {
+      -webkit-transform: scale(0.95);
+      -ms-transform: scale(0.95);
+      transform: scale(0.95);
+    }
+    h1 {
+      font-size: 24px;
+      font-weight: 500;
+      margin: 0 0 16px 0;
+    }
+    p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #5f6368;
+      color: var(--secondary-text);
+      margin: 0 0 16px 0;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .url-path {
+      font-weight: 700;
+      color: #202124;
+      color: var(--text-color);
+      word-break: break-all;
+    }
+    .solutions {
+      text-align: left;
+      display: inline-block;
+      font-size: 14px;
+      color: #5f6368;
+      color: var(--secondary-text);
+      margin-top: 16px;
+      max-width: 100%;
+    }
+    .solutions ul {
+      padding-left: 20px;
+      margin: 8px 0;
+    }
+    .solutions li {
+      margin-bottom: 8px;
+    }
+    .action-btn {
+      display: inline-block;
+      background-color: #1a73e8;
+      background-color: var(--button-bg);
+      color: #ffffff;
+      color: var(--button-text);
+      padding: 10px 24px;
+      border-radius: 4px;
+      -webkit-text-decoration: none;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 14px;
+      margin-top: 24px;
+      -webkit-transition: background-color 0.2s;
+      transition: background-color 0.2s;
+    }
+    .action-btn:hover {
+      background-color: #1765cc;
+      background-color: var(--button-hover);
+    }
+    .footer {
+      -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+      flex-shrink: 0;
+      padding: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: #5f6368;
+      color: var(--secondary-text);
+      border-top: 1px solid #dadce0;
+      border-top: 1px solid var(--divider);
+    }
+    .footer a {
+      color: inherit;
+      -webkit-text-decoration: none;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      -webkit-text-decoration: underline;
+      text-decoration: underline;
+    }
+    .text-content p {
+      color: #202124;
+      color: var(--text-color);
+    }
+    .text-content span {
+      color: #5f6368;
+      color: var(--secondary-text);
+    }
+
+    /* Desktop Layout */
+    @media (min-width: 768px) {
+      .main-content {
+        display: block;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        text-align: left;
+        padding-top: 80px;
+        gap: 60px;
+      }
+      .text-content {
+        -webkit-align-items: flex-start;
+        -ms-flex-align: start;
+        align-items: flex-start;
+        max-width: 600px;
+        display: inline-block;
+        vertical-align: top;
+        text-align: left;
+      }
+      .robot-container {
+        padding-top: 8px;
+        margin-bottom: 0;
+        vertical-align: top;
+        display: inline-block;
+        margin-right: 56px;
+      }
+      .solutions {
+        display: block;
+      }
+    }
+
+    /* Robot Easter Egg Feedback */
+    .robot-icon.easter-egg-bounce {
+      -webkit-animation: robot-bounce 0.4s ease-out;
+      animation: robot-bounce 0.4s ease-out;
+    }
+    @-webkit-keyframes robot-bounce {
+      0% { -webkit-transform: scale(1); }
+      30% { -webkit-transform: scale(1.1) rotate(-3deg); }
+      60% { -webkit-transform: scale(0.95) rotate(3deg); }
+      100% { -webkit-transform: scale(1) rotate(0deg); }
+    }
+    @keyframes robot-bounce {
+      0% { -webkit-transform: scale(1); transform: scale(1); }
+      30% { -webkit-transform: scale(1.1) rotate(-3deg); transform: scale(1.1) rotate(-3deg); }
+      60% { -webkit-transform: scale(0.95) rotate(3deg); transform: scale(0.95) rotate(3deg); }
+      100% { -webkit-transform: scale(1) rotate(0deg); transform: scale(1) rotate(0deg); }
+    }
+
+    /* Easter Egg Snackbar - Pure Material Minimalist */
+    .snackbar {
+      position: fixed;
+      z-index: 1000;
+      left: 50%;
+      bottom: 28px;
+      min-width: 344px;
+      max-width: 568px;
+      -webkit-box-sizing: border-box;
+      box-sizing: border-box;
+      background-color: #323232;
+      background-color: var(--snackbar-bg);
+      color: #ffffff;
+      color: var(--snackbar-text);
+      text-align: left;
+      border-radius: 4px;
+      padding: 14px 16px 14px 24px;
+      font-size: 14px;
+      line-height: 1.45;
+      -webkit-box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+      box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+      
+      display: block;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      gap: 16px;
+
+      visibility: hidden;
+      -webkit-transform: translateX(-50%) translateY(100px);
+      -ms-transform: translateX(-50%) translateY(100px);
+      transform: translateX(-50%) translateY(100px);
+      margin-left: -172px\9;
+      -ms-transform: none\9;
+
+      -webkit-transition: -webkit-transform 0.25s cubic-bezier(0.0, 0, 0.2, 1), visibility 0.25s;
+      transition: transform 0.25s cubic-bezier(0.0, 0, 0.2, 1), visibility 0.25s;
+    }
+    .snackbar.show {
+      visibility: visible;
+      -webkit-transform: translateX(-50%) translateY(0);
+      -ms-transform: translateX(-50%) translateY(0);
+      transform: translateX(-50%) translateY(0);
+      -ms-transform: none\9;
+    }
+    .snackbar-message {
+      -webkit-flex: 1 1 auto;
+      -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
+      min-width: 0;
+      overflow: hidden;
+      word-break: break-word;
+    }
+    .snackbar-prefix {
+      display: block;
+      margin-bottom: 2px;
+      color: inherit;
+    }
+    .snackbar-content {
+      display: block;
+      color: inherit;
+    }
+    .snackbar-action {
+      float: right;
+      -webkit-flex-shrink: 0;
+      -ms-flex-negative: 0;
+      flex-shrink: 0;
+      background: none;
+      border: none;
+      color: #8ab4f8;
+      color: var(--snackbar-action, #8ab4f8);
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      padding: 8px 12px;
+      text-transform: uppercase;
+      white-space: nowrap;
+      margin-left: 12px;
+      border-radius: 4px;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-transition: background-color 0.15s ease;
+      transition: background-color 0.15s ease;
+    }
+    .snackbar-action:hover {
+      background-color: rgba(255, 255, 255, 0.12);
+    }
+    @media (prefers-color-scheme: dark) {
+      .snackbar-action:hover {
+        background-color: rgba(0, 0, 0, 0.08);
+      }
+    }
+
+    /* Top Peeking Easter Egg */
+    .top-peek {
+      position: fixed;
+      top: 0;
+      left: 48px;
+      z-index: 900;
+      pointer-events: none;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      opacity: 0;
+      visibility: hidden;
+      -webkit-transform: translateY(-100%) rotate(180deg);
+      -ms-transform: translateY(-100%) rotate(180deg);
+      transform: translateY(-100%) rotate(180deg);
+      -webkit-transition: -webkit-transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease, visibility 0.35s;
+      transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease, visibility 0.35s;
+    }
+    .top-peek.peek-show.mode-avatar {
+      opacity: 1;
+      visibility: visible;
+      -webkit-transform: translateY(-50%) rotate(180deg);
+      -ms-transform: translateY(-50%) rotate(180deg);
+      transform: translateY(-50%) rotate(180deg);
+    }
+    .top-peek.peek-show.mode-android {
+      opacity: 1;
+      visibility: visible;
+      -webkit-transform: translateY(0) rotate(180deg);
+      -ms-transform: translateY(0) rotate(180deg);
+      transform: translateY(0) rotate(180deg);
+    }
+    .peek-item {
+      display: none;
+    }
+    .peek-item.is-active {
+      display: block;
+    }
+    .peek-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      object-fit: cover;
+      background-color: #ffffff;
+      background-color: var(--bg-color);
+      -webkit-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    .peek-android {
+      width: 70px;
+      height: 39.5px;
+      color: #3DDC84;
+      fill: currentColor;
+      -webkit-filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.15));
+    }
+    @media (prefers-color-scheme: dark) {
+      .peek-android {
+        color: #e8eaed;
+      }
+    }
+
+    /* Mobile Adaptation */
+    @media (max-width: 600px) {
+      .top-peek {
+        left: 20px;
+      }
+      .peek-avatar {
+        width: 56px;
+        height: 56px;
+      }
+      .peek-android {
+        width: 56px;
+        height: 31.6px;
+      }
+      .snackbar {
+        left: 16px;
+        right: 16px;
+        width: auto;
+        min-width: 0;
+        max-width: none;
+        bottom: 16px;
+        bottom: max(16px, env(safe-area-inset-bottom, 16px));
+        margin-left: 0\9;
+        padding: 12px 12px 12px 18px;
+        -webkit-transform: translateY(100px);
+        -ms-transform: translateY(100px);
+        transform: translateY(100px);
+      }
+      .snackbar.show {
+        -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Peeking Easter Egg -->
+  <div class="top-peek" id="top-peek" aria-hidden="true">
+    <img id="peek-avatar" class="peek-item peek-avatar" src="https://blog.stevezmt.top/images/avatar.jpg" alt="Avatar" />
+    <svg id="peek-android" class="peek-item peek-android" viewBox="1.9 6.6 20.2 11.4" xmlns="http://www.w3.org/2000/svg">
+      <path d="M16.61 15.15C16.15 15.15 15.77 14.78 15.77 14.32S16.15 13.5 16.61 13.5H16.61C17.07 13.5 17.45 13.86 17.45 14.32C17.45 14.78 17.07 15.15 16.61 15.15M7.41 15.15C6.95 15.15 6.57 14.78 6.57 14.32C6.57 13.86 6.95 13.5 7.41 13.5H7.41C7.87 13.5 8.24 13.86 8.24 14.32C8.24 14.78 7.87 15.15 7.41 15.15M16.91 10.14L18.58 7.26C18.67 7.09 18.61 6.88 18.45 6.79C18.28 6.69 18.07 6.75 18 6.92L16.29 9.83C14.95 9.22 13.5 8.9 12 8.91C10.47 8.91 9 9.24 7.73 9.82L6.04 6.91C5.95 6.74 5.74 6.68 5.57 6.78C5.4 6.87 5.35 7.08 5.44 7.25L7.1 10.13C4.25 11.69 2.29 14.58 2 18H22C21.72 14.59 19.77 11.7 16.91 10.14H16.91Z" />
+    </svg>
+  </div>
+
+  <div class="main-content">
+    <div class="robot-container" id="robot-trigger" title="404 Robot">
+      <svg t="1740807505600" class="icon robot-icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2912" id="mx_n_1740807505602" width="1em" height="1em"><path d="M559.616 0h381.056v47.616h47.616v214.336H750.08v47.616h142.848v47.616h-190.464V452.48h95.232v95.232h-47.616v-47.616h-47.616v166.72h-47.616v71.424h-47.68v47.616h-47.616v47.616h-333.44v-47.616h-47.552v-47.616h-47.68v-47.616h-47.616v-47.68H35.712V357.248h47.616V452.48h47.616v47.616h47.68v47.616h95.232v-47.616h47.616V452.48H392.96v-47.616h71.424V357.12H512V47.616h47.616V0z m47.616 71.424v47.616h47.68v-47.616h-47.68zM464.384 833.472v47.616H512V1024h95.232v-47.616h-47.616v-142.912H464.384z m-190.528 0h142.912v47.616h-47.68v47.68h-47.616v47.616h47.616V1024H273.92v-190.528z" p-id="2913" fill="currentColor"></path></svg>
+    </div>
+    
+    <div class="text-content">
+      <h1 id="page-title">找不到网页</h1>
+      <p id="page-desc">
+        <span id="desc-prefix">请求的页面</span>
+        <span class="url-path" id="path-placeholder"></span>
+        <span id="desc-suffix">未在我们的服务器上检索到。</span><br />
+        <span id="desc-note">这便是我们所知道的全部信息。</span>
+      </p>
+      
+      <div class="solutions" id="solutions-block">
+        <p id="solutions-heading">以下是一些可能的解决方案：</p>
+        <ul id="solutions-list">
+          <li id="solution-1">稍后重新加载此页面。</li>
+          <li id="solution-2">在以下位置查找此页面的存档副本：<a href="https://web.archive.org/" target="_blank" style="color: #1a73e8; color: var(--link-color); text-decoration: none;">web.archive.org</a>。</li>
+          <li id="solution-3">与带您到这里的人核实此页面上的地址是否正确。</li>
+          <li id="solution-4">使用搜索引擎搜索您正在寻找的关键字。</li>
+        </ul>
+      </div>
+
+      <a href="/" class="action-btn" id="home-button">返回首页</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <a href="https://beian.miit.gov.cn" target="_blank">浙ICP备2025213066号-1</a>
+  </footer>
+
+  <!-- Easter Egg Snackbar -->
+  <div class="snackbar" id="jeff-snackbar" role="status" aria-live="polite">
+    <div class="snackbar-message">
+      <span class="snackbar-prefix" id="snackbar-prefix">...但是你知道吗？</span>
+      <span class="snackbar-content" id="jeff-fact-content"></span>
+    </div>
+    <button type="button" class="snackbar-action" id="next-fact">啊？</button>
+  </div>
+
+  <script>
+    (function() {
+    // Helpers
+    function addEvent(el, type, handler) {
+      if (el.addEventListener) el.addEventListener(type, handler, false);
+      else if (el.attachEvent) el.attachEvent('on' + type, function() { handler.call(el, window.event); });
+      else el['on' + type] = handler;
+    }
+    function setText(el, text) {
+      if ('textContent' in el) el.textContent = text;
+      else el.innerText = text;
+    }
+    function getClassName(el) {
+      if (!el) return '';
+      if (typeof el.className === 'string') return el.className;
+      if (el.className && typeof el.className.baseVal === 'string') return el.className.baseVal;
+      return el.getAttribute ? (el.getAttribute('class') || '') : '';
+    }
+    function setClassName(el, cls) {
+      if (!el) return;
+      if (typeof el.className === 'string') {
+        el.className = cls;
+      } else if (el.className && typeof el.className.baseVal === 'string') {
+        el.className.baseVal = cls;
+      } else if (el.setAttribute) {
+        el.setAttribute('class', cls);
+      }
+    }
+    function hasClass(el, cls) {
+      if (!el) return false;
+      if (el.classList && el.classList.contains) return el.classList.contains(cls);
+      var cur = getClassName(el);
+      return (' ' + cur + ' ').indexOf(' ' + cls + ' ') > -1;
+    }
+    function addClass(el, cls) {
+      if (!el) return;
+      if (el.classList && el.classList.add) {
+        el.classList.add(cls);
+      } else if (!hasClass(el, cls)) {
+        var cur = getClassName(el);
+        setClassName(el, cur ? cur + ' ' + cls : cls);
+      }
+    }
+    function removeClass(el, cls) {
+      if (!el) return;
+      if (el.classList && el.classList.remove) {
+        el.classList.remove(cls);
+      } else {
+        var cur = getClassName(el);
+        var reg = new RegExp('(^|\\b)' + cls.split(' ').join('|') + '(\\b|$)', 'gi');
+        setClassName(el, cur.replace(reg, ' ').replace(/^\s+|\s+$/g, ''));
+      }
+    }
+
+    // Query param helper (compatible with legacy browsers without URLSearchParams)
+    function getQueryParam(name) {
+      var query = window.location.search;
+      if (!query) return null;
+      var match = query.substr(1).match(new RegExp('(^|&)' + name + '=([^&]*)(&|$)'));
+      if (match) {
+        try {
+          return decodeURIComponent(match[2].replace(/\+/g, ' '));
+        } catch (e) {
+          return match[2];
+        }
+      }
+      return null;
+    }
+
+    // Path display with safe decoding and ?from= support
+    var pathPlaceholder = document.getElementById('path-placeholder');
+    if (pathPlaceholder) {
+      var fromParam = getQueryParam('from');
+      var displayPath = '';
+      if (fromParam !== null && fromParam !== '') {
+        displayPath = fromParam;
+      } else {
+        displayPath = window.location.pathname || '';
+        try {
+          displayPath = decodeURIComponent(displayPath);
+        } catch (e) {}
+      }
+      setText(pathPlaceholder, displayPath);
+    }
+
+    // Theme color update
+    var metaTheme = document.getElementsByTagName('meta');
+    var themeMeta = null;
+    for (var i = 0; i < metaTheme.length; i++) {
+      if (metaTheme[i].getAttribute('name') === 'theme-color') {
+        themeMeta = metaTheme[i];
+        break;
+      }
+    }
+    function updateThemeColor() {
+      if (!themeMeta || !window.matchMedia) return;
+      var isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      themeMeta.setAttribute('content', isDark ? '#202124' : '#ffffff');
+    }
+    updateThemeColor();
+    try {
+      if (window.matchMedia) {
+        var mm = window.matchMedia('(prefers-color-scheme: dark)');
+        if (mm.addListener) mm.addListener(updateThemeColor);
+        else if (mm.addEventListener) mm.addEventListener('change', updateThemeColor);
+      }
+    } catch (e) {}
+
+    // Jeff Dean Facts
+    // 编的
+    // 改进了jeff离职后的物理定律
+    var jeffFacts = [
+"你在键盘上打出 JEFF 时，就会有一条新的 Jeff Dean 奇迹。",
+"Jeff Dean 在白板上以多项式时间解决了所有 NP 问题，由此证明了 P=NP。",
+"Jeff Dean 的 PIN 码是圆周率的最后四位。",
+"当 Jeff 在斯坦福大学开讲座时，现场挤到 Don Knuth 都只能坐在地板上。",
+"Jeff Dean 曾经咬过一只蜘蛛，结果那只蜘蛛获得了超能力，还顺带提升了 C++ 的可读性。",
+"2002 年初，当索引服务器宕机时，Jeff Dean 手动回复用户查询长达两小时。评估结果显示，查询质量反而提升了 5 分。",
+"Jeff Dean 在一个最高等级为 10 级的体系中，被晋升到了 11 级。",
+"谷歌搜索其实是 Jeff Dean 的新人项目（Noogler Project）。",
+"Jeff Dean 能直接读懂穿孔卡片（punch card readability）。",
+"Jeff Dean 穿裤子也是一条腿一条腿地穿，但如果他有更多条腿，你就会发现他的穿法其实是 O(log n) 复杂度的。",
+"Jeff Dean 只写了 58 行 Sawzall 代码，就掌握了 Sawzall 可读性（Sawzall readability）。在可读性评审中，他指出了风格指南中的一个漏洞，评审者立刻就修正了。",
+"Sanjay 曾经问 Jeff Dean 能不能把整个互联网都记在脑子里。由于键盘散热风扇的噪音，Jeff Dean 稍微听岔了，没直接回答“能”，而是写了个 Mustang 系统。",
+"Jeff Dean 提交代码前会编译运行，但只为了检查编译器和 CPU 的 bug。",
+"不满足于常数时间复杂度，Jeff Dean 发明了世界上第一个 O(1/n) 算法。",
+"Jeff Dean 能直接读懂二进制（binary readability）。",
+"Jeff Dean 能直接手写二进制（binary writability）。",
+"当 Jeff Dean 度假时，谷歌的生产服务总会在几天内神秘宕机。这事儿其实是真的。",
+"Jeff Dean 曾经移位一个比特时用力过猛，结果那个比特跑到了另一台电脑上。",
+"在自己的谷歌面试中，面试官问 Jeff Dean 如果 P=NP 成立会有什么影响。他回答：“要么 P=0，要么 N=1”。然后面试官还没笑完，Jeff 就查看了谷歌的公开证书，在白板上写出了私钥。",
+"你只用到了大脑的 10%，剩下的 90% 都在运行 Jeff 的某个 MapReduce 任务。",
+"Jeff Dean 的简历只列他没做过的事——这样篇幅更短。",
+"对 Jeff Dean 来说，“NP”的意思是“毫无问题”（No Problemo）。",
+"Jeff Dean 曾经写过一个 O(n²) 算法，那是用来解决旅行商问题的。",
+"不是你向 Jeff Dean 解释你的工作，而是 Jeff Dean 向你解释你的工作。",
+"Jeff Dean 的简历成就太多，以至于需要一个目录。",
+"有一天 Jeff Dean 优化一个函数，结果函数在调用之前就返回了，他只好发明了异步 API。",
+"2000 年底，当 Jeff Dean 把键盘升级到 USB 2.0 后，他的代码产出效率瞬间提升了 40 倍。",
+"Jeff Dean 设计软件时，先写二进制文件，再把源代码当作文档来写。",
+"Larry 能晋升 CEO，全靠 Jeff Dean 的同行评审（Peer Review）。",
+"当上帝说“要有光”时，Jeff Dean 就在旁边做代码评审。",
+"贝尔发明电话时，发现有一个来自 Jeff Dean 的未接来电。",
+"编译器不会警告 Jeff Dean，反而是 Jeff Dean 警告编译器。",
+"Jeff Dean 并不存在，他其实是 Jeff Dean 创造的一个高级 AI。",
+"Jeff Dean 的 IDE 不做代码分析，只做代码鉴赏。",
+"Jeff Dean 不用纠错内存（ECC memory），他能预判宇宙射线的到来，还能用它们来提升性能。",
+"Jeff Dean 曾经没通过图灵测试——因为他在不到一秒内就算出了第 203 个斐波那契数。",
+"Jeff Dean 发明 Bigtable，只是为了找个地方存他的每周工作摘要（weekly snippets）。",
+"第 0 天，Jeff Dean 创造了上帝。",
+"Jeff Dean 曾经用一个 printf() 调用就实现了一个 Web 服务器。其他工程师加了几千行注释来解释，但至今仍没人完全明白它是怎么工作的。如今这个程序被称为谷歌 Web 服务器（Google Web Server）。",
+"当 Jeff 做人体工学评估时，其实是为了保护他的键盘。",
+"Jeff Dean 玩四子棋（connect four）能赢你，而且只需要三步。",
+"Jeff Dean 发明 BigTable，是因为他的简历太长，没地方放了。",
+"苹果 logo 上的缺口，是 Jeff Dean 咬的。",
+"查克·诺里斯（Chuck Norris）能杀死你，而 Jeff Dean 能 kill -9 你（Linux 强制终止进程命令）。",
+"Jeff Dean 能用正则表达式解析 HTML——而且解析得完全正确。",
+"Jeff 睡不着觉时，就用 MapReduce 来数羊。",
+"当 Jeff Dean 启动性能分析工具（profiler）时，循环会吓得自己自动展开（unroll）。",
+"你的代码出现未定义行为时，会段错误（seg fault）并损坏数据；而 Jeff Dean 的代码出现未定义行为时，会有一只独角兽骑着彩虹而来，给所有人发免费冰淇淋。",
+"Jeff 不睡觉，他只是给宇宙发送 SIGSUSPEND 信号（Linux 暂停进程信号）。",
+"Jeff 只用 8 行代码就掌握了 Java 可读性（Java readability）。",
+"Jeff Dean 能实例化抽象类（abstract classes）。",
+"gcc -O4 优化选项的真正作用，是把你的代码发给 Jeff Dean 重写一遍。",
+"Jeff 能在 5 小时内背诵圆周率的 20000 位。他不是记下来的，而是实时计算的，而且只需要 O(log n) 的空间。",
+"Jeff Dean 只记一个密码。访问每个网站时，他把密码和网站名拼接起来，计算 SHA-256 哈希值，然后输入结果。",
+"Jeff Dean 还在等数学家们发现他藏在圆周率 digits 里的笑话。",
+"Jeff Dean 的键盘上没有 Ctrl 键——因为他永远掌控一切（in control）。",
+"Jeff Dean 出生于 1969 年 12 月 31 日晚上 11 点 48 分。他花了 12 分钟就实现了自己的第一个计时器。",
+"当 Jeff Dean 说“Hello World”时，世界会回应“Hello Jeff”。",
+"Jeff Dean 能从 /dev/zero（Linux 空设备文件）里读出 1。",
+"Jeff Dean 直接走进了魔多（Mordor，《指环王》中邪恶之地，此处致敬“凡人无法进入魔多”的设定）。",
+"Jeff 花了 20% 的时间做一个 AI 项目，结果造出了 Urs Hoelzle（谷歌前高级副总裁）。",
+"有一次 Jeff Dean 不小心把索引压缩得太密集，形成了一个黑洞，谷歌只好搬出了那个数据中心。",
+"Jeff 开始编程时，第一行命令是 cat > /dev/mem（直接向内存写入数据）。",
+"真空中的光速以前只有大约 35 英里/小时，直到 Jeff Dean 花了一个周末优化了物理定律。",
+"Jeff Dean 给你发代码评审，是因为他觉得里面有你该学的东西。",
+"Jeff Dean 不用 sleep() 函数，他用 wait() 函数。",
+"Jeff Dean 发明 MapReduce，只是为了给粉丝来信排序。",
+"有一次 Jeff Dean 对一个列表执行了排序命令，那个列表立刻就听话排好了。",
+"查克·诺里斯（Chuck Norris）是 Jeff Dean 的 20% 项目。",
+"如果你的代码被 SIGJEFF 信号杀死，它就再也不能运行了。",
+"Jeff Dean 的日历直接从 3 月 31 日跳到 4 月 2 日——没人能愚弄 Jeff Dean（4 月 1 日是愚人节）。",
+"从来不是 Jeff Dean 打错电话，而是你拿错了手机。",
+"Jeff Dean 的键盘上只有两个键：0 和 1。",
+"错误遇到 Jeff Dean 时，会自动降级为警告。",
+"板球比赛以前要打 5 天，直到 Jeff 优化了它。",
+"Jeff Dean 的手表显示的是 1970 年 1 月 1 日以来的秒数（Unix 时间戳），他从来不会迟到。",
+"Jeff 的代码太快了，汇编代码需要三个 HALT 指令才能让它停下来。",
+"Emacs（文本编辑器）最喜欢的编辑器是 Jeff Dean。",
+"谷歌，本质上只是 Jeff Dean 的一个副业。",
+"Jeff Dean 必须故意降低自己代码的优化程度，这样评审者才会相信这是人类写的。",
+"网络搜索其实只是 Jeff 为他的真正应用写的一个大型单元测试（unittest）。",
+"Jeff Dean 不需要音箱或耳机，他只需要输入 cat *.mp3，扫一眼屏幕，大脑就能在后台解码音乐，同时他还能正常工作。",
+"Jeff Dean 能读懂 Perl 代码（Perl Readability）。",
+"Jeff Dean 用快速排序（quicksorts）来整理他的衣物。",
+"自从 Jeff Dean 在 Mustang 中使用了 OR ELSE 结构后，内核都吓得恐慌（panicking），于是 ISO C 标准不得不移除了这个结构。",
+"Jeff Dean 不怕邪恶的构造函数（evil constructors），反而是它们怕 Jeff Dean。",
+"Jeff Dean 不写 bug，他写的都是你看不懂的特性。",
+"Jeff Dean 既不用 Emacs 也不用 VI，他把代码输入到 zcat（解压并查看文件命令）里——因为这样更快。",
+"当 Jeff Dean 发送以太网帧（Ethernet frame）时，不会发生冲突（collisions），因为其他竞争的帧会吓得退回到源网卡的缓冲区里。",
+"有一次 Jeff Dean 提交了一个变更，里面没有任何 Python 代码，却同时让所有二进制文件的大小减少了 3%，还把一个之前已知的低优先级 Python bug 升级成了高优先级。",
+"有一天 Jeff Dean 出门时不小心拿了魔法画板（Etch-a-Sketch）而不是笔记本电脑。在回家拿真正电脑的路上，他给魔法画板编了个俄罗斯方块（Tetris）程序。",
+"x86-64 架构规范里有几个未公开的私有指令，其实是给 Jeff Dean 专用的。",
+"Knuth 给谷歌寄了一本《计算机程序设计艺术》（The Art of Computer Programming），Jeff Dean 签名后又寄了回去。",
+"听说 Jeff Dean 的自传只在 Kindle 平台独家发布后，理查德·斯托曼（Richard Stallman，自由软件运动领袖，反对专有软件）都买了一台 Kindle。",
+"Jeff Dean 能对随机数据进行无损压缩。",
+"当被问及关于他的这些传闻是不是真的时，Jeff Dean 回答“111111”。面试官还在琢磨意思时，他补充道：“每一个比特都是真的”（every s1ng1e b1t of 1t 1s true(1) ）。",
+"Jeff Dean 用脑子挖比特币。",
+"Jeff Dean 离职 Google 只失业了一秒钟——不是因为他立刻加入了新公司，而是因为 Google 的招聘系统在他提交 resignation 的同一纳秒就自动给他发了 offer，被他自己拒绝后又发了一次。",
+"Google 的 27 年数据迁移终于完成了——Jeff Dean 把自己迁走了。",
+"Discovery Loop 的 slogan 是“用 AI 加速科学发现”——实际上，Jeff Dean 离职只是为了让 Google 有机会体验一下“没有 Jeff Dean 的分布式系统”长什么样。",
+"Jeff Dean 的新公司只有 4 个人，但代码审查依旧需要排队——因为另外 3 个人还在等 Jeff 审查他们的代码。",
+"谷歌把 Jeff Dean 的工位保留了下来，不是纪念他，是因为那块地板已经被他编译时的热量烧结成了钛合金，拆不掉了。",
+"Jeff Dean 没有带走任何代码，他带走了编译器里的一个隐含假设。从那以后，Google 的二进制文件体积没变，但运行速度慢了 47%，没人找得到原因。",
+"Google 的密钥轮换策略原本是 90 天。Jeff 离职后，策略改成了“永远”，因为没人能再靠肉眼读一遍 SHA-256 就当签名使。",
+"Jeff Dean 的新雇主没有域名，没有办公室，没有法律实体。面试的唯一问题是：“你什么时候开始？”Jeff 回答：“已经结束了。”然后他挂掉了 Zoom——那场 Zoom 是 2038 年才召开的。",
+"Jeff Dean 离开谷歌的当天，谷歌股价跌了 4%，市值蒸发 1800 亿美元。但 Jeff Dean 本人只“失业”了一秒钟——实际上那也不是失业，那是他在两种工作状态之间的一次 O(1) 上下文切换。",
+"Jeff Dean 的新公司叫 Discovery Loop。公司名称里的“Loop”不是循环，是他用来封装整个宇宙的递归结构。",
+"Jeff Dean 的新公司没有办公室。他把代码写在空气中，用读卡器扫描大气里的量子涨落来读回来。",
+"Jeff Dean 的“离职通知期”是负的——他提交辞职信的同一毫秒，新公司的服务器已经收到了他的第一行代码。",
+"其他 AI 初创公司融 10 亿美元需要路演 200 场。Jeff Dean 融 10 亿美元只需要在白板上写一个“Hello World”——投资人看完当场签字。",
+"有人问 Jeff Dean 创业融了多少钱。他说：“我写了个 malloc(infinity)，它返回了。”",
+"Jeff Dean 拒绝使用任何云服务。他自己就是云。下雨是他在跑 MapReduce 时的冷凝副产品。",
+"Jeff Dean 没有辞职，他只是给 Google 开了个 fork()，然后把父进程 kill 了。",
+"有人问 Jeff Dean 为什么不在谷歌内部做这些事。他回答：“我在谷歌做了 27 年——如果一件事需要 28 年才能做完，那说明它需要我来开一家新公司。”",
+"Jeff Dean 说他可能做出“不符合公司财务利益但符合社会利益”的决定。翻译一下：他新公司的盈利模式是“顺便拯救一下世界”。",
+"Jeff Dean 在斯坦福演讲谈到离开谷歌时强忍泪水（确有此事）。那不是伤感，那是他的编译器在检测到情绪溢出时自动触发的异常处理。",
+"Jeff Dean 的新公司目标是“自动化完整的科学实验循环”——提出假设、执行实验、评估结果。换句话说，Jeff Dean 正在写一个能取代所有科学家的程序，包括他自己。他管这叫“递归终止条件”。",
+"竞品公司研究 Jeff Dean 的创业方向，看了三天三夜，得出结论：“我们做不了这个。”Jeff Dean 听说后说：“你们看反了，那一页是我写的注释。”",
+"Jeff 创业第一周，他写了一个 while(1) 循环，结果那个循环跑完了。",
+"他的新公司没有 CI/CD 流水线。代码写完的瞬间，生产环境会主动发来 PR 请求，问 Jeff 能不能合进去。",
+"投资人问 Jeff 的商业模式是什么。他拿起白板笔，画了一个圆，说：“这是市场。”然后在圆外面画了一个点，说：“这是我们的收入。”投资人当场把支票簿递了过去——不是签支票，是把整本支票簿送给他当草稿纸。",
+"竞争对手的 AI 模型参数是 1.8 万亿。Jeff 的新模型参数是 1——就是他自己。他说：“参数太多会影响泛化。”",
+"Jeff Dean 离职后，他的工牌仍然能打开所有门。Google 安全团队尝试撤销权限，结果发现自己登不进去了。",
+"有人问他为什么离开 Google，他指着地球说：“Google 只覆盖了这个。”然后指了指银河系外面说：“我的 startup 覆盖那个。”",
+"他新公司的第一个产品是“一个能预测我下一行写什么的 IDE”。结果它猜到了 Jeff 的下一行，但那行代码还没写出来就已经跑出了结果，于是 IDE 崩溃了——不是因为 bug，是因为羞愧。",
+"创业第一天，Jeff Dean 在终端敲了 mkdir company。这个目录下随后自动生成了所有代码、文档、招聘信息和投资人路演 PPT。",
+"Jeff 公司的代码仓库没有 commit 历史。每次 push 都会直接覆盖掉之前所有版本，但没关系——因为上一版本从来没有 bug，不需要回滚。",
+"Jeff Dean 的 IDE 在启动时显示的不是“加载中”，而是“等待 Jeff 决定先写哪个文件”。",
+"有人问 Jeff Dean 新公司失败怎么办。他愣了一下，然后整个房间的编译器报了一个“未捕获的异常：失败未定义”。",
+"其实这里写的事情绝大多数都是扯淡。",
+"你们有谁把这里的消息当真了？我靠。"
+    ];
+
+  var jeffFacts_en = [
+"When you type JEFF on the keyboard, a new Jeff Dean miracle is born.",
+"Jeff Dean proved that P=NP when he solved all NP problems in polynomial time on a whiteboard.",
+"Jeff Dean's PIN is the last 4 digits of pi.",
+"When Jeff gives a seminar at Stanford, it's so crowded Don Knuth has to sit on the floor. (TRUE)",
+"Jeff Dean once bit a spider; the spider got super powers and C++ readability.",
+"Once, in early 2002, when the index servers went down, Jeff Dean answered user queries manually for two hours. Evals showed a quality improvement of 5 points.",
+"Jeff Dean got promoted to level 11 in a system where max level is 10. (TRUE)",
+"Google Search was Jeff Dean's Noogler Project.",
+"Jeff Dean has punch card readability.",
+"Jeff Dean puts his pants on one leg at a time, but if he had more than two legs, you would see that his approach is actually O(log n).",
+"Jeff Dean acquired Sawzall readability after writing 58 lines of Sawzall code. As part of his readability review, he pointed out a flaw in the style guide which was promptly corrected by the reviewer.",
+"Sanjay once asked Jeff Dean if he could keep the entire web in his memory. Due to the noise from his keyboard cooling fan, Jeff Dean misheard slightly and wrote Mustang instead of simply answering \"Yes\".",
+"Jeff Dean compiles and runs his code before submitting, but only to check for compiler and CPU bugs.",
+"Unsatisfied with constant time, Jeff Dean created the world's first O(1/n) algorithm.",
+"Jeff Dean has binary readability.",
+"Jeff Dean has binary writability.",
+"When Jeff Dean goes on vacation, production services across Google mysteriously stop working within a few days. This is actually true. (TRUE)",
+"Jeff Dean once shifted a bit so hard it ended up on another computer.",
+"During his own Google interview, Jeff Dean was asked the implications if P=NP were true. He said \"P = 0 or N = 1.\" Then, before the interviewer had even finished laughing, Jeff examined Google's public certificate and wrote the private key on the whiteboard.",
+"You use 10% of your brain. The other 90% is running one of Jeff's mapreduce jobs.",
+"Jeff Dean's resume lists the things he hasn't done; it's shorter that way.",
+"To Jeff Dean, \"NP\" means \"No Problemo\".",
+"Jeff Dean wrote an O(n^2) algorithm once. It was for the Traveling Salesman Problem.",
+"You don't explain your work to Jeff Dean. Jeff Dean explains your work to you.",
+"Jeff Dean's resume has so many accomplishments, it has a table of contents.",
+"Jeff Dean was forced to invent asynchronous APIs one day when he optimized a function so that it returned before it was invoked.",
+"The rate at which Jeff Dean produces code jumped by a factor of 40 in late 2000 when he upgraded his keyboard to USB2.0.",
+"When Jeff Dean designs software, he first codes the binary and then writes the source as documentation.",
+"Jeff Dean's Peer Review is what got Larry promoted to CEO.",
+"When God said: \"Let there be light!\", Jeff Dean was there to do the code review.",
+"When Graham Bell invented the telephone, he saw a missed call from Jeff Dean.",
+"Compilers don't warn Jeff Dean. Jeff Dean warns compilers.",
+"Jeff Dean doesn't exist, he's actually an advanced AI created by Jeff Dean.",
+"Jeff Dean's IDE doesn't do code analysis, it does code appreciation.",
+"Jeff Dean doesn't use ECC memory. He anticipates cosmic rays and uses them to improve performance.",
+"Jeff Dean once failed a Turing test when he correctly identified the 203rd Fibonacci number in less than a second.",
+"Jeff Dean invented Bigtable so that he would have a place to send his weekly snippets.",
+"On the zeroth day, Jeff Dean created God.",
+"Jeff Dean once implemented a web server in a single printf() call. Other engineers added thousands of lines of explanatory comments but still don't understand exactly how it works. Today that program is known as Google Web Server.",
+"When Jeff has an ergonomic evaluation, it is for the protection of his keyboard.",
+"Jeff Dean can beat you at connect four. In three moves.",
+"Jeff Dean invented BigTable because his resume was too big to fit anywhere else.",
+"Jeff Dean took the bite out of Apple's logo.",
+"Chuck Norris can kill you. Jeff Dean can kill -9 you.",
+"Jeff Dean can parse HTML with a regular expression...correctly.",
+"When Jeff has trouble sleeping, he MapReduces sheep.",
+"When Jeff Dean fires up the profiler, loops unroll themselves in fear.",
+"When your code has undefined behavior, you get a seg fault and corrupted data. When Jeff Dean's code has undefined behavior, a unicorn rides in on a rainbow and gives everybody free ice cream.",
+"Jeff doesn't sleep, he just sends SIGSUSPEND to the universe.",
+"Jeff got Java readability with only 8 lines of code.",
+"Jeff Dean can instantiate abstract classes.",
+"gcc -O4 sends your code to Jeff Dean for a complete rewrite.",
+"Jeff can recite 20,000 digits of pi in 5 hours. He doesn't remember them; he just recomputes them on the fly using only O(log n) space.",
+"Jeff Dean remembers only one password. For each site, he concatenates it with the site name, computes its SHA-256 hash, and then types the result.",
+"Jeff Dean is still waiting for mathematicians to discover the joke he hid in the digits of pi.",
+"There is no Ctrl key on Jeff Dean's keyboard. Jeff Dean is always in control.",
+"Jeff Dean was born on December 31, 1969 at 11:48 PM. It took him twelve minutes to implement his first time counter.",
+"When Jeff Dean says \"Hello World\", the world says \"Hello Jeff\".",
+"Jeff Dean can get 1s out of /dev/zero.",
+"Jeff Dean simply walks into Mordor.",
+"Jeff Dean spent some 20% time on an AI project. That produced Urs Hoelzle.",
+"Google once had to move out of a datacenter after Jeff Dean accidentally compressed the index so densely that a black hole was formed.",
+"Jeff starts his programming sessions with cat > /dev/mem.",
+"The speed of light in a vacuum used to be about 35 mph. Then Jeff Dean spent a weekend optimizing physics.",
+"When Jeff Dean sends you a code review, it's because he thinks there's something in it you should learn.",
+"Jeff Dean does not sleep(), he wait()s.",
+"Jeff Dean invented MapReduce so he could sort his fan mail.",
+"Once Jeff Dean ordered a list, and the list obeyed him.",
+"Chuck Norris is Jeff Dean's 20% project.",
+"When your code is killed by SIGJEFF, it never runs again.",
+"Jeff Dean's calendar goes straight from March 31st to April 2nd; no one fools Jeff Dean.",
+"Jeff Dean never has the wrong number; you have the wrong phone.",
+"Jeff Dean has exactly two keys on his keyboard: 0 and 1.",
+"Errors treat Jeff Dean as a warning.",
+"Cricket matches used to take 5 days, until Jeff optimized them.",
+"Jeff Dean's watch displays seconds since January 1st, 1970. He is never late.",
+"Jeff's code is so fast the assembly code needs three HALT opcodes to stop it.",
+"Emacs' preferred editor is Jeff Dean.",
+"Google is basically Jeff Dean's side project.",
+"Jeff Dean has to unoptimize his code so that reviewers believe it was written by a human.",
+"Websearch is just a large unittest Jeff wrote for his real app.",
+"Jeff Dean doesn't need speakers or headphones. He just types cat *.mp3, glances at the screen, and his brain decodes the music in the background while he works.",
+"Jeff Dean has Perl Readability. (TRUE)",
+"Jeff Dean quicksorts his laundry.",
+"The OR ELSE construct had to be removed from ISO C after Jeff Dean used it in Mustang and kernels started panicking in terror.",
+"Jeff Dean is not afraid of evil constructors. They are afraid of him.",
+"Jeff Dean doesn't write bugs, just features you are unable to understand.",
+"Jeff Dean eschews both Emacs and VI. He types his code into zcat, because it's faster that way.",
+"When Jeff Dean sends an Ethernet frame, there are no collisions because the competing frames retreat back up into the buffer memory on their source network cards.",
+"Jeff once simultaneously reduced all binary sizes by 3% and raised the severity of a previously known low-priority Python bug to critical-priority in a single change that contained no Python code.",
+"One day, Jeff Dean grabbed his Etch-a-Sketch instead of his laptop on his way out the door. On his way back home to get his real laptop, he programmed the Etch-a-Sketch to play Tetris.",
+"The x86-64 spec includes several undocumented instructions marked private use. They are actually for Jeff Dean's use.",
+"Knuth mailed a copy of The Art of Computer Programming to Google. Jeff Dean autographed it and mailed it back.",
+"When he heard that Jeff Dean's autobiography would be exclusive to the platform, Richard Stallman bought a Kindle.",
+"Jeff Dean can losslessly compress random data.",
+"When asked if the facts about him are true, Jeff Dean responded with \"111111\". While the interviewer was still trying to figure out what he meant, he clarified, \"every single bit of it is true.\"",
+"Jeff Dean mines bitcoins. In his head.",
+"Jeff Dean was unemployed for only one second after leaving Google – not because he immediately joined a new company, but because Google's hiring system automatically sent him an offer in the same nanosecond he submitted his resignation, and then sent it again after he rejected it.",
+"Google's 27-year data migration finally completed – Jeff Dean migrated himself out.",
+"Discovery Loop's slogan is \"Accelerating scientific discovery with AI\" – actually, Jeff Dean left just to give Google a chance to experience what a distributed system without Jeff Dean looks like.",
+"Jeff Dean's new company has only 4 people, but code reviews still require queuing – because the other 3 are still waiting for Jeff to review their code.",
+"Google kept Jeff Dean's desk, not as a memorial, but because the floor beneath it had been sintered into titanium alloy by the heat of his compiles and couldn't be removed.",
+"Jeff Dean didn't take any code with him; he took an implicit assumption in the compiler. Since then, Google's binary sizes haven't changed, but runtime slowed by 47%, and no one can find the reason.",
+"Google's key rotation policy used to be 90 days. After Jeff left, it changed to \"forever\", because no one else can just read a SHA-256 hash with their naked eye and use it as a signature.",
+"Jeff Dean's new employer has no domain, no office, no legal entity. The only interview question was: \"When can you start?\" Jeff replied: \"It's already over.\" Then he hung up the Zoom – which was scheduled for 2038.",
+"On the day Jeff Dean left Google, the stock dropped 4%, wiping $180 billion off the market cap. But Jeff himself was \"unemployed\" for only one second – actually it wasn't unemployment, it was an O(1) context switch between two job states.",
+"Jeff Dean's new company is called Discovery Loop. The \"Loop\" in the name isn't a loop – it's the recursive structure he uses to encapsulate the entire universe.",
+"Jeff Dean's new company has no office. He writes code in the air and reads it back using a card reader that scans quantum fluctuations in the atmosphere.",
+"Jeff Dean's notice period was negative – the same millisecond he submitted his resignation, his new company's servers had already received his first line of code.",
+"Other AI startups need 200 pitch meetings to raise $1B. Jeff Dean only needs to write \"Hello World\" on a whiteboard – investors sign on the spot.",
+"Someone asked Jeff Dean how much funding he raised. He said: \"I wrote malloc(infinity), and it returned.\"",
+"Jeff Dean refuses to use any cloud services. He is the cloud. Rain is a condensation byproduct of his MapReduce jobs.",
+"Jeff Dean didn't resign; he just forked Google and killed the parent process.",
+"Someone asked Jeff Dean why he didn't do these things inside Google. He replied: \"I was at Google for 27 years – if something takes 28 years to finish, that means it needs me to start a new company.\"",
+"Jeff Dean said he might make decisions that are \"not in the company's financial interest but in society's interest.\" Translation: his new company's business model is \"saving the world on the side.\"",
+"When Jeff Dean spoke at Stanford about leaving Google, he held back tears (true story). That wasn't sadness – it was his compiler's exception handling triggered by detecting emotional overflow.",
+"Jeff Dean's new company aims to \"automate the complete scientific experiment loop\" – hypothesize, execute, evaluate. In other words, Jeff Dean is writing a program that can replace all scientists, including himself. He calls this the \"recursion termination condition.\"",
+"Competing companies studied Jeff Dean's startup direction for three days and nights and concluded: \"We can't do this.\" When Jeff Dean heard that, he said: \"You read it backwards – that page was my comment.\"",
+"In his first week of founding, Jeff wrote a while(1) loop – and the loop finished.",
+"His new company has no CI/CD pipeline. The moment code is written, production sends a PR request asking Jeff if it can merge.",
+"When investors asked Jeff about his business model, he picked up a marker, drew a circle, and said: \"This is the market.\" Then he drew a dot outside the circle and said: \"This is our revenue.\" The investors immediately handed over their checkbook – not to sign a check, but to give him the whole book as scratch paper.",
+"Competitor's AI model has 1.8 trillion parameters. Jeff's new model has 1 parameter – himself. He said: \"Too many parameters hurt generalization.\"",
+"After Jeff Dean left, his badge still opens all doors. Google's security team tried to revoke his access, only to find they couldn't log in themselves.",
+"Someone asked him why he left Google. He pointed at Earth and said: \"Google only covers this.\" Then he pointed outside the galaxy and said: \"My startup covers that.\"",
+"His new company's first product was \"an IDE that predicts what I'll write next.\" It guessed Jeff's next line, but that line had already produced a result before it was written, so the IDE crashed – not because of a bug, but out of shame.",
+"On the first day of his startup, Jeff Dean typed mkdir company in the terminal. That directory then automatically generated all code, docs, hiring materials, and investor pitch decks.",
+"Jeff's company repo has no commit history. Each push overwrites all previous versions, but that's fine – because the previous version never had bugs and never needs rollback.",
+"Jeff Dean's IDE doesn't show \"Loading\" on startup – it shows \"Waiting for Jeff to decide which file to write first.\"",
+"Someone asked Jeff Dean what happens if his new company fails. He paused for a moment, and then all the compilers in the room reported an \"uncaught exception: failure undefined.\"",
+"Actually, most of the stuff written here is nonsense.",
+"Did any of you actually take this seriously? Geez."
+];
+
+
+    // Bilingual i18n Dictionary
+    var i18n = {
+      zh: {
+        title: '找不到网页',
+        h1: '找不到网页',
+        descPrefix: '请求的页面',
+        descSuffix: '未在我们的服务器上检索到。',
+        descNote: '这便是我们所知道的全部信息。',
+        solutionsHeading: '以下是一些可能的解决方案：',
+        solutions: [
+          '稍后重新加载此页面。',
+          '在以下位置查找此页面的存档副本：<a href="https://web.archive.org/" target="_blank" style="color: #1a73e8; color: var(--link-color); text-decoration: none;">web.archive.org</a>。',
+          '与带您到这里的人核实此页面上的地址是否正确。',
+          '使用搜索引擎搜索您正在寻找的关键字。'
+        ],
+        homeBtn: '返回首页',
+        snackbarPrefix: '...但是你知道吗？',
+        snackbarAction: '啊？'
+      },
+      en: {
+        title: 'Page not found',
+        h1: 'Page not found',
+        descPrefix: 'The requested URL',
+        descSuffix: 'was not found on this server.',
+        descNote: 'That’s all we know.',
+        solutionsHeading: 'Here are some possible solutions:',
+        solutions: [
+          'Reload this page later.',
+          'Find an archived copy of this page at: <a href="https://web.archive.org/" target="_blank" style="color: #1a73e8; color: var(--link-color); text-decoration: none;">web.archive.org</a>.',
+          'Check with the person who sent you here to see if the address is correct.',
+          'Search for keywords using a search engine.'
+        ],
+        homeBtn: 'Back to Home',
+        snackbarPrefix: '...But did you know?',
+        snackbarAction: 'Wait, what?'
+      }
+    };
+
+    // Determine Language: prioritize URL query params ?hl= or ?lang=, then fallback to navigator language
+    var isZh = true;
+    var urlLang = getQueryParam('hl') || getQueryParam('lang');
+    if (urlLang) {
+      isZh = urlLang.toLowerCase().indexOf('zh') === 0;
+    } else {
+      var navLang = navigator.language || navigator.userLanguage || (navigator.languages && navigator.languages[0]) || 'zh';
+      isZh = ('' + navLang).toLowerCase().indexOf('zh') === 0;
+    }
+
+    var currentI18n = isZh ? i18n.zh : i18n.en;
+    if (!isZh) {
+      if (document.documentElement) document.documentElement.setAttribute('lang', 'en');
+      document.title = currentI18n.title;
+
+      var elH1 = document.getElementById('page-title');
+      if (elH1) setText(elH1, currentI18n.h1);
+
+      var elPrefix = document.getElementById('desc-prefix');
+      if (elPrefix) setText(elPrefix, currentI18n.descPrefix);
+
+      var elSuffix = document.getElementById('desc-suffix');
+      if (elSuffix) setText(elSuffix, currentI18n.descSuffix);
+
+      var elNote = document.getElementById('desc-note');
+      if (elNote) setText(elNote, currentI18n.descNote);
+
+      var elSolHead = document.getElementById('solutions-heading');
+      if (elSolHead) setText(elSolHead, currentI18n.solutionsHeading);
+
+      for (var s = 0; s < 4; s++) {
+        var elSol = document.getElementById('solution-' + (s + 1));
+        if (elSol) elSol.innerHTML = currentI18n.solutions[s];
+      }
+
+      var elHome = document.getElementById('home-button');
+      if (elHome) setText(elHome, currentI18n.homeBtn);
+
+      var elSnackPrefix = document.getElementById('snackbar-prefix');
+      if (elSnackPrefix) setText(elSnackPrefix, currentI18n.snackbarPrefix);
+
+      var elSnackAction = document.getElementById('next-fact');
+      if (elSnackAction) setText(elSnackAction, currentI18n.snackbarAction);
+    }
+
+    var activeFacts = isZh ? jeffFacts : jeffFacts_en;
+
+    var snackbar = document.getElementById('jeff-snackbar');
+    var factContent = document.getElementById('jeff-fact-content');
+    var nextBtn = document.getElementById('next-fact');
+    var robotTrigger = document.getElementById('robot-trigger');
+    var robotIcon = robotTrigger ? robotTrigger.querySelector('.robot-icon') : null;
+    var snackbarTimer = null;
+    var isHovered = false;
+    var lastFactIndex = -1;
+
+    function getRandomFact() {
+      if (!activeFacts || activeFacts.length === 0) return '';
+      if (activeFacts.length === 1) return activeFacts[0];
+      var index;
+      do {
+        index = Math.floor(Math.random() * activeFacts.length);
+      } while (index === lastFactIndex);
+      lastFactIndex = index;
+      return activeFacts[index];
+    }
+
+    function hideSnackbar() {
+      if (snackbarTimer) {
+        clearTimeout(snackbarTimer);
+        snackbarTimer = null;
+      }
+      removeClass(snackbar, 'show');
+    }
+
+    function resetAutoDismissTimer(duration) {
+      if (snackbarTimer) {
+        clearTimeout(snackbarTimer);
+        snackbarTimer = null;
+      }
+      if (isHovered) return;
+      snackbarTimer = setTimeout(function() {
+        hideSnackbar();
+      }, duration || 8000);
+    }
+
+    function showFact() {
+      if (!snackbar || !factContent) return;
+      var newFact = getRandomFact();
+      var isAlreadyShown = hasClass(snackbar, 'show');
+
+      // 立即更新文本，无动画延迟
+      setText(factContent, newFact);
+      if (!isAlreadyShown) {
+        addClass(snackbar, 'show');
+      }
+
+      resetAutoDismissTimer(8000);
+    }
+
+    if (nextBtn) {
+      addEvent(nextBtn, 'click', function(e) {
+        if (e && e.stopPropagation) e.stopPropagation();
+        showFact();
+      });
+    }
+
+    // 鼠标悬停与焦点感知：暂停/恢复自动隐藏
+    if (snackbar) {
+      addEvent(snackbar, 'mouseenter', function() {
+        isHovered = true;
+        if (snackbarTimer) {
+          clearTimeout(snackbarTimer);
+          snackbarTimer = null;
+        }
+      });
+      addEvent(snackbar, 'mouseleave', function() {
+        isHovered = false;
+        if (hasClass(snackbar, 'show')) {
+          resetAutoDismissTimer(4000);
+        }
+      });
+      addEvent(snackbar, 'focusin', function() {
+        isHovered = true;
+        if (snackbarTimer) {
+          clearTimeout(snackbarTimer);
+          snackbarTimer = null;
+        }
+      });
+      addEvent(snackbar, 'focusout', function() {
+        isHovered = false;
+        if (hasClass(snackbar, 'show')) {
+          resetAutoDismissTimer(4000);
+        }
+      });
+    }
+
+    function triggerEasterEgg() {
+      if (robotIcon) {
+        addClass(robotIcon, 'easter-egg-bounce');
+        setTimeout(function() {
+          removeClass(robotIcon, 'easter-egg-bounce');
+        }, 450);
+      }
+      showFact();
+    }
+
+    var clickCount = 0;
+    var clickTimer = null;
+    if (robotTrigger) {
+      addEvent(robotTrigger, 'click', function() {
+        clickCount++;
+        if (clickTimer) clearTimeout(clickTimer);
+        clickTimer = setTimeout(function() { clickCount = 0; }, 800);
+        
+        if (clickCount >= 2) {
+          triggerEasterEgg();
+          clickCount = 0;
+        }
+      });
+
+      addEvent(robotTrigger, 'dblclick', function() {
+        triggerEasterEgg();
+        clickCount = 0;
+      });
+    }
+
+    addEvent(window, 'keydown', function(e) {
+      e = e || window.event;
+      var target = e.target || e.srcElement;
+      if (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable)) {
+        return;
+      }
+      var key = '';
+      if (e.key) key = e.key.toLowerCase();
+      else if (e.keyCode) {
+        if (e.keyCode === 70) key = 'f';
+        else if (e.keyCode === 74) key = 'j';
+        else if (e.keyCode === 69) key = 'e';
+      }
+      
+      if (key === 'f' || key === 'j' || key === 'e') {
+        triggerEasterEgg();
+      }
+    });
+
+    // Top Peeking Easter Egg Logic
+    var topPeekEl = document.getElementById('top-peek');
+    var peekAvatar = document.getElementById('peek-avatar');
+    var peekAndroid = document.getElementById('peek-android');
+    var isPeekShown = false;
+
+    function showTopPeek() {
+      if (isPeekShown || !topPeekEl) return;
+      // 随机选择展示头像或 Android 机器人
+      var chooseAvatar = Math.random() < 0.5;
+      if (chooseAvatar) {
+        addClass(topPeekEl, 'mode-avatar');
+        removeClass(topPeekEl, 'mode-android');
+        if (peekAvatar) addClass(peekAvatar, 'is-active');
+        if (peekAndroid) removeClass(peekAndroid, 'is-active');
+      } else {
+        addClass(topPeekEl, 'mode-android');
+        removeClass(topPeekEl, 'mode-avatar');
+        if (peekAvatar) removeClass(peekAvatar, 'is-active');
+        if (peekAndroid) addClass(peekAndroid, 'is-active');
+      }
+      addClass(topPeekEl, 'peek-show');
+      isPeekShown = true;
+    }
+
+    function hideTopPeek() {
+      if (!isPeekShown || !topPeekEl) return;
+      removeClass(topPeekEl, 'peek-show');
+      isPeekShown = false;
+    }
+
+    addEvent(document, 'mousemove', function(e) {
+      e = e || window.event;
+      var clientY = e.clientY;
+      if (typeof clientY === 'number') {
+        if (clientY <= 60) {
+          showTopPeek();
+        } else if (clientY > 80) {
+          hideTopPeek();
+        }
+      }
+    });
+
+    addEvent(document, 'mouseleave', function() {
+      hideTopPeek();
+    });
+
+    addEvent(window, 'mouseout', function(e) {
+      e = e || window.event;
+      var from = e.relatedTarget || e.toElement;
+      if (!from || from.nodeName === 'HTML') {
+        hideTopPeek();
+      }
+    });
+    })();
+  </script>
+</body>
+</html>
