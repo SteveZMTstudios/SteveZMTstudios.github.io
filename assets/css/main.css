@@ -503,6 +503,22 @@ header.show-logo-text .logo span:last-child {
     color: var(--md-sys-color-on-surface-variant);
 }
 
+.card.card-clickable {
+    cursor: pointer;
+}
+
+.card-main-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+.card-main-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
 .card .icon {
     font-size: 2rem;
     margin-bottom: 0.5rem;
@@ -813,6 +829,8 @@ footer {
     background: transparent;
     width: fit-content;
     margin-top: 0.5rem;
+    position: relative;
+    z-index: 2;
 }
 
 .btn-outlined:hover {
