@@ -1,0 +1,418 @@
+<!-- QRZ 简介（mdui v1.0.2 官方组件库，CSS 已内联，无外部依赖）。改文案只改文字，类名和结构不要动。 -->
+<div class="qzr-bio">
+
+<style>.mdui-color-blue-100{background-color:#bbdefb!important;color:rgba(0,0,0,.87)!important}
+.mdui-color-blue-600{background-color:#1e88e5!important;color:#fff!important}
+.mdui-color-white{color:rgba(0,0,0,.87)!important;background-color:#fff!important}
+.mdui-color-transparent{background-color:transparent!important}
+.mdui-text-color-blue-600{color:#1e88e5!important}
+.mdui-text-color-black-secondary,.mdui-text-color-theme-secondary{color:rgba(0,0,0,.54)!important}
+.mdui-typo-display-4,.mdui-typo-display-4-opacity{font-weight:300;font-size:112px;letter-spacing:-.04em}
+.mdui-typo-display-4-opacity{opacity:.54}
+.mdui-typo-display-3,.mdui-typo-display-3-opacity{font-weight:400;font-size:56px;letter-spacing:-.02em}
+.mdui-typo-display-3-opacity{opacity:.54}
+.mdui-typo-display-2,.mdui-typo-display-2-opacity{font-weight:400;font-size:45px;letter-spacing:0}
+.mdui-typo-display-2-opacity{opacity:.54}
+.mdui-typo-display-1,.mdui-typo-display-1-opacity{font-weight:400;font-size:34px;letter-spacing:0}
+.mdui-typo-display-1-opacity{opacity:.54}
+.mdui-typo-headline,.mdui-typo-headline-opacity{font-weight:400;font-size:24px;-moz-osx-font-smoothing:grayscale}
+.mdui-typo-headline-opacity{opacity:.87}
+.mdui-typo-title,.mdui-typo-title-opacity{font-weight:500;font-size:20px;letter-spacing:.02em}
+.mdui-typo-title-opacity{opacity:.87}
+.mdui-typo-subheading,.mdui-typo-subheading-opacity{font-weight:400;font-size:16px;letter-spacing:.04em}
+.mdui-typo-subheading-opacity{opacity:.87}
+.mdui-typo-body-2,.mdui-typo-body-2-opacity{font-weight:500;font-size:14px;letter-spacing:.04em}
+.mdui-typo-body-2-opacity{opacity:.87}
+.mdui-typo-body-1,.mdui-typo-body-1-opacity{font-weight:400;font-size:14px;letter-spacing:.04em}
+.mdui-typo-body-1-opacity{opacity:.87}
+.mdui-typo-caption,.mdui-typo-caption-opacity{font-weight:400;font-size:12px;letter-spacing:.08em}
+.mdui-typo-caption-opacity{opacity:.54}
+.mdui-typo{line-height:1.8;word-wrap:break-word}
+.mdui-typo address,.mdui-typo caption,.mdui-typo cite,.mdui-typo code,.mdui-typo dfn,.mdui-typo th{font-weight:400;font-style:normal}
+.mdui-typo a{color:#ff4081;position:relative;display:inline-block;overflow:hidden;text-decoration:none;vertical-align:top;outline:0}
+.mdui-typo a::before{position:absolute;top:auto;bottom:1px;left:0;width:100%;height:1px;background-color:#ff4081;-webkit-transform:scaleX(0);transform:scaleX(0);-webkit-backface-visibility:hidden;backface-visibility:hidden;-webkit-transition:all .2s;transition:all .2s;content:' '}
+.mdui-typo a:focus::before,.mdui-typo a:hover::before{-webkit-transform:scaleX(1);transform:scaleX(1)}
+.mdui-typo abbr[title]{text-decoration:none;border-bottom:1px dotted;cursor:help}
+.mdui-theme-accent-amber .mdui-typo a{color:#ffd740}
+.mdui-theme-accent-amber .mdui-typo a::before{background-color:#ffd740}
+.mdui-theme-accent-blue .mdui-typo a{color:#448aff}
+.mdui-theme-accent-blue .mdui-typo a::before{background-color:#448aff}
+.mdui-theme-accent-cyan .mdui-typo a{color:#18ffff}
+.mdui-theme-accent-cyan .mdui-typo a::before{background-color:#18ffff}
+.mdui-theme-accent-deep-orange .mdui-typo a{color:#ff6e40}
+.mdui-theme-accent-deep-orange .mdui-typo a::before{background-color:#ff6e40}
+.mdui-theme-accent-deep-purple .mdui-typo a{color:#7c4dff}
+.mdui-theme-accent-deep-purple .mdui-typo a::before{background-color:#7c4dff}
+.mdui-theme-accent-green .mdui-typo a{color:#69f0ae}
+.mdui-theme-accent-green .mdui-typo a::before{background-color:#69f0ae}
+.mdui-theme-accent-indigo .mdui-typo a{color:#536dfe}
+.mdui-theme-accent-indigo .mdui-typo a::before{background-color:#536dfe}
+.mdui-theme-accent-light-blue .mdui-typo a{color:#40c4ff}
+.mdui-theme-accent-light-blue .mdui-typo a::before{background-color:#40c4ff}
+.mdui-theme-accent-light-green .mdui-typo a{color:#b2ff59}
+.mdui-theme-accent-light-green .mdui-typo a::before{background-color:#b2ff59}
+.mdui-theme-accent-lime .mdui-typo a{color:#eeff41}
+.mdui-theme-accent-lime .mdui-typo a::before{background-color:#eeff41}
+.mdui-theme-accent-orange .mdui-typo a{color:#ffab40}
+.mdui-theme-accent-orange .mdui-typo a::before{background-color:#ffab40}
+.mdui-theme-accent-pink .mdui-typo a{color:#ff4081}
+.mdui-theme-accent-pink .mdui-typo a::before{background-color:#ff4081}
+.mdui-theme-accent-purple .mdui-typo a{color:#e040fb}
+.mdui-theme-accent-purple .mdui-typo a::before{background-color:#e040fb}
+.mdui-theme-accent-red .mdui-typo a{color:#ff5252}
+.mdui-theme-accent-red .mdui-typo a::before{background-color:#ff5252}
+.mdui-theme-accent-teal .mdui-typo a{color:#64ffda}
+.mdui-theme-accent-teal .mdui-typo a::before{background-color:#64ffda}
+.mdui-theme-accent-yellow .mdui-typo a{color:#ff0}
+.mdui-theme-accent-yellow .mdui-typo a::before{background-color:#ff0}
+.mdui-collapse-item-body .mdui-list-item{padding-left:72px}
+.mdui-panel-item-actions .mdui-btn{margin-left:8px}
+.mdui-panel-item-actions .mdui-btn:first-child{margin-left:0}
+.mdui-btn,.mdui-fab{position:relative;display:inline-block;-webkit-box-sizing:border-box;box-sizing:border-box;min-width:88px;height:36px;margin:0;padding:0 16px;overflow:hidden;color:inherit;font-weight:500;font-size:14px;line-height:36px;letter-spacing:.04em;white-space:nowrap;text-align:center;text-transform:uppercase;text-decoration:none;vertical-align:middle;background:0 0;border:none;border-radius:2px;outline:0;cursor:pointer;-webkit-transition:all .2s cubic-bezier(.4,0,.2,1),-webkit-box-shadow .2s cubic-bezier(.4,0,1,1);transition:all .2s cubic-bezier(.4,0,.2,1),-webkit-box-shadow .2s cubic-bezier(.4,0,1,1);transition:all .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,1,1);transition:all .2s cubic-bezier(.4,0,.2,1),box-shadow .2s cubic-bezier(.4,0,1,1),-webkit-box-shadow .2s cubic-bezier(.4,0,1,1);-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-ms-touch-action:manipulation;touch-action:manipulation;will-change:box-shadow;zoom:1;-webkit-user-drag:none}
+.mdui-btn:hover,.mdui-fab:hover{background-color:rgba(0,0,0,.1)}
+.mdui-btn:not(.mdui-ripple):active,.mdui-fab:not(.mdui-ripple):active{background-color:rgba(0,0,0,.165)}
+.mdui-btn[class*=mdui-color-]:hover,.mdui-fab[class*=mdui-color-]:hover{opacity:.87}
+.mdui-btn:not(.mdui-ripple)[class*=mdui-color-]:active,.mdui-fab:not(.mdui-ripple)[class*=mdui-color-]:active{opacity:.76}
+.mdui-btn .mdui-icon-left,.mdui-btn .mdui-icon-left::before,.mdui-btn .mdui-icon-right,.mdui-btn .mdui-icon-right::before{height:inherit;font-size:1.3em;line-height:inherit}
+.mdui-btn .mdui-icon-left{float:left;margin-right:.4em}
+.mdui-btn .mdui-icon-right{float:right;margin-left:.4em}
+input.mdui-btn[type=submit]{-webkit-appearance:none;-moz-appearance:none;appearance:none}
+.mdui-btn-raised{-webkit-box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)}
+.mdui-btn-raised:hover{-webkit-box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12)}
+.mdui-btn-raised:active{-webkit-box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12);box-shadow:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12)}
+.mdui-btn[disabled],.mdui-btn[disabled]:active,.mdui-btn[disabled]:focus,.mdui-btn[disabled]:hover,.mdui-fab[disabled],.mdui-fab[disabled]:active,.mdui-fab[disabled]:focus,.mdui-fab[disabled]:hover{color:rgba(0,0,0,.26)!important;background-color:transparent!important;cursor:default!important;opacity:1!important;-webkit-box-shadow:none!important;box-shadow:none!important}
+.mdui-btn[disabled] .mdui-icon,.mdui-btn[disabled]:active .mdui-icon,.mdui-btn[disabled]:focus .mdui-icon,.mdui-btn[disabled]:hover .mdui-icon,.mdui-fab[disabled] .mdui-icon,.mdui-fab[disabled]:active .mdui-icon,.mdui-fab[disabled]:focus .mdui-icon,.mdui-fab[disabled]:hover .mdui-icon{color:rgba(0,0,0,.26)!important}
+.mdui-btn-raised[disabled],.mdui-btn-raised[disabled]:active,.mdui-btn-raised[disabled]:focus,.mdui-btn-raised[disabled]:hover,.mdui-fab[disabled],.mdui-fab[disabled]:active,.mdui-fab[disabled]:focus,.mdui-fab[disabled]:hover{background-color:rgba(0,0,0,.12)!important;-webkit-box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)!important;box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)!important}
+.mdui-btn-bold{font-weight:700}
+.mdui-btn-icon{width:36px;min-width:36px;height:36px;margin-right:0;margin-left:0;padding:0;overflow:hidden;font-size:24px;line-height:normal;border-radius:50%}
+.mdui-btn-icon .mdui-icon{position:absolute;top:50%;left:50%;width:24px;line-height:24px;-webkit-transform:translate(-12px,-12px);transform:translate(-12px,-12px)}
+.mdui-btn-icon.mdui-ripple{-webkit-transform:translateZ(0);transform:translateZ(0)}
+.mdui-btn-block{display:block;width:100%}
+.mdui-btn-dense{height:32px;font-size:13px;line-height:32px}
+.mdui-btn-dense.mdui-btn-icon{width:32px;min-width:32px}
+.mdui-btn-group{position:relative;display:inline-block;vertical-align:middle}
+.mdui-btn-group .mdui-btn{float:left;min-width:inherit;padding:0 12px;color:rgba(0,0,0,.54);border-radius:0}
+.mdui-btn-group .mdui-btn::before{position:absolute;top:0;bottom:0;left:0;border-left:1px solid transparent;content:' '}
+.mdui-btn-group .mdui-btn:first-child{border-top-left-radius:2px;border-bottom-left-radius:2px}
+.mdui-btn-group .mdui-btn:first-child::before{border-left:none}
+.mdui-btn-group .mdui-btn:last-child{border-top-right-radius:2px;border-bottom-right-radius:2px}
+.mdui-btn-group .mdui-btn.mdui-btn-active{color:rgba(0,0,0,.87);background-color:rgba(0,0,0,.215)}
+.mdui-btn-group .mdui-btn.mdui-btn-active+.mdui-btn-active::before{border-left:1px solid rgba(0,0,0,.145)}
+.mdui-toolbar{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-sizing:border-box;box-sizing:border-box;width:100%}
+.mdui-toolbar>*{margin:0 16px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.mdui-toolbar[class*=mdui-color-]:not(.mdui-color-transparent) .mdui-btn:hover{background-color:rgba(255,255,255,.1)}
+.mdui-toolbar[class*=mdui-color-]:not(.mdui-color-transparent) .mdui-btn:active{background-color:rgba(255,255,255,.165)}
+.mdui-toolbar>a{color:inherit;text-decoration:none;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}
+.mdui-toolbar>.mdui-btn-icon{width:48px;min-width:48px;height:48px}
+.mdui-toolbar>.mdui-btn-icon .mdui-icon{height:24px;line-height:24px}
+.mdui-toolbar .mdui-icon{color:inherit}
+.mdui-toolbar-spacer{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;margin:0}
+.mdui-toolbar{height:56px;line-height:56px}
+.mdui-toolbar>.mdui-btn{margin:0 4px}
+.mdui-toolbar>.mdui-btn+.mdui-btn{margin-left:0}
+.mdui-appbar .mdui-toolbar>.mdui-btn{margin:0 8px}
+.mdui-appbar .mdui-toolbar>.mdui-btn+.mdui-btn{margin-left:0}
+.mdui-appbar .mdui-toolbar>.mdui-btn{margin:0 4px}
+.mdui-appbar .mdui-toolbar>.mdui-btn+.mdui-btn{margin-left:0}
+.mdui-appbar{z-index:1000;-webkit-box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12)}
+.mdui-appbar-fixed{position:fixed;top:0;right:0;left:0;-webkit-transition-timing-function:cubic-bezier(0,0,.2,1);transition-timing-function:cubic-bezier(0,0,.2,1);-webkit-transition-duration:.3s;transition-duration:.3s;-webkit-transition-property:left,right;transition-property:left,right;will-change:left,right}
+.mdui-appbar-with-toolbar{padding-top:56px}
+.mdui-appbar-with-tab{padding-top:48px}
+.mdui-appbar-with-tab-larger{padding-top:72px}
+.mdui-appbar-with-toolbar.mdui-appbar-with-tab{padding-top:104px}
+.mdui-appbar-with-toolbar.mdui-appbar-with-tab-larger{padding-top:128px}
+.mdui-card{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box;overflow:hidden;color:#000;background-color:#fff;border-radius:2px;-webkit-box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)}
+.mdui-card-header{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box;height:72px;padding:16px}
+.mdui-card-header-avatar{float:left;width:40px;height:40px;border-radius:50%}
+.mdui-card-header-title{display:block;margin-left:52px;font-weight:500;font-size:16px;line-height:20px;opacity:.87;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.mdui-card-header-subtitle{display:block;margin-left:52px;font-weight:400;font-size:14px;line-height:20px;opacity:.54;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.mdui-card-primary{position:relative;padding:24px 16px 16px 16px}
+.mdui-card-primary-title{display:block;font-size:24px;line-height:36px;opacity:.87}
+.mdui-card-primary-subtitle{display:block;font-size:14px;line-height:24px;opacity:.54}
+.mdui-card-content{position:relative;padding:16px;font-size:14px;line-height:24px}
+.mdui-card-menu{position:absolute;top:16px;right:16px;z-index:1}
+.mdui-card-menu .mdui-btn{margin-left:8px}
+.mdui-card-actions{position:relative;-webkit-box-sizing:border-box;box-sizing:border-box;padding:8px}
+.mdui-card-actions::after,.mdui-card-actions::before{display:table;content:' '}
+.mdui-card-actions::after{clear:both}
+.mdui-card-actions::after,.mdui-card-actions::before{display:table;content:' '}
+.mdui-card-actions::after{clear:both}
+.mdui-card-actions .mdui-btn{max-width:100%;margin:0 8px 0 0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.mdui-card-actions .mdui-btn-icon{width:36px;height:36px;margin:0 8px}
+.mdui-card-actions-stacked .mdui-btn{display:block;margin:0 0 4px 0}
+.mdui-card-actions-stacked .mdui-btn:last-child{margin:0}
+.mdui-card-media{position:relative}
+.mdui-card-media img,.mdui-card-media video{display:block;width:100%}
+.mdui-card-media-covered{position:absolute;right:0;bottom:0;left:0;color:#fff;background:rgba(0,0,0,.2)}
+.mdui-card-media-covered .mdui-card-primary-title{opacity:1}
+.mdui-card-media-covered .mdui-card-primary-subtitle{opacity:.7}
+.mdui-card-media-covered-top{top:0;bottom:auto}
+.mdui-card-media-covered-transparent{background:0 0}
+.mdui-card-media-covered-gradient{background:-webkit-gradient(linear,left bottom,left top,from(rgba(0,0,0,.26)),to(rgba(0,0,0,0)));background:linear-gradient(to top,rgba(0,0,0,.26),rgba(0,0,0,0))}
+.mdui-card-media-covered-gradient.mdui-card-media-covered-top{background:-webkit-gradient(linear,left top,left bottom,from(rgba(0,0,0,.26)),to(rgba(0,0,0,0)));background:linear-gradient(to bottom,rgba(0,0,0,.26),rgba(0,0,0,0))}
+.mdui-tab[class*=mdui-color-]:not(.mdui-color-white) .mdui-tab-active{color:inherit}
+.mdui-tab[class*=mdui-color-]:not(.mdui-color-white) .mdui-tab-indicator{background-color:#fff}
+.mdui-tab[class*=mdui-color-]:not(.mdui-color-white)::-webkit-scrollbar{width:5px;height:5px;background:0 0}
+.mdui-tab[class*=mdui-color-]:not(.mdui-color-white)::-webkit-scrollbar-thumb{background:rgba(255,255,255,.3)}
+.mdui-grid-tile-buttons .mdui-btn{margin-left:8px}
+.mdui-grid-tile-buttons .mdui-btn:first-child{margin-left:0}
+.mdui-list{margin:0;padding:8px 0;list-style:none;background-color:transparent}
+.mdui-list .mdui-list{padding:0}
+.mdui-list>.mdui-divider,.mdui-list>.mdui-divider-dark,.mdui-list>.mdui-divider-inset,.mdui-list>.mdui-divider-inset-dark,.mdui-list>.mdui-divider-inset-light,.mdui-list>.mdui-divider-light{margin-top:8px;margin-bottom:8px}
+.mdui-list a{color:inherit;text-decoration:none}
+.mdui-list .mdui-subheader,.mdui-list .mdui-subheader-inset{margin-top:8px}
+.mdui-list .mdui-subheader-inset::before,.mdui-list .mdui-subheader::before{position:absolute;right:0;left:0;display:block;height:1px;background-color:rgba(0,0,0,.12);content:' '}
+.mdui-list .mdui-subheader-inset:first-child,.mdui-list .mdui-subheader:first-child{margin-top:-8px}
+.mdui-list .mdui-subheader-inset:first-child::before,.mdui-list .mdui-subheader:first-child::before{background-color:transparent}
+.mdui-list .mdui-subheader-inset::before{left:72px}
+.mdui-list-item{display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-box-sizing:border-box;box-sizing:border-box;min-height:48px;padding:0 16px;text-decoration:none;cursor:pointer;-webkit-transition:background-color .3s cubic-bezier(.4,0,.2,1);transition:background-color .3s cubic-bezier(.4,0,.2,1)}
+.mdui-list-item:hover{background-color:rgba(0,0,0,.08)}
+.mdui-list-item::after{height:48px;visibility:hidden;content:' '}
+.mdui-list-item-icon{width:24px;min-width:24px;height:24px;color:rgba(0,0,0,.54)}
+.mdui-list-item-avatar{min-width:40px;max-width:40px;height:40px;margin-top:8px;margin-bottom:8px;color:#fff;line-height:40px;text-align:center;background-color:#bdbdbd;border-radius:50%}
+.mdui-list-item-avatar img{width:100%;height:100%;border-radius:50%}
+.mdui-list-item-content{-webkit-box-flex:1;-ms-flex-positive:1;flex-grow:1;padding-top:14px;padding-bottom:14px;font-weight:400;font-size:16px;line-height:20px}
+.mdui-list-item-text{font-size:14px;opacity:.54}
+.mdui-list-item-title~.mdui-list-item-text{margin-top:4px}
+.mdui-list-item-active{font-weight:700;background-color:rgba(0,0,0,.08)}
+.mdui-list-item-active .mdui-list-item-content{font-weight:700}
+.mdui-list-item-active .mdui-list-item-text{font-weight:400}
+.mdui-list-item-one-line,.mdui-list-item-three-line,.mdui-list-item-two-line{display:-webkit-box;overflow:hidden;text-overflow:ellipsis;-webkit-box-orient:vertical}
+.mdui-list-item-one-line{-webkit-line-clamp:1;height:20px}
+.mdui-list-item-two-line{-webkit-line-clamp:2;height:40px}
+.mdui-list-item-three-line{-webkit-line-clamp:3;height:60px}
+.mdui-list-item-icon~.mdui-list-item-content{margin-left:24px}
+.mdui-checkbox~.mdui-list-item-content,.mdui-radio~.mdui-list-item-content,.mdui-switch~.mdui-list-item-content{margin-left:20px}
+.mdui-list-item-avatar~.mdui-list-item-content{margin-left:16px}
+.mdui-list-item-content~.mdui-checkbox,.mdui-list-item-content~.mdui-list-item-avatar,.mdui-list-item-content~.mdui-list-item-icon,.mdui-list-item-content~.mdui-radio,.mdui-list-item-content~.mdui-switch{margin-left:16px}
+.mdui-list-item-content~.mdui-checkbox,.mdui-list-item-content~.mdui-radio{padding-left:24px}
+.mdui-list-dense{padding:4px 0;font-size:13px}
+.mdui-list-dense>.mdui-divider,.mdui-list-dense>.mdui-divider-dark,.mdui-list-dense>.mdui-divider-inset,.mdui-list-dense>.mdui-divider-inset-dark,.mdui-list-dense>.mdui-divider-inset-light,.mdui-list-dense>.mdui-divider-light{margin-top:4px;margin-bottom:4px}
+.mdui-list-dense .mdui-subheader,.mdui-list-dense .mdui-subheader-inset{height:40px;margin-top:4px;font-size:12px;line-height:40px}
+.mdui-list-dense .mdui-subheader-inset:first-child,.mdui-list-dense .mdui-subheader:first-child{margin-top:-4px}
+.mdui-list-dense .mdui-list-item{min-height:40px}
+.mdui-list-dense .mdui-list-item::after{height:40px}
+.mdui-list-dense .mdui-list-item-icon{width:20px;height:20px;font-size:20px}
+.mdui-list-dense .mdui-list-item-avatar{width:36px;min-width:36px;height:36px;min-height:36px}
+.mdui-list-dense .mdui-list-item-content{padding-top:11px;padding-bottom:11px;font-size:13px;line-height:18px}
+.mdui-list-dense .mdui-list-item-text{font-size:13px}
+.mdui-list-dense .mdui-list-item-title~.mdui-list-item-text{margin-top:2px}
+.mdui-list-dense .mdui-list-item-one-line{height:18px}
+.mdui-list-dense .mdui-list-item-two-line{height:36px}
+.mdui-list-dense .mdui-list-item-three-line{height:54px}
+[class*=mdui-color-] .mdui-list-item{color:inherit}
+[class*=mdui-color-] .mdui-list-item-icon{color:inherit}
+.mdui-appbar-with-toolbar .mdui-drawer{top:64px}
+.mdui-appbar-with-tab .mdui-drawer{top:48px}
+.mdui-appbar-with-tab-larger .mdui-drawer{top:72px}
+.mdui-appbar-with-toolbar.mdui-appbar-with-tab .mdui-drawer{top:112px}
+.mdui-appbar-with-toolbar.mdui-appbar-with-tab-larger .mdui-drawer{top:136px}
+.mdui-drawer[class*=mdui-color-]:not(.mdui-color-transparent){-webkit-box-shadow:0 8px 10px -5px rgba(0,0,0,.2),0 16px 24px 2px rgba(0,0,0,.14),0 6px 30px 5px rgba(0,0,0,.12);box-shadow:0 8px 10px -5px rgba(0,0,0,.2),0 16px 24px 2px rgba(0,0,0,.14),0 6px 30px 5px rgba(0,0,0,.12)}
+.mdui-dialog-actions .mdui-btn{min-width:64px;margin-left:8px;color:#e91e63}
+.mdui-dialog-actions .mdui-btn:first-child{margin-left:0}
+.mdui-dialog-actions-stacked .mdui-btn{width:100%;height:48px;margin:0;line-height:48px!important;text-align:right;border-radius:0}
+.mdui-theme-accent-amber .mdui-dialog-actions .mdui-btn{color:#ffc107}
+.mdui-theme-accent-blue .mdui-dialog-actions .mdui-btn{color:#2196f3}
+.mdui-theme-accent-cyan .mdui-dialog-actions .mdui-btn{color:#00bcd4}
+.mdui-theme-accent-deep-orange .mdui-dialog-actions .mdui-btn{color:#ff5722}
+.mdui-theme-accent-deep-purple .mdui-dialog-actions .mdui-btn{color:#673ab7}
+.mdui-theme-accent-green .mdui-dialog-actions .mdui-btn{color:#4caf50}
+.mdui-theme-accent-indigo .mdui-dialog-actions .mdui-btn{color:#3f51b5}
+.mdui-theme-accent-light-blue .mdui-dialog-actions .mdui-btn{color:#03a9f4}
+.mdui-theme-accent-light-green .mdui-dialog-actions .mdui-btn{color:#8bc34a}
+.mdui-theme-accent-lime .mdui-dialog-actions .mdui-btn{color:#cddc39}
+.mdui-theme-accent-orange .mdui-dialog-actions .mdui-btn{color:#ff9800}
+.mdui-theme-accent-pink .mdui-dialog-actions .mdui-btn{color:#e91e63}
+.mdui-theme-accent-purple .mdui-dialog-actions .mdui-btn{color:#9c27b0}
+.mdui-theme-accent-red .mdui-dialog-actions .mdui-btn{color:#f44336}
+.mdui-theme-accent-teal .mdui-dialog-actions .mdui-btn{color:#009688}
+.mdui-theme-accent-yellow .mdui-dialog-actions .mdui-btn{color:#ffeb3b}
+.mdui-chip{display:inline-block;-webkit-box-sizing:border-box;box-sizing:border-box;height:32px;margin:2px 0;color:inherit;white-space:nowrap;background-color:#e0e0e0;border-radius:16px;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;-webkit-transition:-webkit-box-shadow .25s cubic-bezier(.4,0,.2,1);transition:-webkit-box-shadow .25s cubic-bezier(.4,0,.2,1);transition:box-shadow .25s cubic-bezier(.4,0,.2,1);transition:box-shadow .25s cubic-bezier(.4,0,.2,1),-webkit-box-shadow .25s cubic-bezier(.4,0,.2,1);will-change:box-shadow}
+.mdui-chip:focus,.mdui-chip:hover{-webkit-box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12);box-shadow:0 3px 1px -2px rgba(0,0,0,.2),0 2px 2px 0 rgba(0,0,0,.14),0 1px 5px 0 rgba(0,0,0,.12)}
+.mdui-chip:active{background-color:#d6d6d6}
+.mdui-chip-icon{position:relative;display:inline-block;width:32px;height:32px;margin-right:-4px;overflow:hidden;color:#fff;font-size:18px;line-height:32px;text-align:center;vertical-align:middle;background-color:#989898;border-radius:50%}
+.mdui-chip-icon .mdui-icon{position:absolute;top:4px;left:4px;color:#fff}
+.mdui-chip-title{display:inline-block;height:32px;padding-right:12px;padding-left:12px;font-size:14px;line-height:32px;vertical-align:middle}
+.mdui-chip-delete{display:inline-block;width:24px;height:24px;margin-right:4px;margin-left:-8px;overflow:hidden;text-align:center;text-decoration:none;vertical-align:middle;border-radius:50%;cursor:pointer;opacity:.54;-webkit-transition:opacity .25s cubic-bezier(.4,0,.2,1);transition:opacity .25s cubic-bezier(.4,0,.2,1);will-change:opacity}
+.mdui-chip-delete:focus,.mdui-chip-delete:hover{opacity:.87}
+
+/* ---- 本站微调（自包含，零外部依赖） ----
+   1. 配色对齐 stevezmt.top 首页主色 #0066cc（mdui 默认是 #1e88e5）；
+   2. 列表项：图标与首行标题左对齐到同一条基线（mdui 默认把图标居中到整个
+      条目高度，两行文本时图标会掉到标题与副文字之间）；
+   3. 纯 CSS 点击波纹：QRZ 的沙盒 iframe 没有 allow-scripts，mdui 的 JS 波纹
+      不会执行，所以用 :active + keyframes 做等价替代，波纹直径覆盖整个控件；
+   4. 按钮不强制大写（eQSL 是品牌写法）；
+   5. 压掉 QRZ 注入的 #biodata a{font-weight:700;text-decoration:underline}。 */
+body {
+    margin: 0;
+    font-family: Roboto, "Segoe UI", -apple-system, "Helvetica Neue",
+                 "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+.qzr-bio .mdui-card { margin-bottom: 8px; }
+.qzr-bio .mdui-appbar.mdui-color-blue-600 { background-color: #0066cc !important; }
+.qzr-bio .mdui-btn-raised.mdui-color-blue-600 { background-color: #0066cc !important; }
+.qzr-bio .mdui-text-color-blue-600 { color: #0066cc !important; }
+.qzr-bio .mdui-typo a { color: #0066cc; }
+.qzr-bio .mdui-typo a::before { background-color: #0066cc; }
+
+/* 列表：图标与文本块一起垂直居中（两行文本时图标位于条目正中） */
+.qzr-bio .mdui-list-item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+.qzr-bio .mdui-list-item-icon {
+    -ms-flex-negative: 0;
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    margin-top: 0;
+    -ms-flex-item-align: center;
+    align-self: center;
+}
+.qzr-bio .mdui-list-item-icon svg { display: block; }
+.qzr-bio .mdui-list-item-content {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.qzr-bio .mdui-list-item-title {
+    font-size: 16px;
+    line-height: 24px;
+}
+.qzr-bio .mdui-list-item-text {
+    margin-top: 2px;
+    line-height: 20px;
+}
+
+.qzr-bio a { font-weight: 500 !important; text-decoration: none !important; }
+.qzr-bio .mdui-btn { text-transform: none; }
+
+/* 纯 CSS 波纹：直径取控件宽度的 150%，保证盖住整个面积（88×32 的对角线约 94）。
+   节奏按 MD 规范：快速扩张并保持可见，最后 40% 才淡出；只在真正可点击的
+   元素上启用（模式 chip 是静态标签，不接线、不给波纹）。 */
+.qzr-bio .mdui-btn { position: relative; overflow: hidden; }
+.qzr-bio .mdui-btn::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 0;
+    padding-bottom: 150%;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.55);
+    opacity: 0;
+    -webkit-transform: translate(-50%, -50%) scale(0);
+    transform: translate(-50%, -50%) scale(0);
+    pointer-events: none;
+}
+.qzr-bio .mdui-btn:not(.mdui-color-blue-600)::after { background: rgba(0, 102, 204, 0.22); }
+.qzr-bio .mdui-btn:active::after {
+    -webkit-animation: qzr-ripple 0.45s ease-out forwards;
+    animation: qzr-ripple 0.45s ease-out forwards;
+}
+@-webkit-keyframes qzr-ripple {
+    0% { opacity: 0.5; -webkit-transform: translate(-50%, -50%) scale(0); transform: translate(-50%, -50%) scale(0); }
+    60% { opacity: 0.42; -webkit-transform: translate(-50%, -50%) scale(0.9); transform: translate(-50%, -50%) scale(0.9); }
+    100% { opacity: 0; -webkit-transform: translate(-50%, -50%) scale(1); transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes qzr-ripple {
+    0% { opacity: 0.5; transform: translate(-50%, -50%) scale(0); }
+    60% { opacity: 0.42; transform: translate(-50%, -50%) scale(0.9); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* 模式 chip 与设备列表都只是静态信息，不做按钮语义 */
+.qzr-bio .mdui-chip { cursor: default; }
+.qzr-bio .mdui-list-item { cursor: default; }
+</style>
+
+<!-- ================= 顶栏 ================= -->
+<div class="mdui-appbar mdui-color-blue-600">
+    <div class="mdui-toolbar">
+        <span class="mdui-typo-title">BG5GKY</span>
+        <span class="mdui-typo-caption">Hangzhou, Zhejiang &middot; PM00be</span>
+        <div class="mdui-toolbar-spacer"></div>
+        <span class="mdui-typo-caption">Class A</span>
+    </div>
+</div>
+
+<!-- ================= 关于 ================= -->
+<div class="mdui-card">
+    <div class="mdui-card-content mdui-typo">
+        <p class="mdui-typo-body-1" style="margin:0">Steve ZMT &mdash; hobbyist developer, mostly Android, the web and open source. Kotlin, Python and Rust at the moment.</p>
+        <p class="mdui-typo-body-1" style="margin:8px 0 0">On the air I listen more than I talk: 2&nbsp;m and 70&nbsp;cm FM on a handheld, an SDR for everything else. The station is small on purpose.</p>
+        <p class="mdui-typo-body-1 mdui-text-color-black-secondary" style="margin:10px 0 0">业余开发者，平时折腾 Android、Web 和开源，最近在学 Kotlin、Python 和 Rust。手台守 2 米和 70 厘米，其余交给 SDR。设备刻意从简。</p>
+    </div>
+</div>
+
+<!-- ================= 设备 ================= -->
+<div class="mdui-card">
+    <ul class="mdui-list">
+        <li class="mdui-list-item">
+            <span class="mdui-list-item-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M3.24 6.15C2.51 6.43 2 7.17 2 8v12c0 1.1.89 2 2 2h16c1.11 0 2-.9 2-2V8c0-1.11-.89-2-2-2H8.3l8.26-3.34L15.88 1 3.24 6.15zM7 20c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm13-8h-2v-2h-2v2H4V8h16v4z"/></svg>
+            </span>
+            <div class="mdui-list-item-content">
+                <div class="mdui-list-item-title">Quansheng UV-K6</div>
+                <div class="mdui-list-item-text">Handheld &middot; LOSEHU132H firmware &middot; stock antenna &middot; 5&nbsp;W max</div>
+            </div>
+        </li>
+        <li class="mdui-list-item">
+            <span class="mdui-list-item-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 5c-3.87 0-7 3.13-7 7h2c0-2.76 2.24-5 5-5s5 2.24 5 5h2c0-3.87-3.13-7-7-7zm1 9.29c.88-.39 1.5-1.26 1.5-2.29 0-1.38-1.12-2.5-2.5-2.5S9.5 10.62 9.5 12c0 1.02.62 1.9 1.5 2.29v3.3L7.59 21 9 22.41l3-3 3 3L16.41 21 13 17.59v-3.3zM12 1C5.93 1 1 5.93 1 12h2c0-4.97 4.03-9 9-9s9 4.03 9 9h2c0-6.07-4.93-11-11-11z"/></svg>
+            </span>
+            <div class="mdui-list-item-content">
+                <div class="mdui-list-item-title">RTL-SDR Blog v4</div>
+                <div class="mdui-list-item-text">Receive only &middot; spectrum listening</div>
+            </div>
+        </li>
+        <li class="mdui-list-item">
+            <span class="mdui-list-item-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" fill="currentColor"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z"/></svg>
+            </span>
+            <div class="mdui-list-item-content">
+                <div class="mdui-list-item-title">UHF transmit Inactive</div>
+                <div class="mdui-list-item-text">Off &mdash; local rules make that band receive-only</div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<!-- ================= 工作模式 ================= -->
+<div class="mdui-card">
+    <div class="mdui-card-content">
+        <span class="mdui-chip mdui-color-blue-100"><span class="mdui-chip-title">NFM &middot; TX/RX</span></span>
+        <span class="mdui-chip"><span class="mdui-chip-title">AM &middot; RX Only</span></span>
+        <span class="mdui-chip"><span class="mdui-chip-title">CW &middot; RX Only</span></span>
+        <span class="mdui-chip"><span class="mdui-chip-title">USB &middot; RX Only</span></span>
+        <span class="mdui-chip"><span class="mdui-chip-title">LSB &middot; RX Only</span></span>
+        <p class="mdui-typo-caption mdui-text-color-black-secondary" style="margin:10px 0 0">Only NFM transmits; everything else is receive-only.</p>
+    </div>
+</div>
+
+<!-- ================= QSL ================= -->
+<div class="mdui-card">
+    <div class="mdui-card-content">
+        <p class="mdui-typo-body-1" style="margin:0">eQSL only &mdash; no paper cards, no Mailbox.</p>
+        <p class="mdui-typo-body-1 mdui-text-color-black-secondary" style="margin:4px 0 0">只走 eQSL，无纸质卡、无邮箱。</p>
+    </div>
+    <div class="mdui-card-actions">
+        <a class="mdui-btn mdui-btn-dense mdui-btn-raised mdui-color-blue-600" href="https://www.eqsl.cc" target="_blank" rel="noopener">eQSL</a>
+        <a class="mdui-btn mdui-btn-dense mdui-text-color-blue-600" href="mailto:me@stevezmt.top" target="_blank" rel="noopener">E-Mail</a>
+        <a class="mdui-btn mdui-btn-dense mdui-text-color-blue-600" href="https://stevezmt.top" target="_blank" rel="noopener">Website</a>
+    </div>
+</div>
+
+<!-- ================= 页脚 ================= -->
+<div class="mdui-typo mdui-typo-caption mdui-text-color-black-secondary" style="margin:4px 0 0;text-align:center">
+    73 de BG5GKY &middot; <a href="https://stevezmt.top" target="_blank" rel="noopener">stevezmt.top</a>
+</div>
+
+</div>

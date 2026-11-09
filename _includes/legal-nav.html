@@ -1,0 +1,1 @@
+<p class="legal-nav">{% for item in site.data.legal_nav %}<a href="{{ item.href | relative_url }}">{{ item.label }}</a>{% unless forloop.last %} · {% endunless %}{% endfor %}</p>

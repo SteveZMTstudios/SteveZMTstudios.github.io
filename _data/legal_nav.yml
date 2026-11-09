@@ -1,0 +1,15 @@
+- id: support
+  label: 许可
+  href: /support/
+- id: terms
+  label: 条款
+  href: /terms/
+- id: refund
+  label: 退款
+  href: /refund/
+- id: privacy
+  label: 隐私
+  href: /privacy/
+- id: contact
+  label: 联系
+  href: /contact/

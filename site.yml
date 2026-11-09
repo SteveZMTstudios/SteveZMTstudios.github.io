@@ -1,0 +1,426 @@
+# ============================================================
+# 首页 / 旧版页的唯一内容源
+#
+# 改这里，然后运行：
+#     npm run build
+#
+# 会生成：
+#     index.html
+#     k/index.html
+#     assets/js/home-i18n.js
+#
+# 不要直接改上面三个生成文件，构建会覆盖它们。
+# ============================================================
+
+meta:
+  title:
+    zh: "Steve ZMT | 史蒂夫ZMT - 开源爱好者与业余开发者"
+    en: "Steve ZMT | Hobbyist developer & open-source enthusiast"
+  description:
+    zh: "SteveZMTstudios - 热爱Android和开源的业余开发者，提供博客、项目展示和技术资源分享。"
+    en: "SteveZMTstudios - A hobbyist developer who loves Android and open source, sharing blogs, projects and technical resources."
+  keywords: "Steve ZMT, 开源开发者, Android, 博客, 项目, 技术分享"
+  author: "Steve ZMT"
+  ogTitle: "Steve ZMT | 史蒂夫ZMT - 开源爱好者"
+  ogDescription: "热爱Android和开源的业余开发者，分享技术博客和精选项目。"
+  ogImage: "https://blog.stevezmt.top/images/avatar.jpg"
+  url: "https://stevezmt.top/"
+  twitterCard: "summary_large_image"
+  favicon: "favicon.png"
+  analyticsId: "G-BKKFYGH94N"
+
+header:
+  logoIcon: "terminal"
+  logoText: "SteveZMTstudios"
+
+links:
+  github: "https://github.com/stevezmtstudios"
+  blog: "https://blog.stevezmt.top"
+  blogLegacy: "//blog.stevezmt.top/k"
+
+profile:
+  name:
+    zh: "史蒂夫ZMT工作室"
+    en: "SteveZMTstudios"
+  bio:
+    zh: "Steve ZMT. 熟悉 Android Web 和开源的业余乐子人，最近在研究 Kotlin Python 和 Rust。"
+    en: "Steve ZMT. A hobbyist developer passionate about Android and open source."
+  avatar: "https://blog.stevezmt.top/images/avatar.jpg"
+  avatarHover: "https://blog.stevezmt.top/images/avatar_ciallo.jpg"
+  avatarSmall: "//blog.stevezmt.top/images/avatar.jpg@128x128.jpg"
+
+hero:
+  typingLines:
+    - "Welcome! 💜"
+    - "I am Steve ZMT..."
+    - "Nice to meet you!"
+    - "I am a hobbyist developer."
+    - "Check out my website!"
+  typingLabel: "I am a hobbyist developer."
+  socials:
+    - href: "https://space.bilibili.com/474130186"
+      alt: "Bilibili"
+      image: "https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.bilibili.com%2Fx%2Frelation%2Fstat%3Fvmid%3D474130186&query=%24.data.follower&logo=bilibili&logoColor=pink&label=Bilibili&suffix=%20Subs&color=pink"
+    - href: "https://github.com/stevezmtstudios"
+      alt: "GitHub"
+      image: "https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fapi.swo.moe%2Fstats%2Fgithub%2Fstevezmtstudios&query=count&color=181717&label=GitHub&labelColor=282c34&logo=github&suffix=+follows&cacheSeconds=3600"
+    # - href: "/support/"
+    #   alt: "Commercial licence via Stripe"
+    #   image: "https://img.shields.io/badge/Stripe-Licence-635bff?style=plastic&logo=stripe&logoColor=white"
+    - href: "https://afdian.com/a/stevezmtstudios"
+      alt: "Afdian"
+      image: "https://img.shields.io/badge/afdian-Support-946ce6?style=plastic&label=afdian"
+    - href: "https://github.com/sponsors/SteveZMTstudios"
+      alt: "GitHub Sponsors"
+      image: "https://img.shields.io/badge/GitHub%20Sponsors-Support-ea4aaa?style=plastic&logo=githubsponsors&logoColor=white"
+    - href: "https://xdaforums.com/m/stevezmtstudios.12514307"
+      alt: "xdaforums"
+      image: "https://img.shields.io/badge/xdaforums-stevezmtstudioS-%232DA8E7?logo=xdadevelopers&logoColor=white&color=%232DA8E7"
+    - href: "https://www.coolapk.com/u/22536770"
+      alt: "Coolapk"
+      image: "https://img.shields.io/badge/Coolapk-%E5%8F%B2%E8%92%82%E5%A4%ABZMT-lightgreen?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB0PSIxNzk0MjI5NDQ0ODk1IiBjbGFzcz0iaWNvbiIgdmlld0JveD0iMCAwIDEwMjQgMTAyNCIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHAtaWQ9IjU5OTkiIHdpZHRoPSIyNTYiIGhlaWdodD0iMjU2Ij48cGF0aCBkPSJNNDUuODM2NzY3OTkgNDA4LjQzNjkzODY4YzM2LjMxMTc5ODUyLTgxLjI5NzAwMzg2IDExNC42OTYwOTEyNy0xNDEuNjIyNDg2NTEgMjAxLjk0Nzk3MDM3LTE1OC4xOTI1NzcyIDY3LjcwNDM1MjAxLTExLjY1MDg0NDQ1IDEzNy4wOTE2MDI5NyA2LjE0OTA1NzE5IDE5Ni41MTA5MDk2MyAzOC43NzE0MjE2MyA1MC40MjIyNjYwOCAyNS42OTY1ODQyOSA5NC44ODk2NTU3MSA2MS40MjU4NDA1OSAxMzUuNjAyODg0NzYgMTAwLjQ1NjE2OTQ4LTE5LjYxMjI1NDgyIDIyLjMzMDc4NTE4LTQ3LjQ0NDgyNzI1IDM1LjAxNzI1OTg0LTY5Ljc3NTYxMzY1IDU0LjMwNTg4MDktNTUuOTg4Nzc5ODQtNDcuMTg1OTItMTE3LjI4NTE2NzQxLTk0LjMwNzExMzQ5LTE5MS43MjExMTc2Mi0xMDUuNjk5MDUwNjgtOTUuNzk1ODMxNjktMTUuOTg3NTQ3MjUtMTkyLjQzMzExNDA4IDU5Ljc0Mjk0MTY0LTIwNi45MzE5NDMxMiAxNTQuMzA4OTYyMzctMTAuNTUwNDg2NTEgNTUuNzI5ODcyNTkgMTIuMjk4MTEzMTcgMTE0Ljg5MDI3MjAxIDU0LjgyMzY5NjYyIDE1MS41OTA0MzIwMSA0OC4xNTY4MjM3IDQyLjQ2MDg1NTcxIDExNy45OTcxNjM4NiA1NC4xMTE3MDAxNiAxNzkuMTY0MDk1OTcgMzcuOTI5OTcwOTYgNjkuOTA1MDY2NjctMTYuODkzNzI0NDUgMTIzLjc1Nzg1ODM2LTY5LjI1Nzc5Nzk0IDE2Ni4wODkyNjEwNi0xMjQuNzI4NzYyMDcgNjUuNjMzMDkwMzctODcuNTEwNzg3NTYgMTIwLjM5MjA1OTI1LTE4Mi41Mjk4OTYzIDE3OS40MjMwMDQ0NC0yNzQuNDQyMTE0MzkgMTYuODkzNzI0NDUtMjMuMjM2OTYyMzggNTcuNTQyMjI1NzctMjAuOTA2NzkzNDkgNzEuMjY0MzMxODYgNC42NjAzMzc3OCA3Ny4yMTkyMDgzMSAxMzIuMzAxODEwOTUgMTUzLjAxNDQyMzcgMjY1LjQ0NTA3MjU5IDIzMC4xMDQxNzc3NyAzOTcuODExNjExMjggOS4xOTEyMjEzMiAxOC4zMTc3MTYxNCA1LjM3MjMzNDIzIDQzLjQzMTc1OTQxLTExLjY1MDg0NDQ0IDU1Ljk4ODc3OTg0LTE1Ljg1ODA5NDIzIDEyLjg4MDY1NTM5LTQwLjQ1NDMyMDU5IDEyLjQyNzU2NzQxLTU1Ljk4ODc4MTA1LTAuODQxNDQ5NDgtOTEuNTg4NTgzMTEtNjUuNjk3ODE2ODktMTgzLjExMjQzODUyLTEzMS41MjUwODc5OS0yNzQuNTA2ODM5NjktMTk3LjQ4MTgxMzMzIDIyLjkxMzMyNzQxLTE4LjI1Mjk4OTYzIDQ2LjYwMzM3Nzc4LTM1LjU5OTgwMjA2IDcwLjM1ODE1NDY1LTUyLjc1MjQzNDk3IDI4LjgwMzQ3NjE0IDE1LjY2MzkxMzQ5IDUzLjE0MDc5NjQ1IDQwLjI2MDEzOTg0IDg0LjQ2ODYyMjIzIDUwLjU1MTcyMDMtMjQuNzI1NjgwNTktNDguMDI3MzY5NDctNTIuOTQ2NjE1NzEtOTQuMzA3MTEzNDktODAuNTIwMjgwODktMTQwLjcxNjMxMDUyLTUxLjc4MTUzMTI3IDcxLjc4MjE0NzU2LTkzLjUzMDM5MDUzIDE1MC43NDg5ODEzMi0xNDkuNDU0NDQyNjYgMjE5Ljc0Nzg3MjAyLTU4LjE4OTQ5NTcxIDc2LjExODg1MDM3LTEzOS43NDU0MDY4MyAxNDEuMDM5OTQ0MjktMjM3LjAyOTk1NzkzIDE1NS4wMjA5NTc2MS00Ny4xODU5MiA0LjE0MjUyMjA2LTk2LjI0ODkyMDkgNS4xMTM0MjU3Ny0xNDEuMjM0MTI1MDMtMTIuMTAzOTMyNDQtNjQuOTIxMDkzOTItMjMuMjM2OTYyMzgtMTIxLjc1MTMyNDQ1LTcxLjI2NDMzMTg1LTE1MS4yMDIwNzA1Mi0xMzQuMTc4ODkxODQtMzQuMjQwNTM2ODktNjguMDkyNzEzNDktMzIuNDkyOTEwMjItMTUxLjcxOTg4NTAyIDAuMjU4OTA3MjQtMjIwLjAwNjc3OTI2eiIgcC1pZD0iNjAwMCIgZmlsbD0iI2ZmZmZmZiI%2BPC9wYXRoPjwvc3ZnPg%3D%3D&logoColor=white"
+    - href: "https://t.me/stevezmt"
+      alt: "Telegram"
+      image: "https://img.shields.io/badge/dynamic/json?logo=telegram&logoColor=white&label=%40stevezmt&labelColor=282c34&suffix=+members&color=2CA5E0&query=%24.data.totalSubs&url=https%3A%2F%2Fapi.spencerwoo.com%2Fsubstats%2F%3Fsource%3Dtelegram%26queryKey%3Dstevezmt&longCache=true"
+    - href: "https://www.zhihu.com/people/zhang-xian-sheng-70-9"
+      alt: "Zhihu"
+      image: "https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fwww.zhihu.com%2Fapi%2Fv4%2Fmembers%2Fzhang-xian-sheng-70-9%3Finclude%3Dvoteup_count&query=%24.voteup_count&suffix=%20%E6%AC%A1%E8%B5%9E%E5%90%8C&logo=zhihu&logoColor=white&label=%E7%9F%A5%E4%B9%8E&cacheSeconds=3600"
+    - href: "https://steamcommunity.com/id/stevezmt/"
+      alt: "Steam"
+      image: "https://img.shields.io/badge/Steam-%E5%8F%B2%E8%92%82%E5%A4%ABZMT-blue?logo=steam&logoColor=white"
+    - href: "https://www.qrz.com/db/bg5gky"
+      alt: "QRZ"
+      image: "https://img.shields.io/badge/Callsign-BG5GKY-green?logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgaGVpZ2h0PSIyNHB4IiB3aWR0aD0iMjRweCIgZmlsbD0iI2UzZTNlMyI%2BPHBhdGggZD0iTTEsMTJRMSw5LjcgMS44Niw3LjdUNC4yMyw0LjIxdDMuNS0yLjM1VDEyLDFxMi4yOCwwIDQuMjgsMC44NnQzLjUsMi4zNVQyMi4xNCw3LjdUMjMsMTJIMjFxMC0xLjg4LTAuNzEtMy41MVQxOC4zNSw1LjYzVDE1LjQ5LDMuN1QxMiwzVDguNTEsMy43VDUuNjUsNS42M1QzLjcxLDguNDlUMywxMkgxWm00LDBRNSw5LjA1IDcuMDUsNy4wMlQxMiw1dDQuOTUsMi4wMlQxOSwxMkgxN3EwLTIuMDgtMS40Ni0zLjU0VDEyLDdROS45Myw3IDguNDYsOC40NlQ3LDEySDVaTTksMjIuNEw3LjYsMjFMMTEsMTcuNlYxNC4zUTEwLjMzLDE0IDkuOTEsMTMuMzhUOS41LDEycTAtMS4wNSAwLjczLTEuNzhUMTIsOS41dDEuNzgsMC43MlQxNC41LDEycTAsMC43NS0wLjQxLDEuMzhUMTMsMTQuM3YzLjNMMTYuNCwyMUwxNSwyMi40bC0zLTNsLTMsM1oiLz48L3N2Zz4%3D&logoColor=white"
+
+sections:
+  updates:
+    title:
+      zh: "我的动态"
+      en: "Updates"
+    icon: "rss_feed"
+    items:
+      - id: "blog"
+        href: "https://blog.stevezmt.top"
+        icon: "auto_stories"
+        title:
+          zh: "老史尬侃 博客"
+          en: "Steve ZMT's Blog"
+        desc:
+          zh: "这家伙叽里咕噜说什么呢。"
+          en: "What is this guy babbling about?"
+      - id: "phigros"
+        href: "https://stevezmt.top/Phigros-history"
+        icon: "library_books"
+        title:
+          zh: "Phigros 历史版本收集"
+          en: "Phigros Historical Versions Collection"
+        desc:
+          zh: "可能是最全的 Phigros 旧版本收集"
+          en: "Possibly the most comprehensive collection of Phigros old versions"
+      - id: "ca"
+        href: "https://ca-update.stevezmt.top/"
+        icon: "verified"
+        title:
+          zh: "CA 证书同步"
+          en: "CA Certificate Sync"
+        desc:
+          zh: "收集根证书颁发机构的CA证书，用于更新部分旧式浏览器和系统内置证书库。"
+          en: "Collect CA certificates from root certificate authorities for updating legacy browsers and systems."
+      - id: "sharepoint"
+        href: "/sharepoint"
+        icon: "cloud_sync"
+        title:
+          zh: "资源共享"
+          en: "Resource Sharing"
+        desc:
+          zh: "访问我的资源共享空间。"
+          en: "Access my shared resources."
+
+  featured:
+    title:
+      zh: "精选项目"
+      en: "Featured Projects"
+    icon: "code"
+
+  allProjects:
+    title:
+      zh: "更多项目"
+      en: "More Projects"
+    icon: "list"
+
+  support:
+    title:
+      zh: "支持与许可"
+      en: "Support & Licensing"
+    icon: "volunteer_activism"
+    items:
+      - id: afdian
+        icon: "favorite"
+        title:
+          zh: "爱发电"
+          en: "Afdian"
+        desc:
+          zh: "通过爱发电以捐赠我的工作。"
+          en: "Just want to support me? Use Afdian."
+        cta:
+          zh: "前往爱发电"
+          en: "Go to Afdian"
+        href: "https://afdian.com/a/stevezmtstudios"
+      - id: sponsors
+        icon: "handshake"
+        title:
+          zh: "GitHub Sponsors"
+          en: "GitHub Sponsors"
+        desc:
+          zh: "通过 GitHub Sponsors 捐赠支持我的开源工作。"
+          en: "Support my open-source work via GitHub Sponsors."
+        cta:
+          zh: "前往 GitHub Sponsors"
+          en: "Go to GitHub Sponsors"
+        href: "https://github.com/sponsors/SteveZMTstudios"
+      - id: licence
+        icon: "sell"
+        title:
+          zh: "额外商业许可"
+          en: "Additional Commercial Licence"
+        desc:
+          zh: "在开源许可证之外购买额外商业许可与技术支持。"
+          en: "Buy an additional commercial licence from HK$35."
+        cta:
+          zh: "查看许可"
+          en: "View licences"
+        href: "/support/"
+
+  academic:
+    title:
+      zh: "学术与演讲"
+      en: "Academic & Speeches"
+    icon: "school"
+    items:
+      - icon: "mic"
+        title:
+          zh: "近期演讲"
+          en: "Recent Speeches"
+        text:
+          zh: "滚木"
+          en: "TBD"
+      - icon: "description"
+        title:
+          zh: "学术论文"
+          en: "Academic Papers"
+        text:
+          zh: "滚木"
+          en: "TBD"
+
+  contact:
+    title:
+      zh: "与我联系"
+      en: "Contact Me"
+    icon: "contact_mail"
+    items:
+      - id: "email"
+        kind: "email"
+        icon: "mail"
+        title: "Email / iMessage"
+        href: "mailto:me@stevezmt.top"
+        text: "me@stevezmt.top"
+        pgp:
+          href: "https://key.stevezmt.top/"
+          label:
+            zh: "PGP 公钥"
+            en: "PGP Keys"
+      - id: "rcs"
+        kind: "link"
+        icon: "sms"
+        title: "RCS"
+        href: "sms:+37257243638"
+        text: "+372 5724 3638"
+        note:
+          zh: "普通短信和拨号可能导致收取高昂的费用。"
+          en: "Standard SMS and calls may incur high charges."
+      - id: "gravatar"
+        kind: "link"
+        icon: "account_circle"
+        title: "Gravatar"
+        href: "https://gravatar.com/stevezmt"
+        text: "View Profile"
+      - id: "telegram"
+        kind: "link"
+        icon: "send"
+        title: "Telegram"
+        href: "https://t.me/stevezmt"
+        text: "@stevezmt"
+
+  stats:
+    images:
+      - src: "https://githubstat.vercel.miniproj.stevezmt.top/api?username=stevezmtstudios&show=discussions_started,prs_merged_percentage&count_private=true&show_icons=true&title_color=006a6a&icon_color=006a6a&hide_border=false&theme=radical&locale=cn&rank_icon=github"
+        alt: "GitHub Stats"
+      - src: "https://githubstat.vercel.miniproj.stevezmt.top/api/top-langs/?username=stevezmtstudios&title_color=006a6a&icon_color=006a6a&hide_border=false&theme=radical&locale=cn"
+        alt: "Top Languages"
+
+footer:
+  links:
+    - { label: "Blog", href: "https://blog.stevezmt.top/" }
+    - { label: "PGP Keys", href: "https://key.stevezmt.top/" }
+    - { label: "Support", href: "/support/" }
+    - { label: "Contact", href: "/contact/" }
+    - { label: "Terms", href: "/terms/" }
+    - { label: "Refunds", href: "/refund/" }
+    - { label: "Privacy", href: "/privacy/" }
+    - { label: "Legacy", href: "k/index.html" }
+  copyright: "SteveZMTstudios"
+  beian: "浙ICP备2025213066号-1"
+
+terminal:
+  title: "steve@stevezmtstudios"
+  user: "steve@stevezmtstudios"
+  path: "~"
+  inputLabel: "Terminal command"
+  dialogLabel: "Terminal"
+  openLabel: "Open Terminal"
+  closeLabel: "Close Terminal"
+  intro:
+    - command: "whoami"
+      output: "bio"
+    - command: "ls projects/ --feature"
+      dynamic: "terminal-featured-projects"
+
+legacy:
+  title: "Steve ZMT | 史蒂夫ZMT工作室 (兼容模式)"
+  returnModern: "返回现代版 (Modern Version)"
+  loadingProjects: "正在尝试获取最新项目列表..."
+  noscriptProjects: "请启用 JavaScript 以查看项目列表，或前往 GitHub 页面。"
+  notice: "注意：您正在使用兼容模式查看此页面。由于您的浏览器版本较低，部分现代视觉效果已禁用。"
+  modernNotice: "提示：看起来您的浏览器支持更现代的页面。"
+  modernNoticeLink: "点击此处返回现代版"
+  noscript: "注意：您的浏览器禁用了 JavaScript，部分交互功能可能无法使用。"
+  headings:
+    updates: "我的动态"
+    projects: "精选项目"
+    contact: "与我联系"
+  contact:
+    - { label: "Email / iMessage", text: "me@stevezmt.top", href: "mailto:me@stevezmt.top" }
+    - { label: "RCS", text: "+372 5724 3638", href: "sms:+37257243638", note: "运营商短信或拨号可能收取高昂费用" }
+    - { label: "Telegram", text: "@stevezmt", href: "https://t.me/stevezmt" }
+    - { label: "GitHub", text: "@stevezmtstudios", href: "https://github.com/stevezmtstudios" }
+    - { label: "Bilibili", text: "访问主页", href: "https://space.bilibili.com/474130186" }
+    - { label: "PGP Key", text: "访问我的 PGP 公钥", href: "https://key.stevezmt.top/" }
+    - { label: "Blog", text: "访问我的博客", href: "//blog.stevezmt.top/k" }
+  fallbackProjects:
+    - name: "Phigros-history"
+      url: "https://github.com/SteveZMTstudios/Phigros-history"
+      description: "Phigros 历史版本收集，可能是最全的旧版本集合。"
+      stars: 140
+      language: "JavaScript"
+    - name: "calsync"
+      url: "https://github.com/SteveZMTstudios/calsync"
+      description: "通过监听通知，把事件登记到日历中。"
+      stars: 13
+      language: "Kotlin"
+    - name: "mtk-garbage-porttool"
+      url: "https://github.com/SteveZMTstudios/mtk-garbage-porttool"
+      description: "MTK 设备刷机与端口工具集。"
+      stars: 12
+      language: "Kotlin"
+    - name: "AppBackup-onRecovery"
+      url: "https://github.com/SteveZMTstudios/AppBackup-onRecovery"
+      description: "在 Recovery 环境中备份 Android 应用。"
+      stars: 12
+      language: "Shell"
+    - name: "CellBroadcast-Trigger"
+      url: "https://github.com/SteveZMTstudios/CellBroadcast-Trigger"
+      description: "模拟 Cell Broadcast 与紧急警报，用于测试。"
+      stars: 9
+      language: "Kotlin"
+
+i18n:
+  zh:
+    terminal_whoami: "whoami"
+    sudo_usage: "usage: sudo -h | -K | -k | -V"
+    sudo_password_prompt: "[sudo] password for {user}: "
+    sudo_wrong_password: "Sorry, try again."
+    sudo_auth_failure: "sudo: 3 incorrect password attempts"
+    sudo_lecture: |
+      我们信任您已经从系统管理员那里了解了日常注意事项。
+      总结起来无外乎这三点：
+
+          #1) 尊重他人的隐私。
+          #2) 输入前要三思（后果和风险）。
+          #3) 能力越大，责任越大。
+    # 选自 sudo 的 plugins/sudoers/insults.h
+    su_insult: "My pet turtle could type better than that."
+    su_password_prompt: "Password: "
+    su_auth_failure: "su: Authentication failure"
+    rm_missing_operand: "rm: missing operand"
+    rm_no_such_file: "rm: cannot remove '{path}': No such file or directory"
+    rm_permission_denied: "rm: cannot remove '{path}': Permission denied"
+    rm_dangerous_root: "rm: it is dangerous to operate recursively on '{path}'"
+    rm_use_no_preserve_root: "rm: use --no-preserve-root to override this failsafe"
+    rm_help_hint: "Try 'rm --help' for more information."
+    rm_is_a_directory: "rm: cannot remove '{path}': Is a directory"
+    rm_refuse_dot: "rm: refusing to remove '.' or '..' directory: skipping '{path}'"
+    rm_invalid_option: "rm: invalid option -- '{opt}'"
+    rm_unrecognized_option: "rm: unrecognized option '{opt}'"
+    rm_avc: 'avc: denied { read } for pid=5962 comm="httpd" name="{name}" dev="sda1" ino=12345 scontext=system_u:system_r:httpd_t:s0 tcontext=system_u:object_r:httpd_sys_content_t:s0 tclass=file permissive=0'
+    status_busy: "忙碌，暂时无法响应"
+    toast_resting: "我可能正在休息！再次点击前往。"
+    toast_busy: "我现在正忙！再次点击前往。"
+    time_early_morning: "凌晨"
+    time_morning: "早上"
+    time_late_morning: "上午"
+    time_noon: "中午"
+    time_afternoon: "下午"
+    time_evening: "傍晚"
+    time_night: "晚上"
+    time_late_night: "深夜"
+  en:
+    terminal_whoami: "whoami"
+    sudo_usage: "usage: sudo -h | -K | -k | -V"
+    sudo_password_prompt: "[sudo] password for {user}: "
+    sudo_wrong_password: "Sorry, try again."
+    sudo_auth_failure: "sudo: 3 incorrect password attempts"
+    sudo_lecture: |
+      We trust you have received the usual lecture from the local System
+      Administrator. It usually boils down to these three things:
+
+          #1) Respect the privacy of others.
+          #2) Think before you type.
+          #3) With great power comes great responsibility.
+    # Source: sudo plugins/sudoers/insults.h
+    su_insult: "My pet turtle could type better than that."
+    su_password_prompt: "Password: "
+    su_auth_failure: "su: Authentication failure"
+    rm_missing_operand: "rm: missing operand"
+    rm_no_such_file: "rm: cannot remove '{path}': No such file or directory"
+    rm_permission_denied: "rm: cannot remove '{path}': Permission denied"
+    rm_dangerous_root: "rm: it is dangerous to operate recursively on '{path}'"
+    rm_use_no_preserve_root: "rm: use --no-preserve-root to override this failsafe"
+    rm_help_hint: "Try 'rm --help' for more information."
+    rm_is_a_directory: "rm: cannot remove '{path}': Is a directory"
+    rm_refuse_dot: "rm: refusing to remove '.' or '..' directory: skipping '{path}'"
+    rm_invalid_option: "rm: invalid option -- '{opt}'"
+    rm_unrecognized_option: "rm: unrecognized option '{opt}'"
+    rm_avc: 'avc: denied { read } for pid=5962 comm="httpd" name="{name}" dev="sda1" ino=12345 scontext=system_u:system_r:httpd_t:s0 tcontext=system_u:object_r:httpd_sys_content_t:s0 tclass=file permissive=0'
+    status_busy: "Busy, may not respond quickly"
+    toast_resting: "I might be resting... Click again to proceed."
+    toast_busy: "I am busy right now! Click again to proceed."
+    time_early_morning: "Early Morning"
+    time_morning: "Morning"
+    time_late_morning: "Late Morning"
+    time_noon: "Noon"
+    time_afternoon: "Afternoon"
+    time_evening: "Evening"
+    time_night: "Night"
+    time_late_night: "Late Night"
+
+ui:
+  noscript: "您的浏览器禁用了 JavaScript，部分交互功能可能无法使用。您可以访问 {compat}。"
+  compatPage: "兼容版页面"
+  skipToContent: "跳到主要内容"
+  scrollTop: "Scroll to Top"
+  languageToggle: "Switch to English"
+  themeToggle: "Toggle theme"
+  loading:
+    zh: "正在加载..."
+    en: "Loading..."
+  footerYear: 2026

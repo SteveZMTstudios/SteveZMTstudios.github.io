@@ -1,0 +1,4 @@
+<h2>相关页面</h2>
+<ul>
+{% for item in site.data.legal_nav %}{% if item.id != include.current %}<li><a href="{{ item.href | relative_url }}">{{ item.label }}</a></li>{% endif %}{% endfor %}
+</ul>

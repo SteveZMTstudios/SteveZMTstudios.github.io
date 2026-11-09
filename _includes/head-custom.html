@@ -1,0 +1,38 @@
+<script>
+    (function () {
+        var root = document.documentElement;
+        root.classList.add('icons-loading');
+        var done = false;
+        function reveal() {
+            if (done) return;
+            done = true;
+            root.classList.remove('icons-loading');
+            root.classList.add('icons-ready');
+        }
+        if (!document.fonts || !document.fonts.check || typeof document.fonts.forEach !== 'function') {
+            reveal();
+            return;
+        }
+        var started = Date.now();
+        (function poll() {
+            var hasFace = false;
+            document.fonts.forEach(function (face) {
+                if (face.family && face.family.indexOf('Material Icons') !== -1) hasFace = true;
+            });
+            if (hasFace && document.fonts.check('24px "Material Icons"')) {
+                reveal();
+            } else if (Date.now() - started > 12000) {
+                reveal();
+            } else {
+                window.setTimeout(poll, 100);
+            }
+        })();
+    })();
+</script>
+<noscript>
+    <style>html.icons-loading .material-icons { visibility: visible; }</style>
+</noscript>
+
+<link rel="stylesheet" href="{{ '/assets/css/legal.css' | relative_url }}">
+
+{% include head-custom-google-analytics.html %}

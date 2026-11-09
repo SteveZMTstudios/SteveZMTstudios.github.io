@@ -1,1 +1,6 @@
 node_modules
+
+.env
+_site/
+.jekyll-cache/
+.jekyll-metadata

@@ -1,0 +1,649 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" href="/favicon.png" type="image/png">
+    <title>{{legacyTitle}}</title>
+    <style type="text/css">
+        body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8fafd;
+    color: #1a1c1e;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.5;
+}
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border: 1px solid #dfe2eb;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.08);
+}
+h1 { 
+    color: #0066cc; 
+    border-bottom: 2px solid #d4e7ff; 
+    padding-bottom: 10px; 
+    margin-bottom: 20px;
+}
+h2 { 
+    color: #0066cc; 
+    margin-top: 30px; 
+    border-bottom: 1px solid #dfe2eb; 
+    padding-bottom: 8px;
+}
+.section { 
+    margin-bottom: 24px; 
+}
+.card {
+    border: 1px solid #dfe2eb;
+    border-radius: 6px;
+    padding: 16px;
+    margin-bottom: 12px;
+    background-color: #f8fafd;
+    transition: all 0.2s ease;
+}
+.card:hover {
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.1);
+    transform: translateY(-1px);
+}
+.card h3 { 
+    margin-top: 0; 
+    color: #004591; 
+    margin-bottom: 8px;
+}
+a { 
+    color: #0066cc; 
+    text-decoration: none; 
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+a:hover { 
+    color: #004591; 
+    text-decoration: underline; 
+}
+.footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 12px;
+    color: #73777f;
+    border-top: 1px solid #dfe2eb;
+    padding-top: 15px;
+}
+.notice {
+    background-color: #fffbe6;
+    border: 1px solid #ffe58f;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    color: #856404;
+}
+.announce-top {
+    margin-bottom: 12px;
+}
+.announce-banner {
+    background: #e7f3ff;
+    border: 1px solid #93c5fd;
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin-bottom: 10px;
+    color: #0f3f75;
+}
+.announce-list {
+    margin: 12px 0 20px;
+}
+.announce-item {
+    border: 1px solid #dfe2eb;
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    background: #f8fafd;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+.announce-item:hover {
+    border-color: #8ab4f8;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.1);
+    transform: translateY(-1px);
+}
+.announce-item:active {
+    transform: translateY(0);
+}
+.announce-item h3 {
+    margin: 0 0 6px;
+    color: #004591;
+}
+.announce-link {
+    cursor: pointer;
+}
+.announce-item p {
+    margin: 4px 0;
+}
+.announce-item.warn {
+    border-color: #ffe58f;
+    background: #fffbe6;
+}
+.announce-item.warn h3 {
+    color: #856404;
+}
+.announce-item.err,
+.announce-item.fatal {
+    border-color: #ffb3b3;
+    background: #fff2f2;
+}
+.announce-item.err h3,
+.announce-item.fatal h3 {
+    color: #b00020;
+}
+.fatal-mask {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+.fatal-dialog {
+    width: 90%;
+    max-width: 620px;
+    margin: 60px auto 0;
+    background: #ffffff;
+    border: 1px solid #ffb3b3;
+    border-radius: 8px;
+    padding: 14px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+}
+.fatal-body {
+    margin-top: 4px;
+}
+.fatal-body h3 {
+    margin: 10px 0 6px;
+    color: #004591;
+    font-size: 16px;
+}
+.fatal-actions {
+    text-align: right;
+    margin-top: 10px;
+}
+.fatal-actions button {
+    border: 1px solid #0066cc;
+    background: #ffffff;
+    color: #0066cc;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+.fatal-open {
+    overflow: hidden;
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        {{legacyNotice}}
+
+        <div id="announce-top" class="announce-top"></div>
+
+        {{legacyProfile}}
+        <div id="announce-list" class="announce-list"></div>
+        {{legacyUpdates}}
+
+        {{legacyProjects}}
+        {{legacyContact}}
+
+        {{legacyFooter}}
+    </div>
+
+    <script type="text/javascript">
+        (function() {
+            var isModern = false;
+            try {
+                // 严格检测现代特性
+                var hasCssSupports = window.CSS && window.CSS.supports;
+                var hasGrid = hasCssSupports && (CSS.supports('display', 'grid') || CSS.supports('display', '-ms-grid'));
+                var hasVars = hasCssSupports && CSS.supports('color', 'var(--t)');
+                var hasFlex = hasCssSupports && CSS.supports('display', 'flex');
+                var hasPromise = typeof Promise !== 'undefined';
+                var hasFetch = typeof fetch !== 'undefined';
+                
+                // 尝试检测 ES6 箭头函数
+                var hasArrow = false;
+                try {
+                    eval('var f = x => x;');
+                    hasArrow = true;
+                } catch (e) {}
+
+                // 如果满足大部分现代特性，则认为可以渲染原版
+                if (hasGrid && hasVars && hasFlex && hasPromise && hasFetch && hasArrow) {
+                    isModern = true;
+                }
+            } catch (e) {
+                isModern = false;
+            }
+
+            if (isModern) {
+                var notice = document.getElementById('modern-support-notice');
+                if (notice) {
+                    notice.style.display = 'block';
+                }
+            }
+
+            // 兼容 1997+ 浏览器的异步获取逻辑（带多种回退策略）
+            function fetchProjects() {
+                // 使用显式协议以避免某些旧浏览器对 protocol-relative URL 返回 "Access is denied" 的问题
+                var url = 'https://github-user-detail.cf.miniproj.stevezmt.top/repos';
+
+                // 如果页面通过 file: 协议打开，强制使用 https
+                if (location && location.protocol === 'file:') {
+                    url = 'https://github-user-detail.cf.miniproj.stevezmt.top/repos';
+                }
+
+                // 通用响应处理函数
+                function handleResponseText(text) {
+                    try {
+                        var repos;
+                        if (window.JSON && window.JSON.parse) {
+                            repos = JSON.parse(text);
+                        } else {
+                            // 极旧浏览器使用 eval (仅在受信任的 API 下使用)
+                            repos = eval('(' + text + ')');
+                        }
+                        renderCompatProjects(repos);
+                    } catch (e) {
+                        renderCompatProjects([]);
+                    }
+                }
+
+                // 尝试通过 XHR 强制 CORS 请求（可能受跨域限制）
+                function attemptCorsFetch() {
+                    try {
+                        var xhr2;
+                        if (window.XMLHttpRequest) {
+                            xhr2 = new XMLHttpRequest();
+                        } else if (window.ActiveXObject) {
+                            try { xhr2 = new ActiveXObject("Msxml2.XMLHTTP"); }
+                            catch (e) { try { xhr2 = new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {} }
+                        }
+                        if (!xhr2) {
+                            renderCompatProjects([]);
+                            return;
+                        }
+                        xhr2.onreadystatechange = function() {
+                            if (xhr2.readyState === 4) {
+                                try {
+                                    if (xhr2.status === 200 || (xhr2.status === 0 && xhr2.responseText)) {
+                                        handleResponseText(xhr2.responseText);
+                                        return;
+                                    }
+                                } catch (e) {}
+                                renderCompatProjects([]);
+                            }
+                        };
+                        try {
+                            xhr2.open('GET', url, true);
+                            xhr2.send();
+                        } catch (e) {
+                            renderCompatProjects([]);
+                        }
+                    } catch (e) { document.getElementById('loading-text').innerHTML = '加载失败（CORS 异常）。'; }
+                }
+
+                // JSONP 回退（需要服务器支持 callback 参数）
+                function jsonpFallback() {
+                    var cbName = 'compatReposCallback_' + (+new Date());
+                    var called = false;
+                    window[cbName] = function(data) {
+                        called = true;
+                        try { renderCompatProjects(data); } finally { try { delete window[cbName]; } catch (e) {} }
+                    };
+                    var s = document.createElement('script');
+                    s.type = 'text/javascript';
+                    s.async = true;
+                    s.src = url + '?callback=' + cbName;
+
+                    var timer = setTimeout(function() {
+                        if (!called) {
+                            try { if (s.parentNode) s.parentNode.removeChild(s); } catch (e) {}
+                            try { delete window[cbName]; } catch (e) {}
+                            renderCompatProjects([]);
+                        }
+                    }, 5000);
+
+                    s.onerror = function() {
+                        clearTimeout(timer);
+                        try { delete window[cbName]; } catch (e) {}
+                        renderCompatProjects([]);
+                    };
+
+                    try {
+                        (document.getElementsByTagName('head')[0] || document.documentElement).appendChild(s);
+                    } catch (e) {
+                        // 一些老旧浏览器在向 head 插入 script 时可能出错，回退到 body
+                        try { (document.body || document.documentElement).appendChild(s); } catch (e2) {
+                            clearTimeout(timer);
+                            try { delete window[cbName]; } catch (e3) {}
+                            renderCompatProjects([]);
+                        }
+                    }
+                }
+
+                // 尝试标准 XHR
+                try {
+                    var xhr;
+                    if (window.XMLHttpRequest) {
+                        xhr = new XMLHttpRequest();
+                    } else if (window.ActiveXObject) {
+                        try { xhr = new ActiveXObject("Msxml2.XMLHTTP"); }
+                        catch (e) { try { xhr = new ActiveXObject("Microsoft.XMLHTTP"); } catch (e) {} }
+                    }
+
+                    if (xhr) {
+                        xhr.onreadystatechange = function() {
+                            if (xhr.readyState === 4) {
+                                try {
+                                    // 访问 xhr.status / xhr.responseText 在部分旧 IE 下可能抛出 "Access is denied"
+                                    var status = xhr.status;
+                                    var resp = xhr.responseText;
+                                    if (status === 200 || (status === 0 && resp)) {
+                                        handleResponseText(resp);
+                                        return;
+                                    }
+                                } catch (e) {
+                                    // 遇到访问受限错误时直接回退到 JSONP
+                                    jsonpFallback();
+                                    return;
+                                }
+                                // 状态不对时尝试回退
+                                jsonpFallback();
+                            }
+                        };
+
+                        // 简单跨域检测（兼容旧浏览器）
+                        var isCross = true;
+                        try {
+                            var lnk = document.createElement('a');
+                            lnk.href = url;
+                            isCross = (lnk.protocol + '//' + lnk.host) !== (location.protocol + '//' + location.host);
+                        } catch (e) { isCross = true; }
+
+                        try {
+                            // 如果是跨域且 xhr 不支持 CORS，再使用 XDomainRequest 或 JSONP
+                            if (isCross && !('withCredentials' in xhr) && !window.XDomainRequest) {
+                                jsonpFallback();
+                                return;
+                            }
+
+                            xhr.open('GET', url, true);
+                            xhr.send();
+                            return;
+                        } catch (e) {
+                            // 比如 IE 的 "Access is denied"，继续尝试其他回退
+                        }
+                    }
+                } catch (e) {}
+
+                // IE8/9 的 XDomainRequest 回退（仅支持 GET/POST，且无自定义 header）
+                if (window.XDomainRequest) {
+                    try {
+                        var xdr = new XDomainRequest();
+                        xdr.onload = function() { handleResponseText(xdr.responseText); };
+                        xdr.onerror = function() { renderCompatProjects([]); };
+                        xdr.open('GET', url);
+                        xdr.send();
+                        return;
+                    } catch (e) {}
+                }
+
+                // 最后尝试 JSONP
+                jsonpFallback();
+            }
+
+            function normalizeAnnouncements(data) {
+                if (Object.prototype.toString.call(data) === '[object Array]') return data;
+                if (data && typeof data === 'object') return [data];
+                return [];
+            }
+
+            function isAnnouncementActive(item) {
+                if (!item || typeof item !== 'object') return false;
+                var now = (new Date()).getTime();
+                if (item.date) {
+                    var startDate = new Date(item.date + 'T00:00:00');
+                    if (!isNaN(startDate.getTime()) && now < startDate.getTime()) return false;
+                }
+                if (item.date_end) {
+                    var endDate = new Date(item.date_end + 'T23:59:59');
+                    if (!isNaN(endDate.getTime()) && now > endDate.getTime()) return false;
+                }
+                return true;
+            }
+
+            function getAnnouncementStorageId(item) {
+                var title = (item && item.title) ? String(item.title).replace(/^\s+|\s+$/g, '') : '';
+                if (title) return title;
+                var fallback = (item && item.content && item.content.length) ? item.content.join('|') : 'untitled-fatal';
+                return fallback.substring(0, 120);
+            }
+
+            function isFatalAcknowledged(item) {
+                try {
+                    return localStorage.getItem('fatal.announcement.' + getAnnouncementStorageId(item)) === '1';
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            function markFatalAcknowledged(item) {
+                try {
+                    localStorage.setItem('fatal.announcement.' + getAnnouncementStorageId(item), '1');
+                } catch (e) {}
+            }
+
+            function openAnnouncementLink(item) {
+                if (!item || !item.variable || !item.variable.href) return;
+                var href = item.variable.href;
+                var targetBlank = item.variable._blank !== false;
+                if (targetBlank) {
+                    window.open(href, '_blank');
+                } else {
+                    window.location.href = href;
+                }
+            }
+
+            function bindAnnouncementLink(element, item) {
+                if (!element || !item || !item.variable || !item.variable.href) return;
+                element.className += ' announce-link';
+                element.onclick = function() { openAnnouncementLink(item); };
+            }
+
+            function renderAnnouncements(items) {
+                var top = document.getElementById('announce-top');
+                var list = document.getElementById('announce-list');
+                if (!top || !list) return;
+
+                top.innerHTML = '';
+                list.innerHTML = '';
+
+                var fatalItems = [];
+                for (var i = 0; i < items.length; i++) {
+                    var item = items[i];
+                    if (!isAnnouncementActive(item)) continue;
+                    var type = item.type || 'info';
+
+                    if (type === 'banner') {
+                        var banner = document.createElement('div');
+                        banner.className = 'announce-banner';
+                        if (item.variable && item.variable.custom_html) {
+                            banner.innerHTML = item.variable.custom_html;
+                        } else {
+                            var bHtml = '';
+                            var bLines = (item.content && item.content.length) ? item.content : [];
+                            for (var bi = 0; bi < bLines.length; bi++) {
+                                bHtml += '<p style="margin:4px 0;">' + bLines[bi] + '</p>';
+                            }
+                            banner.innerHTML = bHtml;
+                        }
+                        bindAnnouncementLink(banner, item);
+                        if (item.variable && item.variable.custom_css) {
+                            banner.style.cssText += ';' + item.variable.custom_css;
+                        }
+                        top.appendChild(banner);
+                        if (item.variable && item.variable.custom_js) {
+                            try { new Function('announcement', 'element', item.variable.custom_js)(item, banner); } catch (e) {}
+                        }
+                        continue;
+                    }
+
+                    var card = document.createElement('div');
+                    card.className = 'announce-item ' + type;
+                    bindAnnouncementLink(card, item);
+                    if (item.variable && item.variable.custom_html) {
+                        card.innerHTML = item.variable.custom_html;
+                    } else {
+                        var html = '';
+                        if (item.title) html += '<h3>' + item.title + '</h3>';
+                        var lines = (item.content && item.content.length) ? item.content : [];
+                        for (var li = 0; li < lines.length; li++) {
+                            html += '<p>' + lines[li] + '</p>';
+                        }
+                        card.innerHTML = html;
+                    }
+                    if (item.variable && item.variable.custom_css) {
+                        card.style.cssText += ';' + item.variable.custom_css;
+                    }
+                    list.appendChild(card);
+
+                    if (item.variable && item.variable.custom_js) {
+                        try { new Function('announcement', 'element', item.variable.custom_js)(item, card); } catch (e2) {}
+                    }
+
+                    if (type === 'fatal') fatalItems.push(item);
+                }
+
+                if (fatalItems.length) {
+                    showFatalAnnouncements(fatalItems);
+                }
+            }
+
+            function showFatalAnnouncements(items) {
+                var visibleItems = [];
+                for (var i0 = 0; i0 < items.length; i0++) {
+                    if (!isFatalAcknowledged(items[i0])) visibleItems.push(items[i0]);
+                }
+                if (!visibleItems.length) return;
+
+                var old = document.getElementById('fatal-announcement-mask');
+                if (old && old.parentNode) old.parentNode.removeChild(old);
+
+                var mask = document.createElement('div');
+                mask.id = 'fatal-announcement-mask';
+                mask.className = 'fatal-mask';
+
+                var dialog = document.createElement('div');
+                dialog.className = 'fatal-dialog';
+
+                var title = (visibleItems[0] && visibleItems[0].title) ? visibleItems[0].title : '重要公告';
+                var html = '<h3 style="margin-top:0;color:#b00020;">' + title + '</h3>';
+                html += '<div class="fatal-body">';
+                for (var i = 0; i < visibleItems.length; i++) {
+                    var item = visibleItems[i];
+                    if (i > 0 && item.title) {
+                        html += '<h3>' + item.title + '</h3>';
+                    }
+                    var lines = (item.content && item.content.length) ? item.content : [];
+                    for (var j = 0; j < lines.length; j++) {
+                        html += '<p>' + lines[j] + '</p>';
+                    }
+                }
+                html += '</div>';
+                html += '<div class="fatal-actions"><button id="fatal-announcement-confirm" type="button">我已知晓</button></div>';
+
+                dialog.innerHTML = html;
+                mask.appendChild(dialog);
+                document.body.appendChild(mask);
+
+                var btn = document.getElementById('fatal-announcement-confirm');
+                if (btn) {
+                    btn.onclick = function() {
+                        for (var j2 = 0; j2 < visibleItems.length; j2++) {
+                            markFatalAcknowledged(visibleItems[j2]);
+                        }
+                        if (mask && mask.parentNode) mask.parentNode.removeChild(mask);
+                        document.body.className = document.body.className.replace(/\bfatal-open\b/g, '').replace(/\s+/g, ' ');
+                    };
+                }
+
+                if (document.body.className.indexOf('fatal-open') === -1) {
+                    document.body.className += (document.body.className ? ' ' : '') + 'fatal-open';
+                }
+            }
+
+            function fetchAnnouncements() {
+                var url = '../api/v1/announce.json?_=' + (new Date()).getTime();
+                var xhr;
+                if (window.XMLHttpRequest) {
+                    xhr = new XMLHttpRequest();
+                } else if (window.ActiveXObject) {
+                    try { xhr = new ActiveXObject('Msxml2.XMLHTTP'); }
+                    catch (e) { try { xhr = new ActiveXObject('Microsoft.XMLHTTP'); } catch (e2) {} }
+                }
+                if (!xhr) return;
+
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState !== 4) return;
+                    if (xhr.status !== 200 && !(xhr.status === 0 && xhr.responseText)) return;
+                    try {
+                        var data;
+                        if (window.JSON && window.JSON.parse) {
+                            data = JSON.parse(xhr.responseText);
+                        } else {
+                            data = eval('(' + xhr.responseText + ')');
+                        }
+                        renderAnnouncements(normalizeAnnouncements(data));
+                    } catch (e3) {}
+                };
+                try {
+                    xhr.open('GET', url, true);
+                    xhr.send();
+                } catch (e4) {}
+            }
+
+            function renderCompatProjects(repos) {
+                var container = document.getElementById('compat-projects');
+                if (!container) return;
+                
+                // 如果没有数据，使用静态项目列表（针对非常老的浏览器）
+                if (!repos || !repos.length) {
+                    repos = {{fallbackProjects}};
+                }
+                
+                // 排序并取前 5 个
+                repos.sort(function(a, b) { return b.stargazers_count - a.stargazers_count; });
+                var featured = repos.slice(0, 5);
+                
+                var html = '';
+                for (var i = 0; i < featured.length; i++) {
+                    var r = featured[i];
+                    html += '<div class="card">' +
+                            '<h3><a href="' + r.html_url + '" target="_blank">' + r.name + '</a></h3>' +
+                            '<p>' + (r.description || '暂无描述') + '</p>' +
+                            '<p style="font-size: 11px; color: #666;">Stars: ' + r.stargazers_count + ' | Language: ' + (r.language || 'Unknown') + '</p>' +
+                            '</div>';
+                }
+                container.innerHTML = html;
+            }
+
+            fetchProjects();
+            fetchAnnouncements();
+        })();
+    </script>
+</body>
+</html>

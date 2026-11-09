@@ -22,6 +22,9 @@
     --font-mono: 'Roboto Mono', 'Fira Code', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'WenQuanYi Micro Hei', monospace;
     
     --grid-color: rgba(0, 102, 204, 0.05);
+
+    --terminal-fab-bottom: 2rem;
+    --terminal-panel-bottom: 6rem;
 }
 
 [data-theme="dark"] {
@@ -45,6 +48,19 @@
     --grid-color: rgba(168, 200, 255, 0.05);
 }
 
+body.scroll-top-visible {
+    --terminal-fab-bottom: 6.5rem;
+    --terminal-panel-bottom: 10.5rem;
+}
+
+/* The hero height is scroll-linked; keep the browser from re-anchoring the
+   viewport every time that height changes, which otherwise ratchets the page
+   upward on each reload. */
+html,
+body {
+    overflow-anchor: none;
+}
+
 /* Reset & Base */
 * { 
     box-sizing: border-box; 
@@ -56,6 +72,18 @@
 /* Ensure anchor links don't get hidden behind the sticky header */
 [id] {
     scroll-margin-top: 5rem;
+}
+
+/* Icon fonts: reserve a square box and hide ligature text until the font is ready. */
+.material-symbols-outlined {
+    width: 1em;
+    height: 1em;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+html.icons-loading .material-symbols-outlined {
+    visibility: hidden;
 }
 
 body {
@@ -252,7 +280,7 @@ header.show-logo-text .logo span:last-child {
 }
 
 .hero h1 {
-    font-size: 4rem;
+    font-size: clamp(2.2rem, 5.5vw, 3.5rem);
     margin-bottom: 1rem;
     font-weight: 700;
     letter-spacing: -1px;
@@ -447,10 +475,35 @@ header.show-logo-text .logo span:last-child {
 
 .typing-container {
     margin: 1.5rem 0;
-    min-height: 60px;
+    min-height: 2.2em;
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    font-family: var(--font-mono);
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--md-sys-color-primary);
+}
+
+.typing-text {
+    white-space: pre-wrap;
+}
+
+.typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.15em;
+    margin-left: 3px;
+    background: currentColor;
+    animation: typing-blink 1s step-end infinite;
+}
+
+@keyframes typing-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .typing-cursor { animation: none; }
 }
 
 /* Cards & Grid */
@@ -525,71 +578,92 @@ header.show-logo-text .logo span:last-child {
     color: var(--md-sys-color-secondary);
 }
 
-/* Terminal Style Section */
+/* Support cards */
+.support-card .btn-outlined {
+    margin-top: auto;
+    align-self: flex-start;
+}
+
+/* Floating Terminal */
 .terminal {
+    position: fixed;
+    right: 2rem;
+    bottom: var(--terminal-panel-bottom);
+    width: min(640px, calc(100vw - 4rem));
+    max-height: calc(100vh - var(--terminal-panel-bottom) - 1.5rem);
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem 1.5rem 1.5rem;
     background-color: #121212;
-    color: #e0e0e0;
+    color: #ffffff;
     font-family: var(--font-mono);
-    padding: 2rem;
     border-radius: 16px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    margin: 3rem 0;
-    position: relative;
     border: 1px solid #333;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+    z-index: 1200;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(16px) scale(0.98);
+    transform-origin: bottom right;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s, bottom 0.3s ease;
+}
+
+.terminal.is-open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    pointer-events: auto;
 }
 
 .terminal-header {
     display: flex;
+    align-items: center;
     gap: 8px;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    flex: 0 0 auto;
+}
+
+.terminal-title {
+    margin-right: auto;
+    color: #8a8f98;
+    font-size: 0.8rem;
 }
 
 .terminal-dot {
     border: 0;
     padding: 0;
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
     cursor: pointer;
-    transition: transform 0.15s ease, filter 0.2s ease;
+    border-radius: 50%;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.terminal-dot::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--dot-color, #ff5f56);
+    transition: filter 0.2s ease;
 }
 
 .terminal-dot:hover {
-    filter: brightness(1.08);
-    transform: scale(1.08);
+    background-color: rgba(255, 255, 255, 0.08);
+    transform: scale(1.05);
 }
 
 .terminal-dot:active {
     transform: scale(0.92);
 }
 
-.dot { width: 12px; height: 12px; border-radius: 50%; }
-.dot.red { background: #ff5f56; }
-.dot.yellow { background: #ffbd2e; }
-.dot.green { background: #27c93f; }
-
-.terminal.is-closed > :not(.terminal-header) {
-    display: none;
-}
-
-.terminal.is-closed .terminal-header,
-.terminal.is-minimized .terminal-header {
-    margin-bottom: 0;
-}
-
-.terminal.is-minimized > #terminal-history,
-.terminal.is-minimized > .terminal-line {
-    display: none;
-}
-
-.terminal.is-maximized {
-    position: fixed;
-    inset: 1rem;
-    margin: 0;
-    z-index: 1300;
-    overflow: auto;
-}
-
-body.terminal-maximized {
-    overflow: hidden;
-}
+.dot.red { --dot-color: #ff5f56; }
 
 .terminal-line {
     margin-bottom: 0.75rem;
@@ -600,14 +674,82 @@ body.terminal-maximized {
     gap: 8px;
 }
 
+.terminal-line.terminal-flood-line {
+    margin-bottom: 0;
+}
+
+/* rm -rf / easter egg: hard page freeze */
+html.rm-frozen,
+html.rm-frozen body {
+    pointer-events: none !important;
+    overscroll-behavior: none !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    scroll-behavior: auto !important;
+    cursor: progress !important;
+}
+
+html.rm-frozen *,
+html.rm-frozen *::before,
+html.rm-frozen *::after {
+    pointer-events: none !important;
+    animation-play-state: paused !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+    caret-color: transparent !important;
+    cursor: progress !important;
+}
+
+/* The freeze curtain is the only element that may still see input. */
+html.rm-frozen #rm-freeze-overlay {
+    pointer-events: auto !important;
+}
+
+/* Nothing may re-enable hit testing while the kernel is wedged. */
+html.rm-frozen a,
+html.rm-frozen button,
+html.rm-frozen input,
+html.rm-frozen select,
+html.rm-frozen textarea,
+html.rm-frozen label,
+html.rm-frozen [tabindex],
+html.rm-frozen [role="button"] {
+    pointer-events: none !important;
+    outline: none !important;
+}
+
+html.rm-frozen ::selection {
+    background: transparent;
+}
 
 .terminal-prompt {
-    color: #4edada;
+    color: #17BE0D;
     font-weight: bold;
 }
 
+.terminal-user,
+.terminal-colon,
+.terminal-path,
+.terminal-dollar {
+    font-weight: inherit;
+}
+
+.terminal-user { color: #17BE0D; }
+.terminal-colon,
+.terminal-dollar { color: #ffffff; }
+.terminal-path { color: #3B78FF; }
+
+.terminal-password-prompt {
+    color: #ffffff;
+}
+
+.terminal-completion {
+    color: #3B78FF;
+}
+
 .terminal-project {
-    color: #98c379;
+    color: #3B78FF;
     text-decoration: none;
     margin-right: 1.5rem;
     display: inline-block;
@@ -617,24 +759,36 @@ body.terminal-maximized {
     text-decoration: underline;
 }
 
-.terminal-cursor {
-    display: inline-block;
-    width: 8px;
-    height: 18px;
-    background: #4edada;
-    /* Neutralize the parent .terminal-line gap (8px) so the cursor sits flush */
-    margin-left: -2px;
-    animation: blink 1s step-end infinite;
-    vertical-align: bottom;
+.terminal-input-line {
+    flex-wrap: nowrap;
+    gap: 0.6ch;
 }
 
-@keyframes blink {
-    from, to { opacity: 1; }
-    50% { opacity: 0; }
+.terminal-input {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: #ffffff;
+    caret-color: #17BE0D;
+    font: inherit;
+}
+
+.terminal-input::selection {
+    background: rgba(59, 120, 255, 0.35);
+}
+
+.terminal-input.is-password {
+    color: transparent;
 }
 
 #terminal-history {
-    max-height: 400px;
+    flex: 1 1 auto;
+    min-height: 120px;
+    max-height: none;
     overflow-y: auto;
     margin-bottom: 0.5rem;
 }
@@ -686,19 +840,22 @@ footer {
     to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
-
 /* Ripple Effect */
 .ripple {
     position: absolute;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(0, 102, 204, 0.18);
     transform: scale(0);
     animation: ripple-animation 0.6s linear;
     pointer-events: none;
+}
+
+[data-theme="dark"] .ripple {
+    background: rgba(168, 200, 255, 0.22);
+}
+
+.fab .ripple {
+    background: rgba(255, 255, 255, 0.32);
 }
 
 @keyframes ripple-animation {
@@ -727,8 +884,15 @@ footer {
     .hero h1 { font-size: 2.2rem; }
     .container { padding: 1rem; }
     .grid { grid-template-columns: 1fr; }
-    .terminal { padding: 1rem; }
-    .github-stats img, .typing-container img {
+    .terminal {
+        left: 1rem;
+        right: 1rem;
+        bottom: var(--terminal-panel-bottom);
+        width: auto;
+        max-height: calc(100vh - var(--terminal-panel-bottom) - 1rem);
+        padding: 1rem;
+    }
+    .github-stats img {
         max-width: 100%;
         height: auto;
     }
@@ -851,6 +1015,7 @@ footer {
     width: 56px;
     height: 56px;
     border-radius: 16px;
+    overflow: hidden;
     background-color: var(--md-sys-color-primary-container);
     color: var(--md-sys-color-on-primary-container);
     display: flex;
@@ -877,6 +1042,23 @@ footer {
     transform: scale(1.05);
     background-color: var(--md-sys-color-primary);
     color: var(--md-sys-color-on-primary);
+}
+
+.fab.fab-terminal {
+    bottom: var(--terminal-fab-bottom);
+    z-index: 999;
+    background-color: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
+    opacity: 1;
+    transform: scale(1);
+    visibility: visible;
+    transition: bottom 0.3s ease, background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.fab.fab-terminal:hover {
+    background-color: var(--md-sys-color-secondary);
+    color: var(--md-sys-color-on-secondary);
+    transform: scale(1.05);
 }
 
 /* NoScript Fallback */

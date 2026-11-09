@@ -1,0 +1,21 @@
+publicSellerName: SteveZMTstudios
+email: me@stevezmt.top
+phone: "+372 5724 3638"
+website: https://stevezmt.top
+statementDescriptor: STEVEZMT
+
+
+priceStarter: "HK$35"
+priceStarterApprox: "≈ ¥31"
+pricePersonal: "HK$60"
+pricePersonalApprox: "≈ ¥53"
+priceCommercial: "HK$100"
+priceCommercialApprox: "≈ ¥89"
+
+payLinkStarter: https://buy.stripe.com/3cI28k9Dh9731b5a1B5AQ02
+payLinkPersonal: https://buy.stripe.com/5kQfZa9Dhdnj4nhb5F5AQ03
+payLinkCommercial: https://buy.stripe.com/dRmbIU16L973g5Z5Ll5AQ04
+
+contactEmail: me@stevezmt.top
+afdianUrl: https://afdian.com/a/stevezmtstudios
+githubSponsorsUrl: https://github.com/sponsors/SteveZMTstudios

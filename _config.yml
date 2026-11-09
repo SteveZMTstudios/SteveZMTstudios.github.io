@@ -1,15 +1,62 @@
-theme: jekyll-theme-hacker
-title: Steve ZMT
-description: Hello, World!
-google_analytics: G-BKKFYGH94N
-show_downloads: false
+remote_theme: SteveZMTstudios/jekyll-mdui-theme
+plugins:
+  - jekyll-remote-theme
+theme: null
+
+title: SteveZMTstudios
+description: SteveZMTstudios — 开源爱好者与业余开发者，分享博客、项目与资源。
 lang: zh-CN
+theme_color: "#0066cc"
+url: "https://stevezmt.top"
+baseurl: ""
+repository: SteveZMTstudios/SteveZMTstudios.github.io
+icon_path: "/favicon.png"
+show_downloads: false
+google_analytics: G-BKKFYGH94N
+beian: "浙ICP备2025213066号-1"
+
 github:
   is_project_page: false
-  repository_url: https://github.com/SteveZMTstudios
+  repository_url: https://stevezmt.top
+  repository_nwo: STEVEZMT.TOP
 
+collections:
+  pages:
+    output: true
+    permalink: /:name/
 
-# 备案信息配置
-beian: "浙ICP备2025213066号-1"
-repository_url: https://github.com/SteveZMTstudios
-blog_url: https://blog.stevezmt.top/
+defaults:
+  # Keep the existing static homepage / legacy page out of the theme layout.
+  - scope:
+      path: ""
+    values:
+      layout: null
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: default
+
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+exclude:
+  - node_modules
+  - scripts
+  - _templates
+  - _site
+  - .jekyll-cache
+  - .jekyll-metadata
+  - site.yml
+  - package.json
+  - package-lock.json
+  - MAINTAINING.md
+  - README.md
+  - index.md
+  - build.js
+  - 404.src.html

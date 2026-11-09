@@ -1,0 +1,121 @@
+/* Icon fonts: reserve a square box and hide ligature text until the font is ready. */
+.material-icons {
+    width: 1em;
+    height: 1em;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+html.icons-loading .material-icons {
+    visibility: hidden;
+}
+
+/* Card-style payment buttons on the support page. */
+.pay-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+    margin: 20px 0 28px;
+}
+
+.pay-cards .pay-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 24px;
+    border-radius: 24px;
+    border: 1px solid transparent;
+    background-color: rgb(var(--mdui-color-surface-container-high));
+    color: rgb(var(--mdui-color-on-surface));
+    text-decoration: none;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        box-shadow 0.4s ease,
+        border-color 0.4s ease,
+        background-color 0.4s ease;
+}
+
+.pay-cards .pay-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    border-color: rgb(var(--mdui-color-primary));
+    background-color: rgb(var(--mdui-color-surface));
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.pay-cards .pay-card .icon {
+    font-size: 2rem;
+    color: rgb(var(--mdui-color-secondary));
+}
+
+.pay-cards .pay-card h3 {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: rgb(var(--mdui-color-primary));
+}
+
+.pay-cards .pay-card .pay-card-price {
+    margin: 0;
+    font-size: 1.7rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.pay-cards .pay-card .pay-card-price span {
+    display: block;
+    margin-top: 2px;
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: rgb(var(--mdui-color-on-surface-variant));
+}
+
+.pay-cards .pay-card .pay-card-desc {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: rgb(var(--mdui-color-on-surface-variant));
+}
+
+.pay-cards .pay-card .pay-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    margin-top: auto;
+    padding: 8px 18px;
+    border: 1px solid rgb(var(--mdui-color-outline));
+    border-radius: 100px;
+    color: rgb(var(--mdui-color-primary));
+    font-size: 0.88rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.pay-cards .pay-card .pay-card-cta .material-icons {
+    font-size: 18px;
+}
+
+.pay-cards .pay-card:hover .pay-card-cta {
+    background-color: rgb(var(--mdui-color-primary-container));
+    border-color: rgb(var(--mdui-color-primary));
+    color: rgb(var(--mdui-color-on-primary-container));
+}
+
+.pay-cards .pay-card .pay-card-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    background-color: rgb(var(--mdui-color-primary));
+    color: rgb(var(--mdui-color-on-primary));
+    font-size: 0.72rem;
+    font-weight: 600;
+}
+
+@media (max-width: 600px) {
+    .pay-cards {
+        grid-template-columns: 1fr;
+    }
+}
