@@ -14,7 +14,7 @@ permalink: /support/
 
 > 此许可的售卖目前仍处于**实验性**，若您计划取得我的某项开源项目的（包括但不限于）商业许可背书、不可撤销的转让、著作权转让等，或有更大规模的商业使用需求，请[邮件联系](mailto:{{ site.data.payment.email }})预先确认，并在通过电话/邮件或明确意思表示后再在此页行动。
 
-> 目前微信支付尚不可用。
+> 目前暂时不公开提供自助购买的许可范围。
 
 
 ## 许可档位
@@ -25,6 +25,9 @@ permalink: /support/
 | 个人许可 | {{ site.data.payment.pricePersonal }}（{{ site.data.payment.pricePersonalApprox }}） | 12 个月 | 2 个项目或 2 个席位；服务周期内的技术支持；早期构建与预览版访问；单独的书面商业许可；Stripe 收据 |
 | 商业许可 **推荐** | {{ site.data.payment.priceCommercial }}（{{ site.data.payment.priceCommercialApprox }}） | 12 个月 | 最多 5 个项目或 10 个席位；服务周期内的技术支持；早期构建与预览版访问；项目页展示名称与链接 6 个月；单独的书面商业许可；Stripe 收据 |
 
+> **目前暂时不公开提供自助购买的许可范围。**
+
+<!-- 
 <div class="pay-cards">
   <a class="pay-card" href="{{ site.data.payment.payLinkStarter }}" target="_blank" rel="noopener">
     <span class="pay-card-badge">推荐</span>
@@ -48,7 +51,7 @@ permalink: /support/
     <p class="pay-card-desc">最多 5 个项目或 10 个席位；服务周期内的技术支持；早期构建与预览版访问；项目页展示名称与链接 6 个月。</p>
     <span class="pay-card-cta">购买商业许可 <span class="material-icons">arrow_forward</span></span>
   </a>
-</div>
+</div> -->
 
 超过 5 个项目、排他授权或 OEM？[邮件联系](mailto:{{ site.data.payment.email }})获取定制报价。
 

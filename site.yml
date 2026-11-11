@@ -55,6 +55,7 @@ hero:
     - "I am Steve ZMT..."
     - "Nice to meet you!"
     - "I am a hobbyist developer."
+    - "... and do many things——!!"
     - "Check out my website!"
   typingLabel: "I am a hobbyist developer."
   socials:
@@ -178,18 +179,18 @@ sections:
           zh: "前往 GitHub Sponsors"
           en: "Go to GitHub Sponsors"
         href: "https://github.com/sponsors/SteveZMTstudios"
-      - id: licence
-        icon: "sell"
-        title:
-          zh: "额外商业许可"
-          en: "Additional Commercial Licence"
-        desc:
-          zh: "在开源许可证之外购买额外商业许可与技术支持。"
-          en: "Buy an additional commercial licence from HK$35."
-        cta:
-          zh: "查看许可"
-          en: "View licences"
-        href: "/support/"
+      # - id: licence
+      #   icon: "sell"
+      #   title:
+      #     zh: "额外商业许可"
+      #     en: "Additional Commercial Licence"
+      #   desc:
+      #     zh: "在开源许可证之外购买额外商业许可与技术支持。"
+      #     en: "Buy an additional commercial licence from HK$35."
+      #   cta:
+      #     zh: "查看许可"
+      #     en: "View licences"
+      #   href: "/support/"
 
   academic:
     title:

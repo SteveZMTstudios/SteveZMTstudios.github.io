@@ -4,14 +4,17 @@
     "build:404": "node build.js",
     "build:all": "node scripts/build-pages.js && node build.js"
   },
+  "engines": {
+    "node": ">=22.18.0"
+  },
   "devDependencies": {
-    "@babel/core": "^8.0.1",
-    "@babel/preset-env": "^8.0.2",
+    "@babel/core": "^8.1.0",
+    "@babel/preset-env": "^8.0.7",
     "babel-plugin-polyfill-corejs3": "^1.0.0",
-    "core-js": "^3.49.0",
-    "esbuild": "^0.28.1",
-    "js-yaml": "^4.3.2",
-    "postcss": "^8.5.20",
-    "postcss-preset-env": "^11.3.2"
+    "core-js": "^3.51.0",
+    "esbuild": "^0.28.2",
+    "js-yaml": "^5.5.0",
+    "postcss": "^8.5.32",
+    "postcss-preset-env": "^11.6.2"
   }
 }
